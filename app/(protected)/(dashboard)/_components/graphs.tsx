@@ -2,7 +2,6 @@
 
 import { twMerge } from 'tailwind-merge';
 import { DashboardBarChart } from './dashboard-bar-chart';
-import { useState } from 'react';
 import {
   Select,
   SelectItem,
@@ -10,6 +9,7 @@ import {
   SelectContent,
   SelectValue,
 } from '@/components/ui/select';
+import { useState } from 'react';
 
 type SelectedType = 'daily' | 'monthly' | 'categorized';
 
@@ -28,6 +28,7 @@ export function Graphs({ className }: { className?: string }) {
           <SelectItem value='categorized'>Categorized</SelectItem>
         </SelectContent>
       </Select>
+      <div className='h-5' />
       <DashboardBarChart />
     </section>
   );
