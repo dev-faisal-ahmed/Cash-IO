@@ -5,7 +5,10 @@ import { getServerSession } from 'next-auth';
 import { SessionProvider } from '@/next-auth/session-provider';
 import { ThemeProvider } from '@/components/providers/theme-provider';
 
-const font = Poppins({ subsets: ['latin'], weight: ['400', '600', '800'] });
+const font = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '800'],
+});
 
 export const metadata: Metadata = {
   title: 'Cash-IO',

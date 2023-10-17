@@ -6,7 +6,10 @@ export function UserInfo() {
   return (
     <div className='grid grid-cols-7 items-start rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-gray-700'>
       <Avatar className='col-span-2'>
-        <AvatarImage src={data?.user?.image as string} />
+        <AvatarImage
+          src={data?.user?.image as string}
+          alt={data?.user?.name?.[0]}
+        />
       </Avatar>
       <div className='col-span-5 w-full'>
         <div className='truncate'>{data?.user?.name}</div>

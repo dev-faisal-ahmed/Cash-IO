@@ -1,8 +1,9 @@
+import { EditWallet } from './_components/edit-wallet';
 import { WalletContainer } from './_components/wallet-container';
 
 export default function WalletPage() {
   return (
-    <div className='grid grid-cols-3 gap-5'>
+    <section className='grid grid-cols-3 gap-5'>
       <WalletContainer
         _id='i'
         expense={500}
@@ -10,6 +11,6 @@ export default function WalletPage() {
         revenue={1520}
         icon='🚀'
       />
-    </div>
+    </section>
   );
 }

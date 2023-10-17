@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 export type TransactionType = {
   _id: string;
   date: string;
@@ -26,4 +28,8 @@ export type WalletType = {
   expense: number;
   revenue: number;
   icon: string;
+};
+
+export type IconDataType = {
+  [key: string]: ReactNode;
 };

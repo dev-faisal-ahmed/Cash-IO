@@ -24,7 +24,7 @@ export function UserIcon() {
           <Avatar className='h-10 w-10'>
             <AvatarImage
               src={data?.user?.image as string}
-              alt={data?.user?.name as string}
+              alt={data?.user?.name?.[0] as string}
             />
             <AvatarFallback>{data?.user?.name}</AvatarFallback>
           </Avatar>
