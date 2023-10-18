@@ -8,7 +8,7 @@ import { UserInfo } from './user-info';
 export function SideBar() {
   const pathName = usePathname();
   return (
-    <section className='flex h-full flex-col justify-between p-8 shadow-md shadow-gray-300 dark:shadow-gray-500'>
+    <section className='flex h-full flex-col justify-between p-6 shadow-md shadow-gray-300 dark:shadow-gray-500'>
       <div className='space-y-2'>
         {navigationLinksData.map(({ title, icon, url }, index) => (
           <SideBarLink

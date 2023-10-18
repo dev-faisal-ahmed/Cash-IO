@@ -8,9 +8,9 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { MenuIcon } from 'lucide-react';
 import { EditWallet } from './edit-wallet';
-import { TransactionTable } from '@/components/shared/transaction-table';
 import { TransferBalance } from './transfer-balance';
 import { RemoveWallet } from './remove-wallet';
+import { useState } from 'react';
 
 type WalletContainerMenuProps = {
   _id: string;
@@ -18,9 +18,19 @@ type WalletContainerMenuProps = {
   icon: string;
 };
 
-export function WalletContainerMenu({ name, icon }: WalletContainerMenuProps) {
+export function WalletContainerMenu({
+  _id,
+  name,
+  icon,
+}: WalletContainerMenuProps) {
+  const [open, setOpen] = useState(false);
+
+  function onDialogClose() {
+    setOpen(false);
+  }
+
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger>
         <MenuIcon className='cursor-pointer' />
       </DialogTrigger>
@@ -36,7 +46,12 @@ export function WalletContainerMenu({ name, icon }: WalletContainerMenuProps) {
           </TabsList>
           <div className='h-5' />
           <TabsContent value='edit'>
-            <EditWallet name={name} icon={icon} />
+            <EditWallet
+              _id={_id}
+              name={name}
+              icon={icon}
+              onDialogClose={onDialogClose}
+            />
           </TabsContent>
           <TabsContent value='transfer'>
             <TransferBalance />

@@ -1,6 +1,7 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { IconPicker } from '@/components/shared/icon-picker';
 import { Button } from '@/components/ui/button';
 
@@ -16,15 +17,15 @@ import { Label } from '@/components/ui/label';
 import { useGetIcons } from '@/hooks/use-get-icons';
 import { PlusIcon } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
-import { allIconsData } from '@/data/all-icons-data';
 import { serverReq } from '@/helpers/server-req';
 import { useGetUser } from '@/hooks/use-get-user';
 
 export function AddWallet() {
   const [open, setOpen] = useState(false);
-  const { selectedIcon, handleIconSelection } = useGetIcons();
+  const { selectedIcon, handleIconSelection, allIconsData } = useGetIcons();
   const { toast } = useToast();
   const { user } = useGetUser();
+  const router = useRouter();
 
   function onAddWallet(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -61,7 +62,10 @@ export function AddWallet() {
             variant: data.ok ? 'default' : 'destructive',
             duration: 1000,
           });
-          if (res.ok) setOpen(false);
+          if (res.ok) {
+            router.refresh();
+            setOpen(false);
+          }
         }),
       )
       .catch(() => {
@@ -76,7 +80,7 @@ export function AddWallet() {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger className='flex min-h-[228px] w-full items-center justify-center rounded-lg border bg-gray-100 text-primary dark:bg-transparent dark:text-white'>
+      <DialogTrigger className='flex min-h-[220px] w-full items-center justify-center rounded-lg border bg-gray-100 text-primary dark:bg-transparent dark:text-white'>
         <PlusIcon className='text-3xl' />
       </DialogTrigger>
       <DialogContent>
@@ -85,8 +89,10 @@ export function AddWallet() {
         </DialogHeader>
 
         {selectedIcon ? (
-          <h1 className='ml-auto w-fit rounded-lg border p-3 text-9xl'>
-            {allIconsData[selectedIcon]}
+          <h1 className='ml-auto w-full rounded-lg border p-3 text-9xl'>
+            <span className='mx-auto block w-fit'>
+              {allIconsData[selectedIcon]}
+            </span>
           </h1>
         ) : (
           <p className='ml-auto rounded-lg border p-3'>Select Any Icon</p>

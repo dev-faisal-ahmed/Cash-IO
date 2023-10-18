@@ -1,11 +1,47 @@
-import { MongoClient, ServerApiVersion } from 'mongodb';
-const uri = process.env.MONGO_URI;
+import { Db, MongoClient } from 'mongodb';
 
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
-export const mongoClient = new MongoClient(uri as string, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  },
-});
+const MONGODB_URI = process.env.MONGO_URI;
+const MONGODB_DB = 'cash-io';
+
+let cachedClient: MongoClient;
+let cachedDb: Db;
+
+export async function connectToDatabase() {
+  // check the cached.
+  if (cachedClient && cachedDb) {
+    // load from cache
+    return {
+      client: cachedClient,
+      db: cachedDb,
+    };
+  }
+
+  // set the connection options
+  const opts = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  };
+
+  // check the MongoDB URI
+  if (!MONGODB_URI) {
+    throw new Error('Define the MONGODB_URI environmental variable');
+  }
+  // check the MongoDB DB
+  if (!MONGODB_DB) {
+    throw new Error('Define the MONGODB_DB environmental variable');
+  }
+
+  // Connect to cluster
+  let client = new MongoClient(MONGODB_URI);
+  await client.connect();
+  let db = client.db(MONGODB_DB);
+
+  // set cache
+  cachedClient = client;
+  cachedDb = db;
+
+  return {
+    client: cachedClient,
+    db: cachedDb,
+  };
+}

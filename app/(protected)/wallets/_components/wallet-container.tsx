@@ -16,9 +16,9 @@ export function WalletContainer({
     <Card className='border bg-transparent '>
       <CardHeader>
         <CardTitle className='flex items-center justify-between'>
-          <h1 className='w-fit rounded-md border p-5 text-2xl'>
+          <span className='w-fit rounded-md border p-5 text-2xl'>
             {allIconsData[icon]}
-          </h1>
+          </span>
           <div className='flex items-center justify-between gap-3'>
             {name}
             <WalletContainerMenu name={name} icon={icon} _id={_id} />

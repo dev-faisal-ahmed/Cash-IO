@@ -6,6 +6,6 @@ export function dataResponse(data: Object) {
   return { ok: true, data };
 }
 
-export function onSuccessResponse(msg: string) {
+export function successResponse(msg: string) {
   return { ok: true, msg };
 }
