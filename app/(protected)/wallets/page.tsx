@@ -1,17 +1,10 @@
 import { AddWallet } from './_components/add-wallet';
-import { EditWallet } from './_components/edit-wallet';
-import { WalletContainer } from './_components/wallet-container';
+import { AllWallets } from './_components/all-wallets';
 
 export default function WalletPage() {
   return (
-    <section className='grid grid-cols-3 gap-5'>
-      <WalletContainer
-        _id='i'
-        expense={500}
-        name='Rocket'
-        revenue={1520}
-        icon='🚀'
-      />
+    <section className='grid grid-cols-3 gap-8'>
+      <AllWallets />
       <AddWallet />
     </section>
   );

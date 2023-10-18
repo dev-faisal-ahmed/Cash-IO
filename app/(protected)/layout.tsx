@@ -12,7 +12,7 @@ export default function ProtectedLayout({ children }: { children: ReactNode }) {
         className='container mt-5 flex w-[95%] overflow-y-auto rounded-xl bg-white px-0 dark:bg-[#1f1f1f] xl:w-full'
       >
         <SideBar />
-        <section className='w-full overflow-y-auto p-5'>{children}</section>
+        <section className='w-full overflow-y-auto p-8'>{children}</section>
       </section>
     </main>
   );

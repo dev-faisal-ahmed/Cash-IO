@@ -3,6 +3,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { WalletType } from '@/lib/types';
 import { WalletContainerMenu } from './wallet-container-menu';
+import { allIconsData } from '@/data/all-icons-data';
 
 export function WalletContainer({
   _id,
@@ -15,8 +16,13 @@ export function WalletContainer({
     <Card className='border bg-transparent '>
       <CardHeader>
         <CardTitle className='flex items-center justify-between'>
-          {icon} {name}
-          <WalletContainerMenu name={name} icon={icon} _id={_id} />
+          <h1 className='w-fit rounded-md border p-5 text-2xl'>
+            {allIconsData[icon]}
+          </h1>
+          <div className='flex items-center justify-between gap-3'>
+            {name}
+            <WalletContainerMenu name={name} icon={icon} _id={_id} />
+          </div>
         </CardTitle>
       </CardHeader>
       <CardContent className='space-y-2'>

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <section className='grid grid-cols-3 gap-5'>
+      <section className='grid grid-cols-3 gap-8'>
         <Summary
           title='Total Balance'
           value='500'
@@ -35,10 +35,10 @@ export default function Home() {
           icon={<FaMoneyBillTrendUp size={20} />}
         />
       </section>
-      <section className='mt-5 grid  grid-cols-5 gap-5 overflow-y-auto'>
+      <section className='mt-8 grid  grid-cols-5 gap-8 overflow-y-auto'>
         <div className='col-span-3'>
           <Graphs className='rounded-md border py-5 ' />
-          <section className='mt-5 space-y-5 rounded-md border p-5 '>
+          <section className='mt-8 space-y-5 rounded-md border p-5 '>
             <div>
               <h2 className='text-2xl font-bold tracking-tight'>
                 Recent Expense

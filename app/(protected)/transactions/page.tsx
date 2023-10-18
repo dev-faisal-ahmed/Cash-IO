@@ -6,8 +6,8 @@ import { TransferContainer } from './_components/transfer-container';
 
 export default function TransactionsPage() {
   return (
-    <section className='grid grid-cols-5 gap-5'>
-      <section className='col-span-3 space-y-5'>
+    <section className='grid grid-cols-5 gap-8'>
+      <section className='col-span-3 space-y-8'>
         {Object.keys(monthlyTransactionsData).map((key) => (
           <TransactionContainer
             key={key}

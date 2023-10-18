@@ -7,7 +7,7 @@ export function TopBar() {
   return (
     <nav
       style={{ height: uiData.topBarHeight }}
-      className='border-b border-gray-300 bg-white py-3 shadow dark:bg-[#1f1f1f]'
+      className='border-b border-gray-300 bg-white py-3 shadow dark:border-gray-700 dark:bg-[#1f1f1f]'
     >
       <section className='container flex items-center gap-5'>
         <Logo />

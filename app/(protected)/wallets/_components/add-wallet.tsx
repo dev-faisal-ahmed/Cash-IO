@@ -76,7 +76,7 @@ export function AddWallet() {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger className='flex w-full items-center justify-center rounded-lg border bg-gray-100 text-primary dark:bg-transparent dark:text-white'>
+      <DialogTrigger className='flex min-h-[228px] w-full items-center justify-center rounded-lg border bg-gray-100 text-primary dark:bg-transparent dark:text-white'>
         <PlusIcon className='text-3xl' />
       </DialogTrigger>
       <DialogContent>
