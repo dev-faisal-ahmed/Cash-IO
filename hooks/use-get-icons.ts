@@ -13,6 +13,10 @@ export function useGetIcons() {
     setSelectedIcon(iconKey);
   }
 
+  function iconReset() {
+    setSelectedIcon('');
+  }
+
   function handleFiler(value: string) {
     if (value === '') return setIcons(allIconsData);
 
@@ -31,5 +35,6 @@ export function useGetIcons() {
     allIconsData,
     handleIconSelection,
     selectedIcon,
+    iconReset,
   };
 }

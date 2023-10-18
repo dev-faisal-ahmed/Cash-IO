@@ -4,6 +4,7 @@ import { Poppins } from 'next/font/google';
 import { getServerSession } from 'next-auth';
 import { SessionProvider } from '@/next-auth/session-provider';
 import { ThemeProvider } from '@/components/providers/theme-provider';
+import { Toaster } from '@/components/ui/toaster';
 
 const font = Poppins({
   subsets: ['latin'],
@@ -21,6 +22,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const session = await getServerSession();
+
   return (
     <html lang='en'>
       <body className={font.className}>
@@ -32,6 +34,7 @@ export default async function RootLayout({
             disableTransitionOnChange
           >
             {children}
+            <Toaster />
           </ThemeProvider>
         </SessionProvider>
       </body>

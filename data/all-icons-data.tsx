@@ -9,15 +9,15 @@ import { BsRocketTakeoffFill } from 'react-icons/bs';
 import { RiSchoolFill } from 'react-icons/ri';
 
 export const allIconsData: IconDataType = {
-  FaBowlFood: <FaBowlFood size={20} />,
-  IoFastFood: <IoFastFood size={20} />,
-  PiBowlFoodFill: <PiBowlFoodFill size={20} />,
-  MdFastfood: <MdFastfood size={20} />,
-  FaMoneyBills: <FaMoneyBills size={20} />,
-  BiSolidBank: <BiSolidBank size={20} />,
-  IoMdCar: <IoMdCar size={20} />,
-  BsRocketTakeoffFill: <BsRocketTakeoffFill size={20} />,
-  FaTruckMoving: <FaTruckMoving size={20} />,
-  IoAirplaneSharp: <IoAirplaneSharp size={20} />,
-  RiSchoolFill: <RiSchoolFill size={20} />,
+  FaBowlFood: <FaBowlFood />,
+  IoFastFood: <IoFastFood />,
+  PiBowlFoodFill: <PiBowlFoodFill />,
+  MdFastfood: <MdFastfood />,
+  FaMoneyBills: <FaMoneyBills />,
+  BiSolidBank: <BiSolidBank />,
+  IoMdCar: <IoMdCar />,
+  BsRocketTakeoffFill: <BsRocketTakeoffFill />,
+  FaTruckMoving: <FaTruckMoving />,
+  IoAirplaneSharp: <IoAirplaneSharp />,
+  RiSchoolFill: <RiSchoolFill />,
 };

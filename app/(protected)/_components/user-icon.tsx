@@ -11,39 +11,45 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useSession, signOut } from 'next-auth/react';
+import { useGetUser } from '@/hooks/use-get-user';
+
+import { signOut } from 'next-auth/react';
 import { redirect } from 'next/navigation';
 
 export function UserIcon() {
-  const { data } = useSession();
-  if (!data?.user?.email) return redirect('/register');
+  const { user } = useGetUser();
+  if (!user?.email) return redirect('/register');
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant='ghost' className='relative h-10 w-10 rounded-full'>
           <Avatar className='h-10 w-10'>
             <AvatarImage
-              src={data?.user?.image as string}
-              alt={data?.user?.name?.[0] as string}
+              src={user?.image as string}
+              alt={user?.name?.[0] as string}
             />
-            <AvatarFallback>{data?.user?.name}</AvatarFallback>
+            <AvatarFallback className='text-2xl font-semibold text-primary dark:text-white'>
+              {user?.name?.[0]}
+            </AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className='w-56' align='end' forceMount>
         <DropdownMenuLabel className='font-normal'>
-          <div className='flex flex-col space-y-1'>
-            <p className='text-sm font-medium leading-none'>
-              {data?.user?.name}
-            </p>
+          <div className='flex flex-col space-y-2'>
+            <p className='text-sm font-medium leading-none'>{user?.name}</p>
             <p className='truncate text-xs leading-none text-muted-foreground'>
-              {data?.user?.email}
+              {user?.email}
             </p>
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          <Button onClick={() => signOut()} className='w-full font-semibold'>
+        <DropdownMenuItem className='focus:bg-transparent'>
+          <Button
+            variant={'destructive'}
+            onClick={() => signOut()}
+            className='w-full'
+          >
             Log Out
           </Button>
           <DropdownMenuShortcut></DropdownMenuShortcut>
