@@ -37,8 +37,8 @@ export default function Home() {
       </section>
       <section className='mt-5 grid  grid-cols-5 gap-5 overflow-y-auto'>
         <div className='col-span-3'>
-          <Graphs className='rounded-md border py-5 dark:border-gray-700' />
-          <section className='mt-5 space-y-5 rounded-md border p-5 dark:border-gray-700'>
+          <Graphs className='rounded-md border py-5 ' />
+          <section className='mt-5 space-y-5 rounded-md border p-5 '>
             <div>
               <h2 className='text-2xl font-bold tracking-tight'>
                 Recent Expense
@@ -51,7 +51,7 @@ export default function Home() {
           </section>
         </div>
         <div className='col-span-2 '>
-          <Card className='overflow-y-auto bg-transparent p-5 text-gray-800 dark:border-gray-700 dark:text-white'>
+          <Card className='overflow-y-auto bg-transparent p-5 text-gray-800  dark:text-white'>
             <CardTitle>Recent Revenue</CardTitle>
             <CardContent className='mt-6 space-y-5 px-0'>
               {revenueData.map((revenue, index) => (

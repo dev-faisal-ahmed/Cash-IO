@@ -17,7 +17,7 @@ export default function TransactionsPage() {
         ))}
       </section>
       <section className='col-span-2'>
-        <Card className='border bg-transparent dark:border-gray-700'>
+        <Card className='border bg-transparent '>
           <CardHeader>
             <CardTitle className='mb-5'>All Transfers</CardTitle>
             <CardContent className='space-y-4 px-0'>

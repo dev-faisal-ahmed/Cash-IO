@@ -9,7 +9,7 @@ type SummaryProps = {
 
 export function Summary({ title, icon, value }: SummaryProps) {
   return (
-    <Card className='w-full text-gray-800 dark:border-gray-700 dark:bg-[#2f2f2f] dark:text-white'>
+    <Card className='w-full text-gray-800  dark:bg-[#2f2f2f] dark:text-white'>
       <CardHeader className='flex flex-row items-center justify-between pb-4 '>
         <CardTitle className=''>{title}</CardTitle>
         {icon}

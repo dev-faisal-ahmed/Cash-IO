@@ -1,6 +1,6 @@
 'use client';
 
-import { IconContainer } from '@/components/shared/icon-picker';
+import { IconPicker } from '@/components/shared/icon-picker';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -12,7 +12,7 @@ type EditWalletProps = {
 
 export function EditWallet({ name, icon }: EditWalletProps) {
   return (
-    <form className='rounded-lg border p-5 dark:border-gray-700'>
+    <form>
       <Label htmlFor='walletName' className='px-2 font-medium'>
         Wallet Name
         <Input
@@ -25,7 +25,7 @@ export function EditWallet({ name, icon }: EditWalletProps) {
       </Label>
       <div className='h-1' />
       <div className='flex items-center'>
-        <IconContainer />
+        <IconPicker />
         <Button className='ml-auto block h-fit px-3 py-2 font-semibold'>
           Edit Wallet
         </Button>

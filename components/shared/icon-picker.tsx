@@ -11,7 +11,7 @@ import { Search } from 'lucide-react';
 import { useGetIcons } from '@/hooks/use-get-icons';
 import { DropdownMenuItem } from '@radix-ui/react-dropdown-menu';
 
-export function IconContainer() {
+export function IconPicker() {
   const { icons, handleFiler, handleIconSelection } = useGetIcons();
 
   function onFilter(e: ChangeEvent<HTMLInputElement>) {
@@ -20,11 +20,11 @@ export function IconContainer() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className='flex items-center gap-2 rounded-lg border px-3 py-2 text-sm font-semibold dark:border-gray-700'>
+      <DropdownMenuTrigger className='flex items-center gap-2 rounded-lg border bg-transparent px-3 py-2 text-sm font-semibold'>
         <CgOptions size={20} /> Choose Icon
       </DropdownMenuTrigger>
       <DropdownMenuContent className='w-[240px] bg-gray-100 dark:bg-[#2f2f2f]'>
-        <div className='flex items-center border-b px-3 dark:border-gray-700'>
+        <div className='flex items-center border-b px-3 '>
           <Search />
           <Input
             onChange={onFilter}
