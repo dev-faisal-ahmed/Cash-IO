@@ -5,13 +5,18 @@ import { WalletType } from '@/lib/types';
 import { WalletContainerMenu } from './wallet-container-menu';
 import { allIconsData } from '@/data/all-icons-data';
 
+type WalletContainerProps = WalletType & {
+  allWallets: string[];
+};
+
 export function WalletContainer({
   _id,
   name,
   expense,
   revenue,
   icon,
-}: WalletType) {
+  allWallets,
+}: WalletContainerProps) {
   return (
     <Card className='border bg-transparent '>
       <CardHeader>
@@ -19,9 +24,15 @@ export function WalletContainer({
           <span className='w-fit rounded-md border p-5 text-2xl'>
             {allIconsData[icon]}
           </span>
-          <div className='flex items-center justify-between gap-3'>
+          <div className='flex items-center justify-between gap-4'>
             {name}
-            <WalletContainerMenu name={name} icon={icon} _id={_id} />
+            <WalletContainerMenu
+              name={name}
+              icon={icon}
+              _id={_id}
+              balance={revenue - expense}
+              allWallets={allWallets}
+            />
           </div>
         </CardTitle>
       </CardHeader>

@@ -9,6 +9,7 @@ async function getWallets(email: string): Promise<WalletType[]> {
   const response = await fetch(url, { cache: 'no-store' }).then((res) =>
     res.json(),
   );
+
   return response.ok ? response.data : [];
 }
 
@@ -16,6 +17,11 @@ export default async function WalletPage() {
   const session = await getServerSession();
   const email = session?.user?.email;
   const wallets = await getWallets(email as string);
+
+  const allWallets: string[] = [];
+  wallets.forEach((wallet) => {
+    allWallets.push(wallet.name);
+  });
 
   return (
     <section className='grid grid-cols-3 gap-6'>
@@ -27,6 +33,7 @@ export default async function WalletPage() {
           icon={wallet.icon}
           name={wallet.name}
           revenue={wallet.revenue}
+          allWallets={allWallets}
         />
       ))}
       <AddWallet />
