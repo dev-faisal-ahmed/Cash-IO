@@ -1,16 +1,13 @@
 import { errorResponse, successResponse } from '@/helpers/server-response';
-import { collections } from '@/lib/mongo-db/collections';
-import { connectToDatabase } from '@/lib/mongo-db/mongo-client';
+import { getCollections } from '@/lib/mongo-db/collections';
 import { ObjectId } from 'mongodb';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   try {
-    const { db } = await connectToDatabase();
-    const walletsCollection = db.collection(collections.wallets);
+    const { walletsCollection } = await getCollections();
 
     const walletData = await request.json();
-    console.log(walletData);
 
     const { _id, name, icon } = walletData;
     const updateStatus = await walletsCollection.updateOne(

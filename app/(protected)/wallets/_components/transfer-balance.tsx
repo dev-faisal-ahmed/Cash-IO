@@ -15,6 +15,8 @@ import { serverAddress } from '@/data/server-address';
 import { serverReq } from '@/helpers/server-req';
 import { Loader } from '@/components/shared/loader';
 import { toast } from '@/components/ui/use-toast';
+import { useGetUser } from '@/hooks/use-get-user';
+import { useRouter } from 'next/navigation';
 
 type TransferBalanceProps = {
   allWallets: string[];
@@ -30,18 +32,29 @@ export function TransferBalance({
   onDialogClose,
 }: TransferBalanceProps) {
   const [loading, setLoading] = useState(false);
+  const [selectedWallet, setSelectedWallet] = useState<string>();
+
+  const { user } = useGetUser();
+  const router = useRouter();
+
+  function onValueChange(value: string) {
+    setSelectedWallet(value);
+  }
+
   function onTransferBalance(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.target as HTMLFormElement & {
-      toWallet: { value: string };
       amount: { value: string };
     };
 
     const formData = {
-      fromWallet,
-      toWallet: form.toWallet.value.trim(),
+      email: user?.email,
+      from: fromWallet,
+      to: selectedWallet,
       amount: parseInt(form.amount.value),
     };
+
+    console.log(formData.to);
 
     if (formData.amount > balance)
       return toast({
@@ -61,7 +74,10 @@ export function TransferBalance({
           variant: data.ok ? 'default' : 'destructive',
           duration: 1000,
         });
-        onDialogClose();
+        if (data.ok) {
+          router.refresh();
+          onDialogClose();
+        }
       })
       .catch(() => {
         toast({
@@ -90,8 +106,8 @@ export function TransferBalance({
         </div>
         <div className='w-full space-y-3'>
           <label htmlFor='toWallet'>Receiver Wallet</label>
-          <Select required>
-            <SelectTrigger id='toWallet' name='toWallet'>
+          <Select onValueChange={onValueChange} required>
+            <SelectTrigger id='toWallet'>
               <SelectValue placeholder='Select Wallet' />
             </SelectTrigger>
             <SelectContent>

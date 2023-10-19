@@ -1,6 +1,5 @@
 import { errorResponse, successResponse } from '@/helpers/server-response';
-import { collections } from '@/lib/mongo-db/collections';
-import { connectToDatabase } from '@/lib/mongo-db/mongo-client';
+import { getCollections } from '@/lib/mongo-db/collections';
 import { NextResponse, type NextRequest } from 'next/server';
 
 type WalletDataType = {
@@ -13,8 +12,7 @@ type WalletDataType = {
 
 export async function POST(request: NextRequest) {
   try {
-    const { db } = await connectToDatabase();
-    const walletsCollection = db.collection(collections.wallets);
+    const { walletsCollection } = await getCollections();
 
     const walletData = await request.json();
     const { email, name, fixedDeposit, icon, initialBalance }: WalletDataType =

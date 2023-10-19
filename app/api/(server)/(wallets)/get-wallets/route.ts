@@ -1,12 +1,10 @@
 import { dataResponse, errorResponse } from '@/helpers/server-response';
-import { collections } from '@/lib/mongo-db/collections';
-import { connectToDatabase } from '@/lib/mongo-db/mongo-client';
+import { getCollections } from '@/lib/mongo-db/collections';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(request: NextRequest) {
   try {
-    const { db } = await connectToDatabase();
-    const walletsCollection = db.collection(collections.wallets);
+    const { walletsCollection } = await getCollections();
 
     const email = request.nextUrl.searchParams.get('email');
     const walletInfo = await walletsCollection.find({ email }).toArray();
