@@ -136,7 +136,7 @@ export function TransferBalance({
         placeholder='Input Amount'
       />
       {loading ? (
-        <div className='ml-auto mt-5 block h-fit w-fit cursor-not-allowed rounded-md border px-5 py-2 font-semibold'>
+        <div className='ml-auto mt-5 h-fit w-fit cursor-not-allowed rounded-md border px-3 py-2'>
           <Loader />
         </div>
       ) : (

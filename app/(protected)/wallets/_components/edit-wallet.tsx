@@ -95,7 +95,7 @@ export function EditWallet({
       <div className='flex items-center'>
         <IconPicker handleSelection={handleIconSelection} />
         {loading ? (
-          <div className='ml-auto block h-fit cursor-not-allowed rounded-md border px-5 py-2 font-semibold'>
+          <div className='ml-auto h-fit cursor-not-allowed rounded-md border px-3 py-2'>
             <Loader />
           </div>
         ) : (

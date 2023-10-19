@@ -19,9 +19,11 @@ import { PlusIcon } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 import { serverReq } from '@/helpers/server-req';
 import { useGetUser } from '@/hooks/use-get-user';
+import { Loader } from '@/components/shared/loader';
 
 export function AddWallet() {
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { selectedIcon, handleIconSelection, allIconsData } = useGetIcons();
   const { toast } = useToast();
   const { user } = useGetUser();
@@ -46,6 +48,7 @@ export function AddWallet() {
       return;
     }
 
+    setLoading(true);
     const formData = {
       name: form.walletName.value.trim(),
       initialBalance: parseInt(form.initialBalance.value),
@@ -75,7 +78,8 @@ export function AddWallet() {
           duration: 1000,
         });
         setOpen(false);
-      });
+      })
+      .finally(() => setLoading(false));
   }
 
   return (
@@ -145,9 +149,15 @@ export function AddWallet() {
               Make this wallet fixed deposit
             </Label>
           </div>
-          <Button className='ml-auto mt-5 block' type='submit'>
-            Add Wallet
-          </Button>
+          {loading ? (
+            <div className='ml-auto h-fit w-fit cursor-not-allowed rounded-md border px-3 py-2'>
+              <Loader />
+            </div>
+          ) : (
+            <Button className='ml-auto mt-5 block' type='submit'>
+              Add Wallet
+            </Button>
+          )}
         </form>
       </DialogContent>
     </Dialog>

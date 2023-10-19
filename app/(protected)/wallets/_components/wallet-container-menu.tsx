@@ -66,7 +66,11 @@ export function WalletContainerMenu({
             />
           </TabsContent>
           <TabsContent value='remove'>
-            <RemoveWallet />
+            <RemoveWallet
+              _id={_id}
+              balance={balance}
+              onDialogClose={onDialogClose}
+            />
           </TabsContent>
         </Tabs>
       </DialogContent>
