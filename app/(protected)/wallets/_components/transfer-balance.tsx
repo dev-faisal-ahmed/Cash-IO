@@ -17,6 +17,7 @@ import { Loader } from '@/components/shared/loader';
 import { toast } from '@/components/ui/use-toast';
 import { useGetUser } from '@/hooks/use-get-user';
 import { useRouter } from 'next/navigation';
+import { Label } from '@/components/ui/label';
 
 type TransferBalanceProps = {
   allWallets: string[];
@@ -95,7 +96,7 @@ export function TransferBalance({
     <form onSubmit={onTransferBalance}>
       <div className='mb-5 flex items-center gap-5'>
         <div className='w-full space-y-3'>
-          <label htmlFor='fromWallet'>Sender Wallet</label>
+          <Label htmlFor='fromWallet'>Sender Wallet</Label>
           <Input
             className='w-full'
             type='text'
@@ -105,7 +106,7 @@ export function TransferBalance({
           />
         </div>
         <div className='w-full space-y-3'>
-          <label htmlFor='toWallet'>Receiver Wallet</label>
+          <Label htmlFor='toWallet'>Receiver Wallet</Label>
           <Select onValueChange={onValueChange} required>
             <SelectTrigger id='toWallet'>
               <SelectValue placeholder='Select Wallet' />
@@ -127,7 +128,7 @@ export function TransferBalance({
           </Select>
         </div>
       </div>
-      <label htmlFor='amount'>Amount</label>
+      <Label htmlFor='amount'>Amount</Label>
       <Input
         id='amount'
         name='amount'

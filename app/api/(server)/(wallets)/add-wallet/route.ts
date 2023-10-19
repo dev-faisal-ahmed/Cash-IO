@@ -2,23 +2,14 @@ import { errorResponse, successResponse } from '@/helpers/server-response';
 import { getCollections } from '@/lib/mongo-db/collections';
 import { NextResponse, type NextRequest } from 'next/server';
 
-type WalletDataType = {
-  email: string;
-  name: string;
-  initialBalance: number;
-  fixedDeposit: boolean;
-  icon: string;
-};
-
 export async function POST(request: NextRequest) {
   try {
     const { walletsCollection } = await getCollections();
 
-    const walletData = await request.json();
-    const { email, name, fixedDeposit, icon, initialBalance }: WalletDataType =
-      walletData;
-    const wallet = await walletsCollection.findOne({ email, name });
+    const { email, name, fixedDeposit, icon, initialBalance } =
+      await request.json();
 
+    const wallet = await walletsCollection.findOne({ email, name });
     if (wallet)
       return NextResponse.json(
         errorResponse('Already has a wallet with same name'),

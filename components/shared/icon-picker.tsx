@@ -1,5 +1,6 @@
 import { ChangeEvent } from 'react';
 import { CgOptions } from 'react-icons/cg';
+import { BiChevronDown } from 'react-icons/bi';
 
 import {
   DropdownMenu,
@@ -33,6 +34,7 @@ export function IconPicker({ className, handleSelection }: IconPickerProps) {
         )}
       >
         <CgOptions size={20} /> Choose Icon {allIconsData[selectedIcon]}
+        <BiChevronDown className={'ml-auto'} size={20} />
       </DropdownMenuTrigger>
       <DropdownMenuContent className='w-[240px] bg-gray-100 dark:bg-[#2f2f2f]'>
         <div className='flex items-center border-b px-3 '>

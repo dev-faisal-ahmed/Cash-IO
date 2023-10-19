@@ -2,6 +2,7 @@ import { Logo } from '@/components/shared/logo';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { UserIcon } from './user-icon';
 import { uiData } from '@/data/uiData';
+import { Adder } from './adder/adder';
 
 export function TopBar() {
   return (
@@ -11,9 +12,9 @@ export function TopBar() {
     >
       <section className='container flex items-center gap-5'>
         <Logo />
-        <div className='ml-auto'>
-          <ThemeToggle />
-        </div>
+        <div className='ml-auto' />
+        <Adder />
+        <ThemeToggle />
         <UserIcon />
       </section>
     </nav>
