@@ -1,12 +1,18 @@
 'use client';
-
 import * as Dialog from '@/components/ui/dialog';
 import * as Tabs from '@/components/ui/tabs';
 import { PlusIcon } from 'lucide-react';
 import { AddCategory } from './add-category';
 import { useState } from 'react';
+import { CategoriesTypeProps, WalletOptionType } from '@/lib/types';
+import { AddTransaction } from './add-transaction';
 
-export function Adder() {
+type AdderProps = {
+  categories: CategoriesTypeProps;
+  wallets: WalletOptionType[];
+};
+
+export function Adder({ categories, wallets }: AdderProps) {
   const [open, setOpen] = useState(false);
 
   function onDialogClose() {
@@ -24,18 +30,17 @@ export function Adder() {
         <Dialog.DialogHeader>
           <Dialog.DialogTitle>Adding Options</Dialog.DialogTitle>
         </Dialog.DialogHeader>
-        <Tabs.Tabs className='mt-3 w-full'>
-          <Tabs.TabsList
-            className='grid w-full grid-cols-2'
-            defaultValue={'transaction'}
-          >
+        <Tabs.Tabs defaultValue='transaction' className='mt-3 w-full'>
+          <Tabs.TabsList className='grid w-full grid-cols-2'>
             <Tabs.TabsTrigger value='transaction'>
               Add Transaction
             </Tabs.TabsTrigger>
             <Tabs.TabsTrigger value='category'>Add Category</Tabs.TabsTrigger>
           </Tabs.TabsList>
           <div className='h-5' />
-          <Tabs.TabsContent value='transaction'></Tabs.TabsContent>
+          <Tabs.TabsContent value='transaction'>
+            <AddTransaction wallets={wallets} categories={categories} />
+          </Tabs.TabsContent>
           <Tabs.TabsContent value='category'>
             <AddCategory onDialogClose={onDialogClose} />
           </Tabs.TabsContent>

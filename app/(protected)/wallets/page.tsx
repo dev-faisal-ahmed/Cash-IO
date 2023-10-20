@@ -1,22 +1,13 @@
-import { serverAddress } from '@/data/server-address';
 import { AddWallet } from './_components/add-wallet';
 import { WalletType } from '@/lib/types';
 import { getServerSession } from 'next-auth';
 import { WalletContainer } from './_components/wallet-container';
-
-async function getWallets(email: string): Promise<WalletType[]> {
-  const url = `${serverAddress}/api/get-wallets?email=${email}`;
-  const response = await fetch(url, { cache: 'no-store' }).then((res) =>
-    res.json(),
-  );
-
-  return response.ok ? response.data : [];
-}
+import { getWallets } from '@/helpers/api-request';
 
 export default async function WalletPage() {
   const session = await getServerSession();
   const email = session?.user?.email;
-  const wallets = await getWallets(email as string);
+  const wallets: WalletType[] = await getWallets(email as string);
 
   const allWallets: string[] = [];
   wallets.forEach((wallet) => {

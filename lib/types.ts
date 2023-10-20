@@ -1,4 +1,3 @@
-import { type } from 'os';
 import { ReactNode } from 'react';
 
 export type TransactionType = {
@@ -33,4 +32,33 @@ export type WalletType = {
 
 export type IconDataType = {
   [key: string]: ReactNode;
+};
+
+export type RevenueType = {
+  name: string;
+  icon: string;
+  type: 'revenue';
+  amount: number;
+};
+
+export type ExpenseType = {
+  name: string;
+  icon: string;
+  type: 'expense';
+  amount: number;
+};
+
+export type CategoriesType = {
+  revenue: RevenueType[];
+  expense: ExpenseType[];
+};
+
+export type CategoriesTypeProps = {
+  revenue: Omit<RevenueType, 'amount'>[];
+  expense: Omit<ExpenseType, 'amount'>[];
+};
+
+export type WalletOptionType = {
+  name: string;
+  icon: string;
 };
