@@ -3,7 +3,7 @@ import { getCollections } from '@/lib/mongo-db/collections';
 import { ObjectId } from 'mongodb';
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET(request: NextRequest) {
+export async function DELETE(request: NextRequest) {
   try {
     const { walletsCollection } = await getCollections();
     const _id = request.nextUrl.searchParams.get('_id');

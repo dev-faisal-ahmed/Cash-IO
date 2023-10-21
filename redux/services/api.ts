@@ -50,6 +50,14 @@ export const api = createApi({
       invalidatesTags: ['wallets'],
     }),
 
+    deleteWallet: builder.mutation<ServerResponseType, any>({
+      query: (_id) => ({
+        url: `delete-wallet?_id=${_id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['wallets'],
+    }),
+
     // categories
     getCategories: builder.query<CategoriesType, string>({
       query: (email) => `/get-categories?email=${email}`,
@@ -83,6 +91,7 @@ export const {
   useAddWalletMutation,
   useEditWalletMutation,
   useTransferBalanceMutation,
+  useDeleteWalletMutation,
   useGetCategoriesQuery,
   useAddTransactionMutation,
   useAddCategoryMutation,

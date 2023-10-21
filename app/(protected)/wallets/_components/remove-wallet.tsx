@@ -1,10 +1,8 @@
 import { Loader } from '@/components/shared/loader';
 import { Button } from '@/components/ui/button';
 import { DialogClose } from '@/components/ui/dialog';
-import { useToast } from '@/components/ui/use-toast';
-import { serverAddress } from '@/data/server-address';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { errorToast, generalToast } from '@/helpers/toast-helper';
+import { useDeleteWalletMutation } from '@/redux/services/api';
 
 type RemoveWalletProps = {
   balance: number;
@@ -17,42 +15,21 @@ export function RemoveWallet({
   balance,
   onDialogClose,
 }: RemoveWalletProps) {
-  const { toast } = useToast();
-  const [loading, setLoading] = useState(false);
-  const router = useRouter();
+  const [deleteWallet, { isLoading }] = useDeleteWalletMutation();
 
   async function onDeleteWallet() {
     if (balance > 0)
-      return toast({
-        title:
-          'Can not delete the wallet, transfer you money to another wallet',
-        variant: 'destructive',
-        duration: 1000,
-      });
+      return errorToast(
+        'Can not delete the wallet, transfer you money to another wallet',
+      );
 
-    setLoading(true);
-    const url = `${serverAddress}/api/delete-wallet?_id=${_id}`;
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        toast({
-          title: data.msg,
-          variant: data.ok ? 'default' : 'destructive',
-          duration: 1000,
-        });
-        if (data.ok) {
-          router.refresh();
-          onDialogClose();
-        }
+    deleteWallet(_id)
+      .unwrap()
+      .then((response) => {
+        generalToast(response.msg, response.ok);
+        if (response.ok) onDialogClose();
       })
-      .catch(() => {
-        toast({
-          title: 'Something went wrong',
-          variant: 'destructive',
-          duration: 1000,
-        });
-      })
-      .finally(() => setLoading(false));
+      .catch(() => errorToast());
   }
 
   return (
@@ -64,7 +41,7 @@ export function RemoveWallet({
         Make sure to transfer all the balance to another wallet
       </p>
       <div className='items-centers ml-auto mt-8 flex w-fit gap-3'>
-        {loading ? (
+        {isLoading ? (
           <div className='h-fit cursor-not-allowed rounded-md border px-3 py-2'>
             <Loader />
           </div>
