@@ -23,6 +23,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(wallets);
   } catch (err) {
+    console.log(err);
     return NextResponse.json(errorResponse('Something went wrong'));
   }
 }

@@ -1,6 +1,4 @@
 'use client';
-
-import { Metadata } from 'next';
 import { Summary } from './_components/summary';
 import { FaBalanceScale } from 'react-icons/fa';
 import { FaMoneyBillTrendUp } from 'react-icons/fa6';
@@ -8,11 +6,6 @@ import { SlGraph } from 'react-icons/sl';
 import { Graphs } from './_components/graphs';
 import { RecentExpenses } from './_components/recent-expenses';
 import { RecentRevenue } from './_components/recent-revenue';
-
-export const metadata: Metadata = {
-  title: 'Cash-IO - Dashboard',
-  description: 'Dashboard of users',
-};
 
 export default function Home() {
   return (

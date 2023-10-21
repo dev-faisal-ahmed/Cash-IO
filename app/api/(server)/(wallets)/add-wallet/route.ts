@@ -31,6 +31,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(successResponse('Wallet Created Successfully'));
   } catch (err) {
+    console.log(err);
     return NextResponse.json(errorResponse('Something Went Wrong'));
   }
 }
