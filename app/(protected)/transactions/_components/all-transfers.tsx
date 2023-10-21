@@ -15,13 +15,13 @@ export function AllTransfers() {
 
   if (isFetching || isLoading)
     return (
-      <div className='col-span-2 flex h-[350px] items-center justify-center rounded-md border'>
+      <div className='col-span-2 mt-6 flex h-[350px] items-center justify-center rounded-md border md:mt-0'>
         <Loader />
       </div>
     );
 
   return (
-    <section className='col-span-2'>
+    <section className='col-span-2 mt-6 md:mt-0'>
       <Card.Card className='border bg-transparent '>
         <Card.CardHeader>
           <Card.CardTitle className='mb-5'>All Transfers</Card.CardTitle>

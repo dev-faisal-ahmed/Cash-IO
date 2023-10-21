@@ -3,8 +3,6 @@ import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { UserIcon } from './user-icon';
 import { uiData } from '@/data/uiData';
 import { Adder } from './adder/adder';
-import { getServerSession } from 'next-auth';
-import { WalletOptionType, WalletType } from '@/lib/types';
 
 export async function TopBar() {
   return (

@@ -1,7 +1,6 @@
 'use client';
-
 import * as Card from '@/components/ui/card';
-import { WalletType } from '@/lib/types';
+import { WalletType } from '@/lib/data-types';
 import { WalletContainerMenu } from './wallet-container-menu';
 import { allIconsData } from '@/data/all-icons-data';
 
@@ -11,23 +10,21 @@ export function WalletContainer({
   expense,
   revenue,
   icon,
-}: WalletType) {
+}: Omit<WalletType, 'email'>) {
   return (
     <Card.Card className='border bg-transparent '>
       <Card.CardHeader>
-        <Card.CardTitle className='flex items-center justify-between text-xl'>
-          <span className='w-fit rounded-md border p-3 text-xl'>
+        <Card.CardTitle className='grid grid-cols-[auto_1fr_auto] items-center justify-between gap-3 text-xl'>
+          <span className='w-fit rounded-md border p-2 text-lg xl:p-3 xl:text-xl'>
             {allIconsData[icon]}
           </span>
-          <div className='flex items-center justify-between gap-4'>
-            {name}
-            <WalletContainerMenu
-              name={name}
-              icon={icon}
-              _id={_id}
-              balance={revenue - expense}
-            />
-          </div>
+          <div className='truncate'>{name}</div>
+          <WalletContainerMenu
+            name={name}
+            icon={icon}
+            _id={_id}
+            balance={revenue - expense}
+          />
         </Card.CardTitle>
       </Card.CardHeader>
       <Card.CardContent className='space-y-2'>

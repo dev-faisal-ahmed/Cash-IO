@@ -6,7 +6,7 @@ export type WalletType = {
   _id: string;
   email: string;
   name: string;
-  fixedDeposit: boolean;
+  fixedDeposit?: boolean;
   icon: string;
   revenue: number;
   expense: number;

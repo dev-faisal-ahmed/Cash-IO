@@ -22,7 +22,7 @@ export function SideBarLink({
       } `}
     >
       {icon}
-      <span>{title}</span>
+      <span className='md:hidden xl:block'>{title}</span>
     </Link>
   );
 }

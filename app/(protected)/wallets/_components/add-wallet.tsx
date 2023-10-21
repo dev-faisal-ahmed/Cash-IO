@@ -45,34 +45,11 @@ export function AddWallet() {
         if (response.ok) setOpen(false);
       })
       .catch(() => errorToast());
-    // fetch('api/add-wallet', serverReq('POST', formData))
-    //   .then((res) =>
-    //     res.json().then((data) => {
-    //       toast({
-    //         title: data.msg,
-    //         variant: data.ok ? 'default' : 'destructive',
-    //         duration: 1000,
-    //       });
-    //       if (res.ok) {
-    //         router.refresh();
-    //         setOpen(false);
-    //       }
-    //     }),
-    //   )
-    //   .catch(() => {
-    //     toast({
-    //       title: 'Something went wrong',
-    //       variant: 'destructive',
-    //       duration: 1000,
-    //     });
-    //     setOpen(false);
-    //   })
-    //   .finally(() => setLoading(false));
   }
 
   return (
     <Dialog.Dialog open={open} onOpenChange={setOpen}>
-      <Dialog.DialogTrigger className='flex min-h-[220px] w-full items-center justify-center rounded-lg border bg-gray-100 text-primary dark:bg-transparent dark:text-white'>
+      <Dialog.DialogTrigger className='flex min-h-[200px] w-full items-center justify-center rounded-lg border bg-gray-100 text-primary dark:bg-transparent dark:text-white'>
         <PlusIcon className='text-3xl' />
       </Dialog.DialogTrigger>
       <Dialog.DialogContent>
@@ -110,7 +87,7 @@ export function AddWallet() {
             title='Initial Balance Name'
             name='initialBalance'
             type='number'
-            placeholder='Input Initial Balnce'
+            placeholder='Input Initial Balance'
             required
           />
           <div className='h-5' />

@@ -10,8 +10,6 @@ export function RecentExpenses() {
     user?.email!,
   );
 
-  console.log(transactionsData?.expense);
-
   if (isLoading)
     return (
       <div className='mt-6 flex h-[300px] w-full items-center justify-center rounded-lg border'>

@@ -1,8 +1,8 @@
-import { RiLayoutMasonryFill } from 'react-icons/ri';
+import { GoHomeFill } from 'react-icons/go';
 import { BiSolidWalletAlt, BiSolidShoppingBagAlt } from 'react-icons/bi';
 
 export const navigationLinksData = [
-  { title: 'Dashboard', url: '/', icon: <RiLayoutMasonryFill size={25} /> },
+  { title: 'Dashboard', url: '/', icon: <GoHomeFill size={25} /> },
   {
     title: 'Transactions',
     url: '/transactions',

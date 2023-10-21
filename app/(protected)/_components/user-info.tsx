@@ -4,7 +4,7 @@ import { useSession } from 'next-auth/react';
 export function UserInfo() {
   const { data } = useSession();
   return (
-    <div className='grid grid-cols-7 items-start rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-gray-700'>
+    <div className='hidden grid-cols-7 items-start rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-gray-700 xl:grid'>
       <Avatar className='col-span-2'>
         <AvatarImage
           src={data?.user?.image as string}
