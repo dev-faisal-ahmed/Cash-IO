@@ -2,7 +2,7 @@ import { errorResponse, successResponse } from '@/helpers/server-response';
 import { getCollections } from '@/lib/mongo-db/collections';
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function POST(request: NextRequest) {
+export async function PATCH(request: NextRequest) {
   try {
     const { walletsCollection, transfersCollection } = await getCollections();
 
@@ -20,10 +20,7 @@ export async function POST(request: NextRequest) {
     );
 
     const insertStatus = await transfersCollection.insertOne({
-      email,
-      to,
-      from,
-      amount,
+      ...transferData,
       date: new Date(),
     });
 

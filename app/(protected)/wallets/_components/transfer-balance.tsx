@@ -1,29 +1,22 @@
 'use client';
+import * as Select from '@/components/ui/select';
 import { FormEvent, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import { serverAddress } from '@/data/server-address';
-import { serverReq } from '@/helpers/server-req';
 import { Loader } from '@/components/shared/loader';
-import { toast } from '@/components/ui/use-toast';
 import { useGetUser } from '@/hooks/use-get-user';
-import { useRouter } from 'next/navigation';
 import { Label } from '@/components/ui/label';
-import { useGetWalletsQuery } from '@/redux/services/api';
+import {
+  useGetWalletsQuery,
+  useTransferBalanceMutation,
+} from '@/redux/services/api';
 import { useGetIcons } from '@/hooks/use-get-icons';
+import { FormInput } from '@/components/shared/form-input';
+import { errorToast, generalToast } from '@/helpers/toast-helper';
 
 type TransferBalanceProps = {
   fromWallet: string;
   balance: number;
+  icon: string;
   onDialogClose: () => void;
 };
 
@@ -31,17 +24,18 @@ export function TransferBalance({
   fromWallet,
   balance,
   onDialogClose,
+  icon,
 }: TransferBalanceProps) {
-  const [loading, setLoading] = useState(false);
   const [selectedWallet, setSelectedWallet] = useState<string>();
   const { user } = useGetUser();
+  const { allIconsData } = useGetIcons();
   const {
     data: allWallets,
     isLoading,
     isFetching,
   } = useGetWalletsQuery(user?.email!);
-  const router = useRouter();
-  const { allIconsData } = useGetIcons();
+  const [transferBalance, { isLoading: reqIsLoading }] =
+    useTransferBalanceMutation();
 
   function onValueChange(value: string) {
     setSelectedWallet(value);
@@ -58,43 +52,18 @@ export function TransferBalance({
       from: fromWallet,
       to: selectedWallet,
       amount: parseInt(form.amount.value),
+      icon,
     };
 
-    console.log(formData.to);
+    if (formData.amount > balance) return errorToast('Insufficient balance');
 
-    if (formData.amount > balance)
-      return toast({
-        title: 'Insufficient balance',
-        variant: 'destructive',
-        duration: 1000,
-      });
-
-    setLoading(true);
-
-    const url = `${serverAddress}/api/transfer-balance`;
-    fetch(url, serverReq('POST', formData))
-      .then((response) => response.json())
-      .then((data) => {
-        toast({
-          title: data.msg,
-          variant: data.ok ? 'default' : 'destructive',
-          duration: 1000,
-        });
-        if (data.ok) {
-          router.refresh();
-          onDialogClose();
-        }
+    transferBalance(formData)
+      .unwrap()
+      .then((response) => {
+        generalToast(response.msg, response.ok);
+        if (response.ok) onDialogClose();
       })
-      .catch(() => {
-        toast({
-          title: 'Something went wrong',
-          variant: 'destructive',
-          duration: 1000,
-        });
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+      .catch(() => errorToast());
   }
 
   if (isLoading && isFetching)
@@ -108,9 +77,9 @@ export function TransferBalance({
     <form onSubmit={onTransferBalance}>
       <div className='mb-5 flex items-center gap-5'>
         <div className='w-full space-y-3'>
-          <Label htmlFor='fromWallet'>Sender Wallet</Label>
-          <Input
-            className='w-full'
+          <FormInput
+            title='Sender Wallet'
+            name='fromWallet'
             type='text'
             placeholder='Input Wallet Name'
             defaultValue={fromWallet}
@@ -119,44 +88,43 @@ export function TransferBalance({
         </div>
         <div className='w-full space-y-3'>
           <Label htmlFor='toWallet'>Receiver Wallet</Label>
-          <Select onValueChange={onValueChange} required>
-            <SelectTrigger id='toWallet'>
-              <SelectValue placeholder='Select Wallet' />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectLabel>Wallet Name</SelectLabel>
+          <Select.Select onValueChange={onValueChange} required>
+            <Select.SelectTrigger id='toWallet'>
+              <Select.SelectValue placeholder='Select Wallet' />
+            </Select.SelectTrigger>
+            <Select.SelectContent>
+              <Select.SelectGroup>
+                <Select.SelectLabel>Wallet Name</Select.SelectLabel>
                 {allWallets &&
                   allWallets.map((wallet, index) => (
                     <>
                       {wallet.name !== fromWallet && (
-                        <SelectItem key={index} value={wallet.name}>
+                        <Select.SelectItem key={index} value={wallet.name}>
                           <span className='flex items-center gap-3'>
                             {allIconsData[wallet.icon]} {wallet.name}
                           </span>
-                        </SelectItem>
+                        </Select.SelectItem>
                       )}
                     </>
                   ))}
-              </SelectGroup>
-            </SelectContent>
-          </Select>
+              </Select.SelectGroup>
+            </Select.SelectContent>
+          </Select.Select>
         </div>
       </div>
-      <Label htmlFor='amount'>Amount</Label>
-      <Input
-        id='amount'
+      <FormInput
+        title='Amount'
         name='amount'
-        className='mt-3'
         type='number'
         placeholder='Input Amount'
+        required
       />
-      {loading ? (
-        <div className='ml-auto mt-5 h-fit w-fit cursor-not-allowed rounded-md border px-3 py-2'>
+      {reqIsLoading ? (
+        <div className='ml-auto mt-8 h-fit w-fit cursor-not-allowed rounded-md border px-3 py-2'>
           <Loader />
         </div>
       ) : (
-        <Button className='ml-auto mt-5 block'>Proceed To Transfer</Button>
+        <Button className='ml-auto mt-8 block'>Proceed To Transfer</Button>
       )}
     </form>
   );

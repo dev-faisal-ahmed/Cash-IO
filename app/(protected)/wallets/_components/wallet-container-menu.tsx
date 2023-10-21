@@ -53,7 +53,7 @@ export function WalletContainerMenu({
             <TransferBalance
               balance={balance}
               fromWallet={name}
-              // allWallets={allWallets}
+              icon={icon}
               onDialogClose={onDialogClose}
             />
           </Tabs.TabsContent>

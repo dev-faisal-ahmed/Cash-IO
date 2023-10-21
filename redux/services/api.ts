@@ -41,6 +41,15 @@ export const api = createApi({
       invalidatesTags: ['wallets'],
     }),
 
+    transferBalance: builder.mutation<ServerResponseType, any>({
+      query: (data) => ({
+        url: '/transfer-balance',
+        method: 'PATCH',
+        body: data,
+      }),
+      invalidatesTags: ['wallets'],
+    }),
+
     // categories
     getCategories: builder.query<CategoriesType, string>({
       query: (email) => `/get-categories?email=${email}`,
@@ -73,6 +82,7 @@ export const {
   useGetWalletForTransactionQuery,
   useAddWalletMutation,
   useEditWalletMutation,
+  useTransferBalanceMutation,
   useGetCategoriesQuery,
   useAddTransactionMutation,
   useAddCategoryMutation,
