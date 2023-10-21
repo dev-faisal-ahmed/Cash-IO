@@ -6,15 +6,14 @@ import { AddCategory } from './add-category';
 import { useState } from 'react';
 import { CategoriesTypeProps, WalletOptionType } from '@/lib/types';
 import { AddTransaction } from './add-transaction';
+import { useGetUser } from '@/hooks/use-get-user';
 
 type AdderProps = {
   categories: CategoriesTypeProps;
-  wallets: WalletOptionType[];
 };
 
-export function Adder({ categories, wallets }: AdderProps) {
+export function Adder({ categories }: AdderProps) {
   const [open, setOpen] = useState(false);
-
   function onDialogClose() {
     setOpen(false);
   }
@@ -30,21 +29,23 @@ export function Adder({ categories, wallets }: AdderProps) {
         <Dialog.DialogHeader>
           <Dialog.DialogTitle>Adding Options</Dialog.DialogTitle>
         </Dialog.DialogHeader>
-        <Tabs.Tabs defaultValue='transaction' className='mt-3 w-full'>
-          <Tabs.TabsList className='grid w-full grid-cols-2'>
-            <Tabs.TabsTrigger value='transaction'>
-              Add Transaction
-            </Tabs.TabsTrigger>
-            <Tabs.TabsTrigger value='category'>Add Category</Tabs.TabsTrigger>
-          </Tabs.TabsList>
-          <div className='h-5' />
-          <Tabs.TabsContent value='transaction'>
-            <AddTransaction wallets={wallets} categories={categories} />
-          </Tabs.TabsContent>
-          <Tabs.TabsContent value='category'>
-            <AddCategory onDialogClose={onDialogClose} />
-          </Tabs.TabsContent>
-        </Tabs.Tabs>
+        <div className='max-h-[600px] overflow-y-auto p-1'>
+          <Tabs.Tabs defaultValue='transaction' className='mt-3 w-full'>
+            <Tabs.TabsList className='grid w-full grid-cols-2'>
+              <Tabs.TabsTrigger value='transaction'>
+                Add Transaction
+              </Tabs.TabsTrigger>
+              <Tabs.TabsTrigger value='category'>Add Category</Tabs.TabsTrigger>
+            </Tabs.TabsList>
+            <div className='h-5' />
+            <Tabs.TabsContent value='transaction'>
+              <AddTransaction onDialogClose={onDialogClose} />
+            </Tabs.TabsContent>
+            <Tabs.TabsContent value='category'>
+              <AddCategory onDialogClose={onDialogClose} />
+            </Tabs.TabsContent>
+          </Tabs.Tabs>
+        </div>
       </Dialog.DialogContent>
     </Dialog.Dialog>
   );

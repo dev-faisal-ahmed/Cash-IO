@@ -7,9 +7,21 @@ export async function GET(request: NextRequest) {
     const { walletsCollection } = await getCollections();
 
     const email = request.nextUrl.searchParams.get('email');
-    const walletInfo = await walletsCollection.find({ email }).toArray();
 
-    return NextResponse.json({ wallets: walletInfo || [] });
+    const walletInfo = await walletsCollection
+      .find(
+        { email },
+        { projection: { name: 1, icon: 1, revenue: 1, expense: 1, _id: 0 } },
+      )
+      .toArray();
+
+    const wallets: { [key: string]: any } = {};
+    if (walletInfo)
+      walletInfo?.forEach(
+        (walletData) => (wallets[walletData.name] = walletData),
+      );
+
+    return NextResponse.json(wallets);
   } catch (err) {
     return NextResponse.json(errorResponse('Something went wrong'));
   }

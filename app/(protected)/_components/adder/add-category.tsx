@@ -1,16 +1,16 @@
 'use client';
+import * as Select from '@/components/ui/select';
 import { FormEvent, useState } from 'react';
 import { FormInput } from '@/components/shared/form-input';
 import { IconPicker } from '@/components/shared/icon-picker';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
-import * as Select from '@/components/ui/select';
 import { useGetIcons } from '@/hooks/use-get-icons';
 import { toast } from '@/components/ui/use-toast';
-import { serverAddress } from '@/data/server-address';
-import { serverReq } from '@/helpers/server-req';
 import { Loader } from '@/components/shared/loader';
 import { useGetUser } from '@/hooks/use-get-user';
+import { useAddCategoryMutation } from '@/redux/services/api';
+import { errorToast, generalToast } from '@/helpers/toast-helper';
 
 type AddCategoryProps = {
   onDialogClose: () => void;
@@ -18,8 +18,8 @@ type AddCategoryProps = {
 
 export function AddCategory({ onDialogClose }: AddCategoryProps) {
   const [type, setType] = useState<string>();
-  const [loading, setLoading] = useState(false);
   const { allIconsData, handleIconSelection, selectedIcon } = useGetIcons();
+  const [addCategory, { isLoading }] = useAddCategoryMutation();
   const { user } = useGetUser();
 
   function handleChange(value: string) {
@@ -46,27 +46,13 @@ export function AddCategory({ onDialogClose }: AddCategoryProps) {
         duration: 1000,
       });
 
-    setLoading(true);
-    const url = `${serverAddress}/api/add-category`;
-    fetch(url, serverReq('POST', formData))
-      .then((response) => response.json())
-      .then((data) => {
-        toast({
-          title: data.msg,
-          variant: data.ok ? 'default' : 'destructive',
-          duration: 1000,
-        });
-        if (data.ok) onDialogClose();
+    addCategory(formData)
+      .unwrap()
+      .then((res) => {
+        generalToast(res.msg, res.ok);
+        if (res.ok) onDialogClose();
       })
-      .catch((err) => {
-        console.log(err);
-        toast({
-          title: 'Error Occurred',
-          variant: 'destructive',
-          duration: 1000,
-        });
-      })
-      .finally(() => setLoading(false));
+      .catch(() => errorToast());
   }
 
   return (
@@ -107,7 +93,7 @@ export function AddCategory({ onDialogClose }: AddCategoryProps) {
           </Select.Select>
         </div>
       </div>
-      {loading ? (
+      {isLoading ? (
         <div className='ml-auto mt-8 w-fit cursor-not-allowed rounded-md border px-3 py-2'>
           <Loader />
         </div>

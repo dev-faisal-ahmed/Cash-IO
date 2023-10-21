@@ -9,8 +9,6 @@ export async function POST(request: NextRequest) {
     const transferData = await request.json();
     const { email, from, to, amount } = transferData;
 
-    console.log(email, from, to, amount);
-
     await walletsCollection.updateOne(
       { email, name: from },
       { $inc: { revenue: -amount } },

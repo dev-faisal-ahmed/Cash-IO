@@ -1,4 +1,4 @@
-import { dataResponse, errorResponse } from '@/helpers/server-response';
+import { errorResponse } from '@/helpers/server-response';
 import { getCollections } from '@/lib/mongo-db/collections';
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
       .toArray();
 
     const categories = { revenue: revenue || [], expense: expense || [] };
-    return NextResponse.json(dataResponse(categories));
+    return NextResponse.json(categories);
   } catch (err) {
     console.log(err);
     return NextResponse.json(errorResponse('Something went wrong'));

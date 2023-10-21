@@ -1,0 +1,59 @@
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import {
+  CategoriesType,
+  ServerResponseType,
+  WalletType,
+} from '@/lib/data-types';
+import { serverAddress } from '@/data/server-address';
+import { WalletForTransactionType } from '@/lib/server-types';
+
+export const api = createApi({
+  reducerPath: 'api',
+  baseQuery: fetchBaseQuery({ baseUrl: `${serverAddress}/api` }),
+  tagTypes: ['wallets', 'categories', 'transactions'],
+
+  endpoints: (builder) => ({
+    getWallets: builder.query<WalletType, string>({
+      query: (email) => `/get-wallets?email=${email}`,
+      providesTags: ['wallets'],
+    }),
+
+    getWalletForTransaction: builder.query<WalletForTransactionType, string>({
+      query: (email) => `/get-wallets/for-transaction?email=${email}`,
+      providesTags: ['wallets'],
+    }),
+
+    // categories
+    getCategories: builder.query<CategoriesType, string>({
+      query: (email) => `/get-categories?email=${email}`,
+      providesTags: ['categories'],
+    }),
+
+    addCategory: builder.mutation<ServerResponseType, any>({
+      query: (data) => ({
+        url: 'add-category',
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['categories'],
+    }),
+
+    // transactions
+    addTransaction: builder.mutation<ServerResponseType, any>({
+      query: (data) => ({
+        url: '/add-transaction',
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['wallets', 'categories', 'transactions'],
+    }),
+  }),
+});
+
+export const {
+  useGetWalletsQuery,
+  useGetWalletForTransactionQuery,
+  useGetCategoriesQuery,
+  useAddTransactionMutation,
+  useAddCategoryMutation,
+} = api;
