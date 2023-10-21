@@ -2,6 +2,8 @@ import { errorResponse, successResponse } from '@/helpers/server-response';
 import { getCollections } from '@/lib/mongo-db/collections';
 import { NextRequest, NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: NextRequest) {
   try {
     const {

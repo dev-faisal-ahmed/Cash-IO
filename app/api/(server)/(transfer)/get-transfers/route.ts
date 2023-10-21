@@ -2,6 +2,8 @@ import { errorResponse } from '@/helpers/server-response';
 import { getCollections } from '@/lib/mongo-db/collections';
 import { NextRequest, NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: NextRequest) {
   try {
     const { transfersCollection } = await getCollections();

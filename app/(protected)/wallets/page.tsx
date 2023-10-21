@@ -1,6 +1,7 @@
-'use client';
 import { AddWallet } from './_components/add-wallet';
 import { AllWallets } from './_components/all-wallets';
+
+export const dynamic = 'force-dynamic';
 
 export default function WalletPage() {
   return (

@@ -1,7 +1,7 @@
-'use client';
-
 import { MonthlyTransactions } from './_components/monthly-transactions';
 import { AllTransfers } from './_components/all-transfers';
+
+export const dynamic = 'force-dynamic';
 
 export default function TransactionsPage() {
   return (
