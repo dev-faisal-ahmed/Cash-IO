@@ -15,7 +15,7 @@ export function RecentRevenue() {
 
   if (isLoading || isFetching)
     return (
-      <div className='mt-6 flex h-[600px] items-center justify-center rounded-lg border md:mt-0'>
+      <div className='col-span-2 mt-6 flex h-[600px] items-center justify-center rounded-lg border md:mt-0'>
         <Loader />
       </div>
     );
