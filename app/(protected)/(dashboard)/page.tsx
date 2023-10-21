@@ -1,3 +1,5 @@
+'use client';
+
 import { Metadata } from 'next';
 import { Summary } from './_components/summary';
 import { FaBalanceScale } from 'react-icons/fa';

@@ -1,3 +1,5 @@
+'use client';
+
 import { MonthlyTransactions } from './_components/monthly-transactions';
 import { AllTransfers } from './_components/all-transfers';
 
