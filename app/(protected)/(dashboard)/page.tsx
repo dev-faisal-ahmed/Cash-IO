@@ -7,8 +7,7 @@ import { Graphs } from './_components/graphs';
 import { Card, CardContent, CardTitle } from '@/components/ui/card';
 import { Revenue } from './_components/revenue';
 import { revenueData } from '@/data/revenue-data';
-import { TransactionTable } from '@/components/shared/transaction-table';
-import { transactionsData } from '@/data/transaction-data';
+import { RecentExpenses } from './_components/recent-expenses/recent-expenses';
 
 export const metadata: Metadata = {
   title: 'Cash-IO - Dashboard',
@@ -38,17 +37,7 @@ export default function Home() {
       <section className='mt-6 grid  grid-cols-5 gap-6 overflow-y-auto'>
         <div className='col-span-3'>
           <Graphs className='rounded-md border py-5 ' />
-          <section className='mt-6 space-y-5 rounded-md border p-5 '>
-            <div>
-              <h2 className='text-2xl font-bold tracking-tight'>
-                Recent Expense
-              </h2>
-              <p className='mt-2 text-muted-foreground'>
-                Here&apos;s the recent expenses
-              </p>
-            </div>
-            <TransactionTable transactions={transactionsData} />
-          </section>
+          <RecentExpenses />
         </div>
         <div className='col-span-2 '>
           <Card className='overflow-y-auto bg-transparent p-5 text-gray-800  dark:text-white'>

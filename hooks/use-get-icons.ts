@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { allIconsData } from '@/data/all-icons-data';
-import { IconDataType } from '@/lib/types';
+import { IconDataType } from '@/lib/data-types';
 
 export function useGetIcons() {
   const [icons, setIcons] = useState<IconDataType>(allIconsData);

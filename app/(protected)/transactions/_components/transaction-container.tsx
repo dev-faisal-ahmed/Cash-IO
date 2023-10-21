@@ -1,5 +1,5 @@
 import { TransactionTable } from '@/components/shared/transaction-table';
-import { TransactionType } from '@/lib/types';
+import { TransactionType } from '@/lib/data-types';
 
 type TransactionContainerProps = {
   month: string;

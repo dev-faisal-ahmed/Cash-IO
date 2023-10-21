@@ -1,4 +1,4 @@
-import { MonthlyTransactionType } from '@/lib/types';
+import { MonthlyTransactionType } from '@/lib/data-types';
 
 export const monthlyTransactionsData: MonthlyTransactionType = {
   'October-2023': [

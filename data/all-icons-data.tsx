@@ -1,4 +1,4 @@
-import { IconDataType } from '@/lib/types';
+import { IconDataType } from '@/lib/data-types';
 import { FaBowlFood, FaMoneyBills, FaTruckMoving } from 'react-icons/fa6';
 import { IoFastFood, IoAirplaneSharp } from 'react-icons/io5';
 import { IoMdCar } from 'react-icons/io';

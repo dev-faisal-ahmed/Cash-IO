@@ -2,6 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import {
   CategoriesType,
   ServerResponseType,
+  TransactionsTypeSeverData,
   WalletType,
 } from '@/lib/data-types';
 import { serverAddress } from '@/data/server-address';
@@ -82,6 +83,11 @@ export const api = createApi({
       }),
       invalidatesTags: ['wallets', 'categories', 'transactions'],
     }),
+
+    getTransactions: builder.query<TransactionsTypeSeverData, string>({
+      query: (email) => `/get-transactions?email=${email}`,
+      providesTags: ['transactions'],
+    }),
   }),
 });
 
@@ -95,4 +101,5 @@ export const {
   useGetCategoriesQuery,
   useAddTransactionMutation,
   useAddCategoryMutation,
+  useGetTransactionsQuery,
 } = api;

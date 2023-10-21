@@ -1,4 +1,4 @@
-import { TransactionType } from '@/lib/types';
+import { TransactionType } from '@/lib/data-types';
 
 export const transactionsData: TransactionType[] = [
   {
