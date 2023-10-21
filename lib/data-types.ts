@@ -15,12 +15,13 @@ export type WalletType = {
 // ********* transfer ********* \\
 export type TransferType = {
   _id: string;
-  email: string;
   to: string;
   from: string;
   amount: number;
   date: string;
+  icon: string;
 };
+
 // ********* categories ********* \\
 export type RevenueType = {
   name: string;
@@ -60,12 +61,6 @@ export type TransactionsTypeSeverData = {
 
 export type MonthlyTransactionType = {
   [key: string]: TransactionType[];
-};
-
-// ********* server-response ********* \\
-export type ServerResponseType = {
-  ok: boolean;
-  msg: string;
 };
 
 export type IconDataType = {

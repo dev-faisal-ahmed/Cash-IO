@@ -12,3 +12,8 @@ export type WalletForTransactionType = {
 export type MonthlyTransactionType = {
   [key: string]: TransactionType[];
 };
+
+export type ServerResponseType = {
+  ok: boolean;
+  msg: string;
+};

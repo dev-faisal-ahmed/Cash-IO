@@ -1,20 +1,24 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { serverAddress } from '@/data/server-address';
-import { WalletForTransactionType } from '@/lib/server-types';
+import {
+  ServerResponseType,
+  WalletForTransactionType,
+} from '@/lib/server-types';
 import {
   CategoriesType,
   MonthlyTransactionType,
-  ServerResponseType,
   TransactionsTypeSeverData,
+  TransferType,
   WalletType,
 } from '@/lib/data-types';
 
 export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({ baseUrl: `${serverAddress}/api` }),
-  tagTypes: ['wallets', 'categories', 'transactions'],
+  tagTypes: ['wallets', 'categories', 'transactions', 'transfers'],
 
   endpoints: (builder) => ({
+    // wallets
     getWallets: builder.query<WalletType[], string>({
       query: (email) => `/get-wallets?email=${email}`,
       providesTags: ['wallets'],
@@ -49,7 +53,7 @@ export const api = createApi({
         method: 'PATCH',
         body: data,
       }),
-      invalidatesTags: ['wallets'],
+      invalidatesTags: ['wallets', 'transfers'],
     }),
 
     deleteWallet: builder.mutation<ServerResponseType, any>({
@@ -94,6 +98,12 @@ export const api = createApi({
       query: (email) => `/get-monthly-transactions?email=${email}`,
       providesTags: ['transactions'],
     }),
+
+    // transfers
+    getTransfers: builder.query<TransferType[], string>({
+      query: (email) => `/get-transfers?email=${email}`,
+      providesTags: ['transfers'],
+    }),
   }),
 });
 
@@ -109,4 +119,5 @@ export const {
   useAddCategoryMutation,
   useGetTransactionsQuery,
   useGetMonthlyTransactionsQuery,
+  useGetTransfersQuery,
 } = api;
