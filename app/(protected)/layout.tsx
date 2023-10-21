@@ -1,8 +1,9 @@
 import { ReactNode } from 'react';
 import { TopBar } from './_components/top-bar';
-import { uiData } from '@/data/uiData';
 import { SideBar } from './_components/side-bar';
 import { MobileNavbar } from './_components/mobile-navbar';
+
+export const dynamic = 'force-dynamic';
 
 export default function ProtectedLayout({ children }: { children: ReactNode }) {
   return (
