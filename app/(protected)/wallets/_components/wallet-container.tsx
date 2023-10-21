@@ -6,7 +6,7 @@ import { WalletContainerMenu } from './wallet-container-menu';
 import { allIconsData } from '@/data/all-icons-data';
 
 type WalletContainerProps = WalletType & {
-  allWallets: string[];
+  // allWallets: string[];
 };
 
 export function WalletContainer({
@@ -14,8 +14,7 @@ export function WalletContainer({
   name,
   expense,
   revenue,
-  icon,
-  allWallets,
+  icon, // allWallets,
 }: WalletContainerProps) {
   return (
     <Card className='border bg-transparent '>
@@ -31,7 +30,7 @@ export function WalletContainer({
               icon={icon}
               _id={_id}
               balance={revenue - expense}
-              allWallets={allWallets}
+              // allWallets={allWallets}
             />
           </div>
         </CardTitle>

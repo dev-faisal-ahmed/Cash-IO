@@ -18,25 +18,30 @@ import { toast } from '@/components/ui/use-toast';
 import { useGetUser } from '@/hooks/use-get-user';
 import { useRouter } from 'next/navigation';
 import { Label } from '@/components/ui/label';
+import { useGetWalletsQuery } from '@/redux/services/api';
+import { useGetIcons } from '@/hooks/use-get-icons';
 
 type TransferBalanceProps = {
-  allWallets: string[];
   fromWallet: string;
   balance: number;
   onDialogClose: () => void;
 };
 
 export function TransferBalance({
-  allWallets,
   fromWallet,
   balance,
   onDialogClose,
 }: TransferBalanceProps) {
   const [loading, setLoading] = useState(false);
   const [selectedWallet, setSelectedWallet] = useState<string>();
-
   const { user } = useGetUser();
+  const {
+    data: allWallets,
+    isLoading,
+    isFetching,
+  } = useGetWalletsQuery(user?.email!);
   const router = useRouter();
+  const { allIconsData } = useGetIcons();
 
   function onValueChange(value: string) {
     setSelectedWallet(value);
@@ -92,6 +97,13 @@ export function TransferBalance({
       });
   }
 
+  if (isLoading && isFetching)
+    return (
+      <div className='flex h-[300px] w-full items-center justify-center'>
+        <Loader />
+      </div>
+    );
+
   return (
     <form onSubmit={onTransferBalance}>
       <div className='mb-5 flex items-center gap-5'>
@@ -114,15 +126,18 @@ export function TransferBalance({
             <SelectContent>
               <SelectGroup>
                 <SelectLabel>Wallet Name</SelectLabel>
-                {allWallets.map((walletName, index) => (
-                  <>
-                    {walletName !== fromWallet && (
-                      <SelectItem key={index} value={walletName}>
-                        {walletName}
-                      </SelectItem>
-                    )}
-                  </>
-                ))}
+                {allWallets &&
+                  allWallets.map((wallet, index) => (
+                    <>
+                      {wallet.name !== fromWallet && (
+                        <SelectItem key={index} value={wallet.name}>
+                          <span className='flex items-center gap-3'>
+                            {allIconsData[wallet.icon]} {wallet.name}
+                          </span>
+                        </SelectItem>
+                      )}
+                    </>
+                  ))}
               </SelectGroup>
             </SelectContent>
           </Select>

@@ -4,15 +4,9 @@ import * as Tabs from '@/components/ui/tabs';
 import { PlusIcon } from 'lucide-react';
 import { AddCategory } from './add-category';
 import { useState } from 'react';
-import { CategoriesTypeProps, WalletOptionType } from '@/lib/types';
 import { AddTransaction } from './add-transaction';
-import { useGetUser } from '@/hooks/use-get-user';
 
-type AdderProps = {
-  categories: CategoriesTypeProps;
-};
-
-export function Adder({ categories }: AdderProps) {
+export function Adder() {
   const [open, setOpen] = useState(false);
   function onDialogClose() {
     setOpen(false);

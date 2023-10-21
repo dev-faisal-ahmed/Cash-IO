@@ -8,8 +8,9 @@ export async function GET(request: NextRequest) {
 
     const email = request.nextUrl.searchParams.get('email');
     const walletInfo = await walletsCollection.find({ email }).toArray();
+    const wallets = walletInfo || [];
 
-    return NextResponse.json({ wallets: walletInfo || [] });
+    return NextResponse.json(wallets);
   } catch (err) {
     return NextResponse.json(errorResponse('Something went wrong'));
   }

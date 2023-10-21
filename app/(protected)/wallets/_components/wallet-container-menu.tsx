@@ -16,7 +16,7 @@ type WalletContainerMenuProps = {
   _id: string;
   name: string;
   icon: string;
-  allWallets: string[];
+  // allWallets: string[];
   balance: number;
 };
 
@@ -24,7 +24,7 @@ export function WalletContainerMenu({
   _id,
   name,
   icon,
-  allWallets,
+  // allWallets,
   balance,
 }: WalletContainerMenuProps) {
   const [open, setOpen] = useState(false);
@@ -61,7 +61,7 @@ export function WalletContainerMenu({
             <TransferBalance
               balance={balance}
               fromWallet={name}
-              allWallets={allWallets}
+              // allWallets={allWallets}
               onDialogClose={onDialogClose}
             />
           </TabsContent>

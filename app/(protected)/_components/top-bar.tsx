@@ -4,21 +4,9 @@ import { UserIcon } from './user-icon';
 import { uiData } from '@/data/uiData';
 import { Adder } from './adder/adder';
 import { getServerSession } from 'next-auth';
-import { getCategories, getWallets } from '@/helpers/api-request';
 import { WalletOptionType, WalletType } from '@/lib/types';
 
 export async function TopBar() {
-  const session = await getServerSession();
-  const categories = await getCategories(session?.user?.email as string);
-  const wallets: WalletType[] = await getWallets(
-    session?.user?.email as string,
-  );
-
-  const walletsData: WalletOptionType[] = [];
-  wallets.forEach((wallet) => {
-    walletsData.push({ name: wallet.name, icon: wallet.icon });
-  });
-
   return (
     <nav
       style={{ height: uiData.topBarHeight }}
@@ -27,7 +15,7 @@ export async function TopBar() {
       <section className='container flex items-center gap-5'>
         <Logo />
         <div className='ml-auto' />
-        <Adder wallets={walletsData} categories={categories} />
+        <Adder />
         <ThemeToggle />
         <UserIcon />
       </section>

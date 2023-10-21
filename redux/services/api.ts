@@ -13,7 +13,7 @@ export const api = createApi({
   tagTypes: ['wallets', 'categories', 'transactions'],
 
   endpoints: (builder) => ({
-    getWallets: builder.query<WalletType, string>({
+    getWallets: builder.query<WalletType[], string>({
       query: (email) => `/get-wallets?email=${email}`,
       providesTags: ['wallets'],
     }),
@@ -21,6 +21,15 @@ export const api = createApi({
     getWalletForTransaction: builder.query<WalletForTransactionType, string>({
       query: (email) => `/get-wallets/for-transaction?email=${email}`,
       providesTags: ['wallets'],
+    }),
+
+    addWallet: builder.mutation<ServerResponseType, any>({
+      query: (data) => ({
+        url: '/add-wallet',
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['wallets'],
     }),
 
     // categories
@@ -31,7 +40,7 @@ export const api = createApi({
 
     addCategory: builder.mutation<ServerResponseType, any>({
       query: (data) => ({
-        url: 'add-category',
+        url: '/add-category',
         method: 'POST',
         body: data,
       }),
@@ -53,6 +62,7 @@ export const api = createApi({
 export const {
   useGetWalletsQuery,
   useGetWalletForTransactionQuery,
+  useAddWalletMutation,
   useGetCategoriesQuery,
   useAddTransactionMutation,
   useAddCategoryMutation,
