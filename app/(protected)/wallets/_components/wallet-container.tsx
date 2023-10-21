@@ -1,26 +1,22 @@
 'use client';
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import * as Card from '@/components/ui/card';
 import { WalletType } from '@/lib/types';
 import { WalletContainerMenu } from './wallet-container-menu';
 import { allIconsData } from '@/data/all-icons-data';
-
-type WalletContainerProps = WalletType & {
-  // allWallets: string[];
-};
 
 export function WalletContainer({
   _id,
   name,
   expense,
   revenue,
-  icon, // allWallets,
-}: WalletContainerProps) {
+  icon,
+}: WalletType) {
   return (
-    <Card className='border bg-transparent '>
-      <CardHeader>
-        <CardTitle className='flex items-center justify-between'>
-          <span className='w-fit rounded-md border p-5 text-2xl'>
+    <Card.Card className='border bg-transparent '>
+      <Card.CardHeader>
+        <Card.CardTitle className='flex items-center justify-between text-xl'>
+          <span className='w-fit rounded-md border p-3 text-xl'>
             {allIconsData[icon]}
           </span>
           <div className='flex items-center justify-between gap-4'>
@@ -30,12 +26,11 @@ export function WalletContainer({
               icon={icon}
               _id={_id}
               balance={revenue - expense}
-              // allWallets={allWallets}
             />
           </div>
-        </CardTitle>
-      </CardHeader>
-      <CardContent className='space-y-2'>
+        </Card.CardTitle>
+      </Card.CardHeader>
+      <Card.CardContent className='space-y-2'>
         <div className='flex'>
           <p>Revenue</p>
           <p className='ml-auto font-semibold'> &#2547; {revenue}</p>
@@ -50,7 +45,7 @@ export function WalletContainer({
             &#2547; {(revenue | 0) - (expense | 0)}
           </p>
         </div>
-      </CardContent>
-    </Card>
+      </Card.CardContent>
+    </Card.Card>
   );
 }

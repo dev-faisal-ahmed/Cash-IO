@@ -3,7 +3,7 @@ import { getCollections } from '@/lib/mongo-db/collections';
 import { ObjectId } from 'mongodb';
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function POST(request: NextRequest) {
+export async function PATCH(request: NextRequest) {
   try {
     const { walletsCollection } = await getCollections();
 

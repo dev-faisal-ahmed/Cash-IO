@@ -1,5 +1,4 @@
 'use client';
-
 import { useRouter } from 'next/navigation';
 import { FormEvent, useState } from 'react';
 import { IconPicker } from '@/components/shared/icon-picker';
@@ -11,7 +10,9 @@ import { useToast } from '@/components/ui/use-toast';
 import { serverAddress } from '@/data/server-address';
 import { serverReq } from '@/helpers/server-req';
 import { useGetIcons } from '@/hooks/use-get-icons';
-import { useGetUser } from '@/hooks/use-get-user';
+import { useEditWalletMutation } from '@/redux/services/api';
+import { errorToast, generalToast } from '@/helpers/toast-helper';
+import { FormInput } from '@/components/shared/form-input';
 
 type EditWalletProps = {
   name: string;
@@ -27,6 +28,7 @@ export function EditWallet({
   onDialogClose,
 }: EditWalletProps) {
   const { allIconsData, selectedIcon, handleIconSelection } = useGetIcons();
+  const [editWallet, { isLoading }] = useEditWalletMutation();
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
   const router = useRouter();
@@ -38,7 +40,8 @@ export function EditWallet({
     };
 
     const walletName = form.walletName.value.trim();
-    if (walletName === name && icon === selectedIcon) return;
+    if (walletName === name && icon === selectedIcon)
+      return errorToast('Nothing to update');
 
     setLoading(true);
 
@@ -48,30 +51,38 @@ export function EditWallet({
       icon: selectedIcon || icon,
     };
 
-    const url = `${serverAddress}/api/edit-wallet`;
-    fetch(url, serverReq('POST', fromData))
-      .then((response) => response.json())
-      .then((data) => {
-        toast({
-          title: data.msg,
-          variant: data.ok ? 'default' : 'destructive',
-          duration: 2000,
-        });
-        if (data.ok) {
-          router.refresh();
-          onDialogClose();
-        }
+    editWallet(fromData)
+      .unwrap()
+      .then((response) => {
+        generalToast(response.msg, response.ok);
+        if (response.ok) onDialogClose();
       })
-      .catch(() => {
-        toast({
-          title: 'Something went wrong',
-          variant: 'destructive',
-          duration: 2000,
-        });
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+      .catch(() => errorToast());
+
+    // const url = `${serverAddress}/api/edit-wallet`;
+    // fetch(url, serverReq('POST', fromData))
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     toast({
+    //       title: data.msg,
+    //       variant: data.ok ? 'default' : 'destructive',
+    //       duration: 2000,
+    //     });
+    //     if (data.ok) {
+    //       router.refresh();
+    //       onDialogClose();
+    //     }
+    //   })
+    //   .catch(() => {
+    //     toast({
+    //       title: 'Something went wrong',
+    //       variant: 'destructive',
+    //       duration: 2000,
+    //     });
+    //   })
+    //   .finally(() => {
+    //     setLoading(false);
+    //   });
   }
 
   return (
@@ -81,7 +92,15 @@ export function EditWallet({
           {selectedIcon ? allIconsData[selectedIcon] : allIconsData[icon]}
         </span>
       </h1>
-      <Label htmlFor='walletName' className='px-2 font-medium'>
+      <FormInput
+        title='Wallet Name'
+        name='walletName'
+        placeholder='Input Wallet Name'
+        type='text'
+        defaultValue={name}
+        required
+      />
+      {/* <Label htmlFor='walletName' className='px-2 font-medium'>
         Wallet Name
         <Input
           id='walletName'
@@ -90,9 +109,8 @@ export function EditWallet({
           name='walletName'
           defaultValue={name}
         />
-      </Label>
-      <div className='h-1' />
-      <div className='flex items-center'>
+      </Label> */}
+      <div className='mt-5 flex items-center'>
         <IconPicker handleSelection={handleIconSelection} />
         {loading ? (
           <div className='ml-auto h-fit cursor-not-allowed rounded-md border px-3 py-2'>
