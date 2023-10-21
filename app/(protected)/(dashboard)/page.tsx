@@ -7,7 +7,8 @@ import { Graphs } from './_components/graphs';
 import { Card, CardContent, CardTitle } from '@/components/ui/card';
 import { Revenue } from './_components/revenue';
 import { revenueData } from '@/data/revenue-data';
-import { RecentExpenses } from './_components/recent-expenses/recent-expenses';
+import { RecentExpenses } from './_components/recent-expenses';
+import { RecentRevenue } from './_components/recent-revenue';
 
 export const metadata: Metadata = {
   title: 'Cash-IO - Dashboard',
@@ -40,7 +41,8 @@ export default function Home() {
           <RecentExpenses />
         </div>
         <div className='col-span-2 '>
-          <Card className='overflow-y-auto bg-transparent p-5 text-gray-800  dark:text-white'>
+          <RecentRevenue />
+          {/* <Card className='overflow-y-auto bg-transparent p-5 text-gray-800  dark:text-white'>
             <CardTitle>Recent Revenue</CardTitle>
             <CardContent className='mt-6 space-y-5 px-0'>
               {revenueData.map((revenue, index) => (
@@ -53,7 +55,7 @@ export default function Home() {
                 />
               ))}
             </CardContent>
-          </Card>
+          </Card> */}
         </div>
       </section>
     </>

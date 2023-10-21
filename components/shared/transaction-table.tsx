@@ -40,7 +40,7 @@ export function TransactionTable({ transactions }: TransactionTableProps) {
                 {transaction.description}
               </span>
               <span className='mt-1 block text-xs text-muted-foreground'>
-                {format(new Date(transaction.date), 'PPP')}
+                {format(new Date(transaction.date), 'do MMM, uu')}
               </span>
             </TableCell>
             <TableCell className='whitespace-nowrap text-right font-semibold'>

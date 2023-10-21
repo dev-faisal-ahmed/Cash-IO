@@ -18,7 +18,7 @@ export function CalendarPopover({ date, setDate }: CalendarPopoverProps) {
           <Label>Date</Label>
           <div className='flex w-full items-center justify-between rounded-md border px-3 py-2'>
             <span className='text-muted-foreground'>
-              {date ? format(date, 'PPP') : 'Pick a date'}
+              {date ? format(date, 'do MMM, uu') : 'Pick a date'}
             </span>
             <CalendarIcon className='h-5 w-5' />
           </div>
