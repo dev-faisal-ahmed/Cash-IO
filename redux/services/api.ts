@@ -1,12 +1,13 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { serverAddress } from '@/data/server-address';
+import { WalletForTransactionType } from '@/lib/server-types';
 import {
   CategoriesType,
+  MonthlyTransactionType,
   ServerResponseType,
   TransactionsTypeSeverData,
   WalletType,
 } from '@/lib/data-types';
-import { serverAddress } from '@/data/server-address';
-import { WalletForTransactionType } from '@/lib/server-types';
 
 export const api = createApi({
   reducerPath: 'api',
@@ -19,11 +20,6 @@ export const api = createApi({
       providesTags: ['wallets'],
     }),
 
-    getWalletForTransaction: builder.query<WalletForTransactionType, string>({
-      query: (email) => `/get-wallets/for-transaction?email=${email}`,
-      providesTags: ['wallets'],
-    }),
-
     addWallet: builder.mutation<ServerResponseType, any>({
       query: (data) => ({
         url: '/add-wallet',
@@ -31,6 +27,11 @@ export const api = createApi({
         body: data,
       }),
       invalidatesTags: ['wallets'],
+    }),
+
+    getWalletForTransaction: builder.query<WalletForTransactionType, string>({
+      query: (email) => `/get-wallets/for-transaction?email=${email}`,
+      providesTags: ['wallets'],
     }),
 
     editWallet: builder.mutation<ServerResponseType, any>({
@@ -53,7 +54,7 @@ export const api = createApi({
 
     deleteWallet: builder.mutation<ServerResponseType, any>({
       query: (_id) => ({
-        url: `delete-wallet?_id=${_id}`,
+        url: `/delete-wallet?_id=${_id}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['wallets'],
@@ -88,6 +89,11 @@ export const api = createApi({
       query: (email) => `/get-transactions?email=${email}`,
       providesTags: ['transactions'],
     }),
+
+    getMonthlyTransactions: builder.query<MonthlyTransactionType, string>({
+      query: (email) => `/get-monthly-transactions?email=${email}`,
+      providesTags: ['transactions'],
+    }),
   }),
 });
 
@@ -102,4 +108,5 @@ export const {
   useAddTransactionMutation,
   useAddCategoryMutation,
   useGetTransactionsQuery,
+  useGetMonthlyTransactionsQuery,
 } = api;

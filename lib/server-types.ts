@@ -1,3 +1,5 @@
+import { TransactionType } from './data-types';
+
 export type WalletForTransactionType = {
   [key: string]: {
     name: string;
@@ -5,4 +7,8 @@ export type WalletForTransactionType = {
     revenue: number;
     expense: number;
   };
+};
+
+export type MonthlyTransactionType = {
+  [key: string]: TransactionType[];
 };
