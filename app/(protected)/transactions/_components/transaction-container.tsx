@@ -12,7 +12,7 @@ export function TransactionContainer({
 }: TransactionContainerProps) {
   return (
     <section className='rounded-lg border border-gray-400 p-5 pb-1 dark:border-white'>
-      <div className='text-2xl font-bold tracking-tight'>
+      <div className='mb-3 text-2xl font-bold tracking-tight'>
         Month &nbsp; : &nbsp; {month}
       </div>
       <TransactionTable transactions={transaction} />
