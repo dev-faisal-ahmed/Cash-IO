@@ -58,36 +58,11 @@ export function EditWallet({
         if (response.ok) onDialogClose();
       })
       .catch(() => errorToast());
-
-    // const url = `${serverAddress}/api/edit-wallet`;
-    // fetch(url, serverReq('POST', fromData))
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     toast({
-    //       title: data.msg,
-    //       variant: data.ok ? 'default' : 'destructive',
-    //       duration: 2000,
-    //     });
-    //     if (data.ok) {
-    //       router.refresh();
-    //       onDialogClose();
-    //     }
-    //   })
-    //   .catch(() => {
-    //     toast({
-    //       title: 'Something went wrong',
-    //       variant: 'destructive',
-    //       duration: 2000,
-    //     });
-    //   })
-    //   .finally(() => {
-    //     setLoading(false);
-    //   });
   }
 
   return (
     <form onSubmit={onEditWallet}>
-      <h1 className='mb-5 rounded border p-5 text-center text-9xl'>
+      <h1 className='mb-5 rounded-md border p-5 text-center text-9xl'>
         <span className='mx-auto block w-fit'>
           {selectedIcon ? allIconsData[selectedIcon] : allIconsData[icon]}
         </span>
@@ -100,16 +75,6 @@ export function EditWallet({
         defaultValue={name}
         required
       />
-      {/* <Label htmlFor='walletName' className='px-2 font-medium'>
-        Wallet Name
-        <Input
-          id='walletName'
-          className='mt-3 bg-transparent'
-          placeholder='Wallet Name?'
-          name='walletName'
-          defaultValue={name}
-        />
-      </Label> */}
       <div className='mt-5 flex items-center'>
         <IconPicker handleSelection={handleIconSelection} />
         {loading ? (

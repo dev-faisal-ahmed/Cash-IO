@@ -75,7 +75,7 @@ export function TransferBalance({
 
   return (
     <form onSubmit={onTransferBalance}>
-      <div className='mb-5 flex items-center gap-5'>
+      <div className='mb-5 flex flex-col items-center gap-5 sm:flex-row'>
         <div className='w-full space-y-3'>
           <FormInput
             title='Sender Wallet'
@@ -94,8 +94,7 @@ export function TransferBalance({
             </Select.SelectTrigger>
             <Select.SelectContent>
               <Select.SelectGroup>
-                <Select.SelectLabel>Wallet Name</Select.SelectLabel>
-                {allWallets &&
+                {allWallets ? (
                   allWallets.map((wallet, index) => (
                     <>
                       {wallet.name !== fromWallet && (
@@ -106,7 +105,12 @@ export function TransferBalance({
                         </Select.SelectItem>
                       )}
                     </>
-                  ))}
+                  ))
+                ) : (
+                  <span className='px-3 text-sm text-muted-foreground'>
+                    No Wallet Found
+                  </span>
+                )}
               </Select.SelectGroup>
             </Select.SelectContent>
           </Select.Select>
