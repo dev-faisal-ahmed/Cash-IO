@@ -15,7 +15,7 @@ export function Adder() {
   return (
     <Dialog.Dialog open={open} onOpenChange={setOpen}>
       <Dialog.DialogTrigger>
-        <span className='flex h-10 w-10 items-center justify-center rounded-md border bg-transparent'>
+        <span className='flex h-8 w-8 items-center justify-center rounded-md border bg-transparent p-2 sm:h-10 sm:w-10'>
           <PlusIcon />
         </span>
       </Dialog.DialogTrigger>

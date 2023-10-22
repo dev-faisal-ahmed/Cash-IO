@@ -49,7 +49,7 @@ export function AddWallet() {
 
   return (
     <Dialog.Dialog open={open} onOpenChange={setOpen}>
-      <Dialog.DialogTrigger className='flex min-h-[200px] w-full items-center justify-center rounded-lg border bg-gray-100 text-primary dark:bg-transparent dark:text-white'>
+      <Dialog.DialogTrigger className=',d:bg-gray-100 flex min-h-[200px] w-full items-center justify-center rounded-lg border border-gray-400 text-primary dark:border-white dark:bg-transparent dark:text-white'>
         <PlusIcon className='text-3xl' />
       </Dialog.DialogTrigger>
       <Dialog.DialogContent>

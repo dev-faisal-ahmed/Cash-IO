@@ -3,32 +3,33 @@ import { Loader } from '@/components/shared/loader';
 import { TransactionTable } from '@/components/shared/transaction-table';
 import { useGetUser } from '@/hooks/use-get-user';
 import { useGetTransactionsQuery } from '@/redux/services/api';
-import { useEffect } from 'react';
 
 export function RecentExpenses() {
   const { user } = useGetUser();
-  const { data: transactionsData, isLoading } = useGetTransactionsQuery(
-    user?.email!,
-  );
+  const {
+    data: transactionsData,
+    isLoading,
+    isFetching,
+  } = useGetTransactionsQuery(user?.email!);
 
-  useEffect(() => {});
-
-  if (isLoading)
+  if (isLoading || isFetching)
     return (
-      <div className='mt-6 flex h-[300px] w-full items-center justify-center rounded-lg border'>
+      <div className='mt-6 flex h-[300px] w-full items-center justify-center rounded-lg border border-gray-400 dark:border-white'>
         <Loader />
       </div>
     );
 
-  console.log(transactionsData);
-
   return (
-    <section className='mt-6 space-y-5 rounded-md border px-5 pb-2 pt-5 '>
+    <section className='mt-6 space-y-5 rounded-md border border-gray-400 px-5 pb-2 pt-5 dark:border-white '>
       <div>
         <h2 className='text-2xl font-bold tracking-tight'>Recent Expense</h2>
-        <p className='mt-2 text-muted-foreground'>
-          Here&apos;s the recent expenses
-        </p>
+        {transactionsData ? (
+          <p className='mt-2 text-muted-foreground'>
+            Here&apos;s the recent expenses
+          </p>
+        ) : (
+          <p className='mt-2 text-muted-foreground'>Nothing to show</p>
+        )}
       </div>
       {transactionsData && (
         <TransactionTable transactions={transactionsData?.expense} />

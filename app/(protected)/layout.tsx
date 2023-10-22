@@ -7,11 +7,13 @@ export const dynamic = 'force-dynamic';
 
 export default function ProtectedLayout({ children }: { children: ReactNode }) {
   return (
-    <main className='grid h-[100dvh] grid-rows-[auto_1fr_auto] gap-6 bg-gray-200 dark:bg-[#2f2f2f]'>
+    <main className='grid h-[100dvh] grid-rows-[auto_1fr_auto] gap-1 bg-gray-200 dark:bg-[#2f2f2f] sm:gap-6'>
       <TopBar />
-      <section className='container h-full w-[95%] overflow-y-auto rounded-xl bg-white px-0 dark:bg-[#1f1f1f] lg:flex xl:w-full'>
+      <section className='h-full gap-6 overflow-y-auto rounded-xl bg-transparent p-0 lg:container lg:flex lg:bg-white lg:dark:bg-[#1f1f1f]'>
         <SideBar />
-        <section className='w-full overflow-y-auto p-6'>{children}</section>
+        <section className='w-full overflow-y-auto px-5 py-6 lg:px-0'>
+          {children}
+        </section>
       </section>
       <div className='hidden lg:block' />
       <MobileNavbar />

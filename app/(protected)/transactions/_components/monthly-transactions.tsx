@@ -21,14 +21,22 @@ export function MonthlyTransactions() {
 
   return (
     <section className='col-span-3 space-y-6'>
-      {transactions &&
+      {transactions ? (
         Object.keys(transactions).map((key) => (
           <TransactionContainer
             key={key}
             month={key}
             transaction={transactions[key]}
           />
-        ))}
+        ))
+      ) : (
+        <div className='rounded-lg border border-gray-400 p-5 dark:border-white'>
+          <h3 className='text-2xl font-bold leading-tight'>
+            Month Wise Transactions
+          </h3>
+          <p className='mt-1 text-muted-foreground'>Noting to show</p>
+        </div>
+      )}
     </section>
   );
 }

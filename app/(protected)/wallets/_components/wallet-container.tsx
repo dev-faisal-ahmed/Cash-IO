@@ -12,7 +12,7 @@ export function WalletContainer({
   icon,
 }: Omit<WalletType, 'email'>) {
   return (
-    <Card.Card className='border bg-transparent '>
+    <Card.Card className='border border-gray-400 bg-transparent dark:border-white'>
       <Card.CardHeader>
         <Card.CardTitle className='grid grid-cols-[auto_1fr_auto] items-center justify-between gap-3 text-xl'>
           <span className='w-fit rounded-md border p-2 text-lg xl:p-3 xl:text-xl'>
