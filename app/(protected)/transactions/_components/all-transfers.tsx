@@ -25,24 +25,24 @@ export function AllTransfers() {
       <Card.Card className='border border-gray-400 bg-transparent dark:border-white'>
         <Card.CardHeader>
           <Card.CardTitle>All Transfers</Card.CardTitle>
-          {transfers ? (
-            <Card.CardContent className='mt-5 space-y-4 px-0'>
-              {transfers.map((data) => (
-                <TransferContainer
-                  key={data._id}
-                  _id={data._id}
-                  amount={data.amount}
-                  date={data.date}
-                  from={data.from}
-                  to={data.to}
-                  icon={data.icon}
-                />
-              ))}
-            </Card.CardContent>
-          ) : (
-            <p className='text-muted-foreground'>Nothing to show</p>
-          )}
         </Card.CardHeader>
+        {transfers ? (
+          <Card.CardContent className='space-y-4 px-6'>
+            {transfers.map((data) => (
+              <TransferContainer
+                key={data._id}
+                _id={data._id}
+                amount={data.amount}
+                date={data.date}
+                from={data.from}
+                to={data.to}
+                icon={data.icon}
+              />
+            ))}
+          </Card.CardContent>
+        ) : (
+          <p className='mt-2 text-muted-foreground'>Nothing to show</p>
+        )}
       </Card.Card>
     </section>
   );

@@ -34,7 +34,7 @@ export function MonthlyTransactions() {
           <h3 className='text-2xl font-bold leading-tight'>
             Month Wise Transactions
           </h3>
-          <p className='mt-1 text-muted-foreground'>Noting to show</p>
+          <p className='mt-2 text-muted-foreground'>Noting to show</p>
         </div>
       )}
     </section>
