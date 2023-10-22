@@ -28,9 +28,9 @@ export default function Home() {
           icon={<FaMoneyBillTrendUp size={20} />}
         />
       </section>
-      <section className='mt-6 grid-cols-5  gap-6 overflow-y-auto md:grid'>
+      <section className='mt-6 grid-cols-5 gap-6 overflow-y-auto md:grid'>
         <div className='col-span-3'>
-          <Graphs className='rounded-md border py-5 ' />
+          <Graphs className='rounded-md border border-gray-400 py-5 dark:border-white ' />
           <RecentExpenses />
         </div>
         <RecentRevenue />

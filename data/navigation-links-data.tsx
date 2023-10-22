@@ -2,15 +2,15 @@ import { GoHomeFill } from 'react-icons/go';
 import { BiSolidWalletAlt, BiSolidShoppingBagAlt } from 'react-icons/bi';
 
 export const navigationLinksData = [
-  { title: 'Dashboard', url: '/', icon: <GoHomeFill size={25} /> },
+  { title: 'Dashboard', url: '/', icon: <GoHomeFill /> },
   {
     title: 'Transactions',
     url: '/transactions',
-    icon: <BiSolidShoppingBagAlt size={25} />,
+    icon: <BiSolidShoppingBagAlt />,
   },
   {
     title: 'Wallets',
     url: '/wallets',
-    icon: <BiSolidWalletAlt size={25} />,
+    icon: <BiSolidWalletAlt />,
   },
 ];

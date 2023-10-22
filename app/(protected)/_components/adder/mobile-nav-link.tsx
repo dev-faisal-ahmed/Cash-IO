@@ -17,12 +17,12 @@ export function MobileNavLink({
   return (
     <Link
       href={url}
-      className={`flex flex-col items-center gap-2 px-3 py-1 text-sm ${
+      className={`flex flex-col items-center gap-3 px-3 py-1 ${
         currentUrl === url ? 'text-primary' : ''
       }`}
     >
-      {icon}
-      {title}
+      <span className='text-2xl'>{icon}</span>
+      <span className='text-xs'>{title}</span>
     </Link>
   );
 }
