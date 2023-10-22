@@ -41,7 +41,7 @@ export function AllTransfers() {
             ))}
           </Card.CardContent>
         ) : (
-          <p className='mt-2 text-muted-foreground'>Nothing to show</p>
+          <p className='mb-3 px-6 text-muted-foreground'>Nothing to show</p>
         )}
       </Card.Card>
     </section>
