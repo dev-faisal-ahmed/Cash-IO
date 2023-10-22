@@ -36,7 +36,7 @@ export function IconPicker({ className, handleSelection }: IconPickerProps) {
         <CgOptions size={20} /> Choose Icon {allIconsData[selectedIcon]}
         <BiChevronDown className={'ml-auto'} size={20} />
       </DropdownMenuTrigger>
-      <DropdownMenuContent className='w-[240px] bg-gray-100 dark:bg-[#2f2f2f]'>
+      <DropdownMenuContent className='w-[240px] bg-gray-100 dark:bg-background'>
         <div className='flex items-center border-b px-3 '>
           <Search />
           <Input
@@ -49,7 +49,7 @@ export function IconPicker({ className, handleSelection }: IconPickerProps) {
           {Object.keys(icons).map((icon, index) => (
             <DropdownMenuItem
               onClick={() => handleSelection(icon)}
-              className='flex cursor-pointer items-center justify-center rounded-md bg-white p-2 dark:bg-[#1f1f1f]'
+              className='flex cursor-pointer items-center justify-center rounded-md bg-white p-2 dark:bg-background/20'
               key={index}
             >
               {icons[icon]}
