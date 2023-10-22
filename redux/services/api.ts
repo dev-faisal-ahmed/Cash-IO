@@ -13,7 +13,9 @@ import {
 
 export const api = createApi({
   reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ baseUrl: `${process.env.SERVER_ADDRESS}/api` }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: `${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/api`,
+  }),
   tagTypes: ['wallets', 'categories', 'transactions', 'transfers'],
 
   endpoints: (builder) => ({
