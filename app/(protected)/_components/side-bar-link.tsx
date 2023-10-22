@@ -21,7 +21,7 @@ export function SideBarLink({
         currentUrl === url ? 'bg-indigo-700 text-white' : 'text-gray-700'
       } `}
     >
-      {icon}
+      <span className='text-xl'>{icon}</span>
       <span className='md:hidden xl:block'>{title}</span>
     </Link>
   );

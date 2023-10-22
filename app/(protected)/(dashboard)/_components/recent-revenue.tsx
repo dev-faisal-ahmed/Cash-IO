@@ -15,13 +15,13 @@ export function RecentRevenue() {
 
   if (isLoading || isFetching)
     return (
-      <div className='col-span-2 mt-6 flex h-[600px] items-center justify-center rounded-lg border md:mt-0'>
+      <div className='col-span-2 mt-6 flex h-[600px] items-center justify-center rounded-lg border border-gray-400 dark:border-white md:mt-0'>
         <Loader />
       </div>
     );
 
   return (
-    <Card.Card className='col-span-2 mt-6 h-fit overflow-y-auto bg-transparent p-5  text-gray-800 dark:text-white md:mt-0'>
+    <Card.Card className='col-span-2 mt-6 h-fit overflow-y-auto border border-gray-400 bg-transparent p-5 text-gray-800 dark:border-white dark:text-white md:mt-0'>
       <Card.CardTitle>Recent Revenue</Card.CardTitle>
       <Card.CardContent className='mt-6 space-y-5 px-0'>
         {transactions?.revenue ? (

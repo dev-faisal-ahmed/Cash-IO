@@ -11,6 +11,7 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { useGetUser } from '@/hooks/use-get-user';
 
 import { signOut } from 'next-auth/react';

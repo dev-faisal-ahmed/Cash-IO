@@ -22,7 +22,7 @@ export function AllTransfers() {
 
   return (
     <section className='col-span-2 mt-6 md:mt-0'>
-      <Card.Card className='border bg-transparent '>
+      <Card.Card className='border border-gray-400 bg-transparent dark:border-white'>
         <Card.CardHeader>
           <Card.CardTitle className='mb-5'>All Transfers</Card.CardTitle>
           <Card.CardContent className='space-y-4 px-0'>

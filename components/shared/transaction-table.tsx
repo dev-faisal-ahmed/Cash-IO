@@ -11,7 +11,7 @@ type TransactionTableProps = {
 export function TransactionTable({ transactions }: TransactionTableProps) {
   const { allIconsData } = useGetIcons();
   return (
-    <Table.Table>
+    <Table.Table className='overflow-x-auto'>
       <Table.TableHeader>
         <Table.TableRow>
           <Table.TableHead className='px-1'>Category</Table.TableHead>
