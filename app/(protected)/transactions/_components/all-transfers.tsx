@@ -24,10 +24,10 @@ export function AllTransfers() {
     <section className='col-span-2 mt-6 md:mt-0'>
       <Card.Card className='border border-gray-400 bg-transparent dark:border-white'>
         <Card.CardHeader>
-          <Card.CardTitle className='mb-5'>All Transfers</Card.CardTitle>
-          <Card.CardContent className='space-y-4 px-0'>
-            {transfers &&
-              transfers.map((data) => (
+          <Card.CardTitle>All Transfers</Card.CardTitle>
+          {transfers ? (
+            <Card.CardContent className='mt-5 space-y-4 px-0'>
+              {transfers.map((data) => (
                 <TransferContainer
                   key={data._id}
                   _id={data._id}
@@ -38,7 +38,10 @@ export function AllTransfers() {
                   icon={data.icon}
                 />
               ))}
-          </Card.CardContent>
+            </Card.CardContent>
+          ) : (
+            <p className='text-muted-foreground'>Nothing to show</p>
+          )}
         </Card.CardHeader>
       </Card.Card>
     </section>

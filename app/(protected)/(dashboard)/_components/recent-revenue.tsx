@@ -22,22 +22,23 @@ export function RecentRevenue() {
 
   return (
     <Card.Card className='col-span-2 mt-6 h-fit overflow-y-auto border border-gray-400 bg-transparent p-5 text-gray-800 dark:border-white dark:text-white md:mt-0'>
-      <Card.CardTitle>Recent Revenue</Card.CardTitle>
-      <Card.CardContent className='mt-6 space-y-5 px-0'>
-        {transactions?.revenue ? (
-          transactions.revenue.map((revenue, index) => (
-            <Revenue
-              key={index}
-              title={revenue.category}
-              icon={revenue.icon}
-              amount={revenue.amount}
-              date={revenue.date}
-            />
-          ))
-        ) : (
-          <div className='mt-6 text-2xl font-semibold'>Nothing to show</div>
-        )}
-      </Card.CardContent>
+      <h2 className='text-2xl font-bold tracking-tight'>Recent Revenue</h2>
+      {transactions?.revenue ? (
+        <Card.CardContent className='mt-6 space-y-5 px-0'>
+          {transactions?.revenue &&
+            transactions.revenue.map((revenue, index) => (
+              <Revenue
+                key={index}
+                title={revenue.category}
+                icon={revenue.icon}
+                amount={revenue.amount}
+                date={revenue.date}
+              />
+            ))}
+        </Card.CardContent>
+      ) : (
+        <div className='text-muted-foreground'>Nothing to show</div>
+      )}
     </Card.Card>
   );
 }
