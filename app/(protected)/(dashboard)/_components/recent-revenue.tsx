@@ -37,7 +37,7 @@ export function RecentRevenue() {
             ))}
         </Card.CardContent>
       ) : (
-        <div className='text-muted-foreground'>Nothing to show</div>
+        <div className='mt-2 text-muted-foreground'>Nothing to show</div>
       )}
     </Card.Card>
   );

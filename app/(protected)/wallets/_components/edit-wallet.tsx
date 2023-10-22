@@ -1,14 +1,8 @@
 'use client';
-import { useRouter } from 'next/navigation';
-import { FormEvent, useState } from 'react';
+import { FormEvent } from 'react';
 import { IconPicker } from '@/components/shared/icon-picker';
 import { Loader } from '@/components/shared/loader';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { useToast } from '@/components/ui/use-toast';
-import { serverAddress } from '@/data/server-address';
-import { serverReq } from '@/helpers/server-req';
 import { useGetIcons } from '@/hooks/use-get-icons';
 import { useEditWalletMutation } from '@/redux/services/api';
 import { errorToast, generalToast } from '@/helpers/toast-helper';
@@ -29,9 +23,6 @@ export function EditWallet({
 }: EditWalletProps) {
   const { allIconsData, selectedIcon, handleIconSelection } = useGetIcons();
   const [editWallet, { isLoading }] = useEditWalletMutation();
-  const [loading, setLoading] = useState(false);
-  const { toast } = useToast();
-  const router = useRouter();
 
   function onEditWallet(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -42,8 +33,6 @@ export function EditWallet({
     const walletName = form.walletName.value.trim();
     if (walletName === name && icon === selectedIcon)
       return errorToast('Nothing to update');
-
-    setLoading(true);
 
     const fromData = {
       _id,
@@ -77,7 +66,7 @@ export function EditWallet({
       />
       <div className='mt-5 flex items-center'>
         <IconPicker handleSelection={handleIconSelection} />
-        {loading ? (
+        {isLoading ? (
           <div className='ml-auto h-fit cursor-not-allowed rounded-md border px-3 py-2'>
             <Loader />
           </div>

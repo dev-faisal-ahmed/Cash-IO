@@ -19,7 +19,7 @@ export function Graphs({ className }: { className?: string }) {
   return (
     <section className={twMerge(`px-5 ${className}`)}>
       <Select onValueChange={(value) => setSelected(value as SelectedType)}>
-        <SelectTrigger className='ml-auto w-fit min-w-[230px] dark:bg-[#2f2f2f]'>
+        <SelectTrigger className='ml-auto w-fit min-w-[230px] border border-gray-400 bg-transparent dark:border-white dark:bg-[#2f2f2f]'>
           <SelectValue placeholder='Select Any Category' />
         </SelectTrigger>
         <SelectContent className='dark:bg-[#2f2f2f]'>

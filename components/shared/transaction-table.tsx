@@ -13,7 +13,8 @@ export function TransactionTable({ transactions }: TransactionTableProps) {
   return (
     <Table.Table className='overflow-x-auto'>
       <Table.TableHeader>
-        <Table.TableRow>
+        <Table.TableRow className='border-b border-gray-400 dark:border-white'>
+          <Table.TableHead className='px-1'>Icon</Table.TableHead>
           <Table.TableHead className='px-1'>Category</Table.TableHead>
           <Table.TableHead>Wallet</Table.TableHead>
           <Table.TableHead>Detail</Table.TableHead>
@@ -23,12 +24,15 @@ export function TransactionTable({ transactions }: TransactionTableProps) {
       <Table.TableBody>
         {transactions &&
           transactions.map((transaction, index) => (
-            <Table.TableRow key={index}>
-              <Table.TableCell className='flex h-full min-h-[100px] items-center gap-3 whitespace-nowrap font-medium'>
-                <span className='text-2xl'>
-                  {allIconsData[transaction.icon]}
-                </span>
-                <span>{transaction.category}</span>
+            <Table.TableRow
+              className='border-b border-gray-400 dark:border-white'
+              key={index}
+            >
+              <Table.TableCell className='text-2xl'>
+                {allIconsData[transaction.icon]}
+              </Table.TableCell>
+              <Table.TableCell className='whitespace-nowrap font-medium'>
+                {transaction.category}
               </Table.TableCell>
               <Table.TableCell>{transaction.wallet}</Table.TableCell>
               <Table.TableCell>

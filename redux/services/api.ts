@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { serverAddress } from '@/data/server-address';
 import {
   ServerResponseType,
   WalletForTransactionType,
@@ -14,7 +13,7 @@ import {
 
 export const api = createApi({
   reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ baseUrl: `${serverAddress}/api` }),
+  baseQuery: fetchBaseQuery({ baseUrl: `${process.env.SERVER_ADDRESS}/api` }),
   tagTypes: ['wallets', 'categories', 'transactions', 'transfers'],
 
   endpoints: (builder) => ({
