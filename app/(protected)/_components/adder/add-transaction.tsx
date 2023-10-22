@@ -80,7 +80,7 @@ export function AddTransaction({ onDialogClose }: AddTransactionProps) {
 
   return (
     <form onSubmit={onAddTransaction}>
-      <div className='flex items-center gap-5'>
+      <div className='flex flex-col items-center gap-5 sm:flex-row'>
         <FormInput
           title='Amount'
           placeholder='Enter amount'
@@ -90,7 +90,7 @@ export function AddTransaction({ onDialogClose }: AddTransactionProps) {
         />
         <CalendarPopover date={date} setDate={setDate} />
       </div>
-      <div className='mt-5 flex items-center gap-5'>
+      <div className='mt-5 flex flex-col items-center gap-5 sm:flex-row'>
         <div className='w-full space-y-3'>
           <Label>Transaction Type</Label>
           <Select.Select value={type} onValueChange={onTypeChange} required>
@@ -114,7 +114,7 @@ export function AddTransaction({ onDialogClose }: AddTransactionProps) {
               <Select.SelectValue placeholder='Select Category' />
             </Select.SelectTrigger>
             <Select.SelectContent>
-              {categories &&
+              {categories ? (
                 categories[type]?.map((category, index) => (
                   <Select.SelectItem
                     key={index}
@@ -125,7 +125,12 @@ export function AddTransaction({ onDialogClose }: AddTransactionProps) {
                       {category.name}
                     </span>
                   </Select.SelectItem>
-                ))}
+                ))
+              ) : (
+                <span className='px-3 text-sm text-muted-foreground'>
+                  No Category Available
+                </span>
+              )}
             </Select.SelectContent>
           </Select.Select>
         </div>
@@ -137,7 +142,7 @@ export function AddTransaction({ onDialogClose }: AddTransactionProps) {
             <Select.SelectValue placeholder='Select Wallet' />
           </Select.SelectTrigger>
           <Select.SelectContent>
-            {wallets &&
+            {wallets ? (
               Object.values(wallets).map((wallet, index) => (
                 <Select.SelectItem key={index} value={wallet.name}>
                   <span className='flex items-center gap-3'>
@@ -145,7 +150,12 @@ export function AddTransaction({ onDialogClose }: AddTransactionProps) {
                     {wallet.name}
                   </span>
                 </Select.SelectItem>
-              ))}
+              ))
+            ) : (
+              <span className='px-3 text-sm text-muted-foreground'>
+                No Wallet Available
+              </span>
+            )}
           </Select.SelectContent>
         </Select.Select>
       </div>

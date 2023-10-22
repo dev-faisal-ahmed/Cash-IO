@@ -72,7 +72,7 @@ export function AddCategory({ onDialogClose }: AddCategoryProps) {
         placeholder='Input Category Name'
         required
       />
-      <div className='mt-5 flex w-full items-center gap-5'>
+      <div className='mt-5 flex w-full flex-col items-center gap-5 sm:flex-row'>
         <div className='w-full space-y-3'>
           <Label>Icon</Label>
           <IconPicker

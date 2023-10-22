@@ -59,14 +59,14 @@ export function AddWallet() {
           </Dialog.DialogTitle>
         </Dialog.DialogHeader>
         {selectedIcon && (
-          <div className='ml-auto w-full rounded-lg border p-3 text-9xl'>
+          <div className='mt-3 w-full rounded-lg border p-3 text-9xl'>
             <span className='mx-auto block w-fit'>
               {allIconsData[selectedIcon]}
             </span>
           </div>
         )}
         <form onSubmit={onAddWallet} className='mt-5'>
-          <div className='mb-5 flex items-center gap-5'>
+          <div className='mb-5 flex flex-col items-center gap-5 sm:flex-row'>
             <div className='w-full space-y-3 whitespace-nowrap'>
               <Label>Pick An Icon</Label>
               <IconPicker
