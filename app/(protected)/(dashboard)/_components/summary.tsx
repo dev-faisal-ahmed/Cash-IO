@@ -15,7 +15,7 @@ export function Summary({ title, icon, value }: SummaryProps) {
         {icon}
       </CardHeader>
       <CardContent>
-        <div className='text-4xl font-bold'> &#2547;{value}</div>
+        <div className='text-4xl font-bold'> &#2547; {value}</div>
       </CardContent>
     </Card>
   );
