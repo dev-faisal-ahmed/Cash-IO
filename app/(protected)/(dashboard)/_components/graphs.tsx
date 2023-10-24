@@ -11,7 +11,7 @@ import {
   getMonthlyTransactions,
 } from '@/helpers/helper-functions';
 
-type SelectedType = 'daily' | 'monthly' | 'categorized';
+type SelectedType = 'daily' | 'monthly';
 
 export function Graphs({ className }: { className?: string }) {
   const { user } = useGetUser();
@@ -38,7 +38,6 @@ export function Graphs({ className }: { className?: string }) {
         <Select.SelectContent className='dark:bg-[#2f2f2f]'>
           <Select.SelectItem value='daily'>Daily</Select.SelectItem>
           <Select.SelectItem value='monthly'>Monthly</Select.SelectItem>
-          <Select.SelectItem value='categorized'>Categorized</Select.SelectItem>
         </Select.SelectContent>
       </Select.Select>
       <div className='h-5' />
