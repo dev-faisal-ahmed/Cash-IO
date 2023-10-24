@@ -75,7 +75,7 @@ export function AddTransaction({ onDialogClose }: AddTransactionProps) {
         generalToast(res.msg, res.ok);
         if (res.ok) onDialogClose();
       })
-      .catch((err) => console.log(err));
+      .catch(() => errorToast());
   }
 
   return (
@@ -86,6 +86,7 @@ export function AddTransaction({ onDialogClose }: AddTransactionProps) {
           placeholder='Enter amount'
           name='amount'
           type='number'
+          min={0}
           required
         />
         <CalendarPopover date={date} setDate={setDate} />
@@ -114,7 +115,7 @@ export function AddTransaction({ onDialogClose }: AddTransactionProps) {
               <Select.SelectValue placeholder='Select Category' />
             </Select.SelectTrigger>
             <Select.SelectContent>
-              {categories ? (
+              {categories?.[type] && categories?.[type]?.length > 0 ? (
                 categories[type]?.map((category, index) => (
                   <Select.SelectItem
                     key={index}
@@ -142,7 +143,7 @@ export function AddTransaction({ onDialogClose }: AddTransactionProps) {
             <Select.SelectValue placeholder='Select Wallet' />
           </Select.SelectTrigger>
           <Select.SelectContent>
-            {wallets ? (
+            {wallets && Object.values(wallets).length > 0 ? (
               Object.values(wallets).map((wallet, index) => (
                 <Select.SelectItem key={index} value={wallet.name}>
                   <span className='flex items-center gap-3'>

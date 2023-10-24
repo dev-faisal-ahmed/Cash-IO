@@ -21,7 +21,7 @@ export function MonthlyTransactions() {
 
   return (
     <section className='col-span-3 space-y-6'>
-      {transactions ? (
+      {transactions && Object.keys(transactions).length > 0 ? (
         Object.keys(transactions).map((key) => (
           <TransactionContainer
             key={key}
