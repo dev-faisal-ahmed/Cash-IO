@@ -6,6 +6,7 @@ import {
 import {
   CategoriesType,
   MonthlyTransactionType,
+  TransactionType,
   TransactionsTypeSeverData,
   TransferType,
   WalletType,
@@ -90,6 +91,11 @@ export const api = createApi({
       invalidatesTags: ['wallets', 'categories', 'transactions'],
     }),
 
+    getAllTransactions: builder.query<TransactionType[], string>({
+      query: (email) => `get-transactions/all?email=${email}`,
+      providesTags: ['transactions'],
+    }),
+
     getTransactions: builder.query<TransactionsTypeSeverData, string>({
       query: (email) => `get-transactions?email=${email}`,
       providesTags: ['transactions'],
@@ -119,6 +125,7 @@ export const {
   useAddTransactionMutation,
   useAddCategoryMutation,
   useGetTransactionsQuery,
+  useGetAllTransactionsQuery,
   useGetMonthlyTransactionsQuery,
   useGetTransfersQuery,
 } = api;

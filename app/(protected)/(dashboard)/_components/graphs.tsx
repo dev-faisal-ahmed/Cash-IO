@@ -4,22 +4,23 @@ import { useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { DashboardBarChart } from './dashboard-bar-chart';
 import { useGetUser } from '@/hooks/use-get-user';
-import { useGetTransactionsQuery } from '@/redux/services/api';
+import { useGetAllTransactionsQuery } from '@/redux/services/api';
 import { Loader } from '@/components/shared/loader';
-import { getDailyTransactionOnRanged } from '@/helpers/helper-functions';
+import {
+  getDailyTransactionOnRanged,
+  getMonthlyTransactions,
+} from '@/helpers/helper-functions';
 
-type SelectedType = 'daily' | 'monthly' | 'categorized';
+type SelectedType = 'daily' | 'monthly';
 
 export function Graphs({ className }: { className?: string }) {
   const { user } = useGetUser();
-  const {
-    data: transactions,
-    isLoading,
-    isFetching,
-  } = useGetTransactionsQuery(user?.email!);
+  const { data: transactions, isLoading } = useGetAllTransactionsQuery(
+    user?.email!,
+  );
   const [selected, setSelected] = useState<SelectedType>('daily');
 
-  if (isLoading || isFetching)
+  if (isLoading)
     return (
       <div className='flex h-[350px] items-center justify-center rounded-md border border-gray-400 dark:border-white'>
         <Loader />
@@ -37,15 +38,19 @@ export function Graphs({ className }: { className?: string }) {
         <Select.SelectContent className='dark:bg-[#2f2f2f]'>
           <Select.SelectItem value='daily'>Daily</Select.SelectItem>
           <Select.SelectItem value='monthly'>Monthly</Select.SelectItem>
-          <Select.SelectItem value='categorized'>Categorized</Select.SelectItem>
         </Select.SelectContent>
       </Select.Select>
       <div className='h-5' />
-      {selected === 'daily' && transactions?.expense && (
+      {selected === 'daily' && transactions && (
         <DashboardBarChart
           transactions={Object.values(
-            getDailyTransactionOnRanged(transactions?.expense, 7),
+            getDailyTransactionOnRanged(transactions, 10),
           )}
+        />
+      )}
+      {selected === 'monthly' && transactions && (
+        <DashboardBarChart
+          transactions={getMonthlyTransactions(transactions)}
         />
       )}
     </section>
