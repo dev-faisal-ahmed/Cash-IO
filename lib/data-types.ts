@@ -62,6 +62,12 @@ export type MonthlyTransactionType = {
   [key: string]: TransactionType[];
 };
 
+export type MonthlyTransactionTypeForGraph = {
+  date: string;
+  revenue: number;
+  expense: number;
+};
+
 export type IconDataType = {
   [key: string]: ReactNode;
 };
