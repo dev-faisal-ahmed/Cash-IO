@@ -1,4 +1,7 @@
-import { TransactionType } from '@/lib/data-types';
+import {
+  MonthlyTransactionTypeForGraph,
+  TransactionType,
+} from '@/lib/data-types';
 import { WalletForTransactionType } from '@/lib/server-types';
 
 export function getSummaryData(
@@ -50,19 +53,61 @@ export function getDailyTransactionOnRanged(
 ) {
   const today = new Date();
   const dailyTransactions = getDailyTransactions(transactions);
-  const rangedTransaction: { [key: string]: { date: string; amount: number } } =
-    {};
+  const rangedTransaction: {
+    [key: string]: { date: string; revenue: number; expense: number };
+  } = {};
 
   for (let i = 0; i < range; i++) {
-    let amount = 0;
+    let revenue = 0;
+    let expense = 0;
     const newDate = today.getTime() - i * 86400000; // I day =  86,400,000 ms
     const newDateStr = new Date(newDate).toString().slice(4, 15);
     if (dailyTransactions[newDateStr]) {
       Object.values(dailyTransactions[newDateStr]).forEach((transaction) => {
-        amount += transaction.amount;
+        if (transaction.type === 'expense') expense += transaction.amount;
+        else revenue += transaction.amount;
       });
     }
-    rangedTransaction[newDateStr] = { date: newDateStr.slice(0, 6), amount };
+    rangedTransaction[newDateStr] = {
+      date: newDateStr.slice(0, 6),
+      revenue,
+      expense,
+    };
   }
   return rangedTransaction;
+}
+
+export function getMonthlyTransactions(transactions: TransactionType[]) {
+  const monthlyTransactions: MonthlyTransactionTypeForGraph[] = [];
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = today.getMonth();
+
+  let start = month < 6 ? 1 : 6;
+  let end = month < 6 ? 5 : 12;
+
+  for (let i = start; i < end; i++) {
+    let revenue = 0;
+    let expense = 0;
+    const dateStrArr = new Date(`${i}-1-${year}`).toString().split(' ');
+    const dateStr = `${dateStrArr[1]}-${dateStrArr[3]}`;
+
+    transactions.forEach((transaction) => {
+      const transactionDateArr = new Date(transaction.date)
+        .toString()
+        .split(' ');
+      const transactionDateStr = `${transactionDateArr[1]}-${transactionDateArr[3]}`;
+      if (transactionDateStr === dateStr) {
+        if (transaction.type === 'revenue') revenue += transaction.amount;
+        else expense += transaction.amount;
+      }
+    });
+
+    monthlyTransactions.push({
+      date: dateStr,
+      revenue,
+      expense,
+    });
+  }
+  return monthlyTransactions;
 }
