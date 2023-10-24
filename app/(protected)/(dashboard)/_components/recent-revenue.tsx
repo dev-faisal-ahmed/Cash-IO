@@ -23,7 +23,7 @@ export function RecentRevenue() {
   return (
     <Card.Card className='col-span-2 mt-6 h-fit overflow-y-auto border border-gray-400 bg-transparent p-5 text-gray-800 dark:border-white dark:text-white md:mt-0'>
       <h2 className='text-2xl font-bold tracking-tight'>Recent Revenue</h2>
-      {transactions?.revenue ? (
+      {transactions && transactions?.revenue.length > 0 ? (
         <Card.CardContent className='mt-6 space-y-5 px-0'>
           {transactions?.revenue &&
             transactions.revenue.map((revenue, index) => (

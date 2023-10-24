@@ -23,10 +23,10 @@ export function AllTransfers() {
   return (
     <section className='col-span-2 mt-6 md:mt-0'>
       <Card.Card className='border border-gray-400 bg-transparent dark:border-white'>
-        <Card.CardHeader>
-          <Card.CardTitle>All Transfers</Card.CardTitle>
+        <Card.CardHeader className='pb-3'>
+          <Card.CardTitle className=''>All Transfers</Card.CardTitle>
         </Card.CardHeader>
-        {transfers ? (
+        {transfers && transfers.length > 0 ? (
           <Card.CardContent className='space-y-4 px-6'>
             {transfers.map((data) => (
               <TransferContainer

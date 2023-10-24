@@ -28,7 +28,7 @@ export function Graphs({ className }: { className?: string }) {
     );
 
   return (
-    <section className={twMerge(`px-5 ${className}`)}>
+    <section className={twMerge(`px-5 ${className} relative`)}>
       <Select.Select
         onValueChange={(value) => setSelected(value as SelectedType)}
       >
@@ -53,6 +53,12 @@ export function Graphs({ className }: { className?: string }) {
           transactions={getMonthlyTransactions(transactions)}
         />
       )}
+      {!transactions ||
+        (transactions?.length === 0 && (
+          <div className='absolute left-0 top-0 flex h-full w-full items-center justify-center bg-gray-200/40 text-xl font-semibold tracking-tight dark:bg-black/40'>
+            No Data Found
+          </div>
+        ))}
     </section>
   );
 }

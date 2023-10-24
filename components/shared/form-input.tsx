@@ -10,6 +10,7 @@ type FormInputType = {
   required?: boolean;
   disabled?: boolean;
   className?: string;
+  min?: number;
 };
 
 export function FormInput({
@@ -21,6 +22,7 @@ export function FormInput({
   required,
   disabled,
   className,
+  min,
 }: FormInputType) {
   return (
     <div className={`w-full space-y-3 ${className}`}>
@@ -36,6 +38,7 @@ export function FormInput({
         defaultValue={defaultValue}
         required={required}
         disabled={disabled}
+        min={min}
       />
     </div>
   );
