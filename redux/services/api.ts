@@ -74,7 +74,8 @@ export const api = createApi({
     }),
 
     getCategoriesSummary: builder.query<CategoriesSummaryType, string>({
-      query: (email) => `api/get-categories-summary?email=${email}`,
+      query: (email) => `get-categories-summary?email=${email}`,
+      providesTags: ['categories'],
     }),
 
     addCategory: builder.mutation<ServerResponseType, any>({
@@ -127,6 +128,7 @@ export const {
   useTransferBalanceMutation,
   useDeleteWalletMutation,
   useGetCategoriesQuery,
+  useGetCategoriesSummaryQuery,
   useAddTransactionMutation,
   useAddCategoryMutation,
   useGetTransactionsQuery,

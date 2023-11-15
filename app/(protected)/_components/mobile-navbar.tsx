@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 export function MobileNavbar() {
   const pathName = usePathname();
   return (
-    <section className='grid w-full grid-cols-3 border-t bg-white py-2 dark:border-gray-700 dark:bg-[#1f1f1f] lg:hidden'>
+    <section className='grid w-full grid-cols-4 border-t bg-white py-2 dark:border-gray-700 dark:bg-[#1f1f1f] lg:hidden'>
       {navigationLinksData.map((navData, index) => (
         <MobileNavLink
           key={index}

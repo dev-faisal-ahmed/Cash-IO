@@ -1,4 +1,5 @@
 'use client';
+
 import * as Select from '@/components/ui/select';
 import { useState } from 'react';
 import { twMerge } from 'tailwind-merge';
@@ -22,13 +23,15 @@ export function Graphs({ className }: { className?: string }) {
 
   if (isLoading)
     return (
-      <div className='flex h-[350px] items-center justify-center rounded-md border border-gray-400 dark:border-white'>
+      <div className='col-span-3 flex h-[350px] items-center justify-center rounded-md border border-gray-400 dark:border-white'>
         <Loader />
       </div>
     );
 
   return (
-    <section className={twMerge(`px-5 ${className} relative`)}>
+    <section
+      className={twMerge(`px-5 ${className} flex flex-col justify-between`)}
+    >
       <Select.Select
         onValueChange={(value) => setSelected(value as SelectedType)}
       >
@@ -40,7 +43,7 @@ export function Graphs({ className }: { className?: string }) {
           <Select.SelectItem value='monthly'>Monthly</Select.SelectItem>
         </Select.SelectContent>
       </Select.Select>
-      <div className='h-5' />
+
       {selected === 'daily' && transactions && (
         <DashboardBarChart
           transactions={Object.values(

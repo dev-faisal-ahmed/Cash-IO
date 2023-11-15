@@ -22,14 +22,14 @@ export type TransferType = {
 };
 
 // ********* categories ********* \\
-export type RevenueType = {
+export type RevenueCategoryType = {
   name: string;
   icon: string;
   type: 'revenue';
   amount: number;
 };
 
-export type ExpenseType = {
+export type ExpenseCategoryType = {
   name: string;
   icon: string;
   type: 'expense';
@@ -37,13 +37,13 @@ export type ExpenseType = {
 };
 
 export type CategoriesType = {
-  revenue: RevenueType[];
-  expense: ExpenseType[];
+  revenue: RevenueCategoryType[];
+  expense: ExpenseCategoryType[];
 };
 
 export type CategoriesSummaryType = {
-  revenue: { totalAmount: number; categories: RevenueType[] };
-  expense: { totalAmount: number; categories: ExpenseType[] };
+  revenue: { totalAmount: number; categories: RevenueCategoryType[] };
+  expense: { totalAmount: number; categories: ExpenseCategoryType[] };
 };
 
 // ********* Transactions ********* \\
@@ -79,8 +79,8 @@ export type IconDataType = {
 };
 
 export type CategoriesTypeProps = {
-  revenue: Omit<RevenueType, 'amount'>[];
-  expense: Omit<ExpenseType, 'amount'>[];
+  revenue: Omit<RevenueCategoryType, 'amount'>[];
+  expense: Omit<ExpenseCategoryType, 'amount'>[];
 };
 
 export type WalletOptionType = {

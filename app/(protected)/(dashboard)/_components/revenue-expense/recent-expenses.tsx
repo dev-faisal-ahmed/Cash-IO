@@ -20,7 +20,7 @@ export function RecentExpenses() {
     );
 
   return (
-    <section className='mt-6 space-y-5 rounded-md border border-gray-400 px-5 pb-2 pt-5 dark:border-white '>
+    <section className='col-span-3 space-y-5 rounded-md border border-gray-400 px-5 pb-2 pt-5 dark:border-white '>
       <div>
         <h2 className='text-2xl font-bold tracking-tight'>Recent Expense</h2>
         {transactionsData && transactionsData.expense.length > 0 ? (
