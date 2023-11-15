@@ -40,6 +40,12 @@ export type CategoriesType = {
   revenue: RevenueType[];
   expense: ExpenseType[];
 };
+
+export type CategoriesSummaryType = {
+  revenue: { totalAmount: number; categories: RevenueType[] };
+  expense: { totalAmount: number; categories: ExpenseType[] };
+};
+
 // ********* Transactions ********* \\
 
 export type TransactionType = {

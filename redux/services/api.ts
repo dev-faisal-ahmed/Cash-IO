@@ -4,6 +4,7 @@ import {
   WalletForTransactionType,
 } from '@/lib/server-types';
 import {
+  CategoriesSummaryType,
   CategoriesType,
   MonthlyTransactionType,
   TransactionType,
@@ -70,6 +71,10 @@ export const api = createApi({
     getCategories: builder.query<CategoriesType, string>({
       query: (email) => `get-categories?email=${email}`,
       providesTags: ['categories'],
+    }),
+
+    getCategoriesSummary: builder.query<CategoriesSummaryType, string>({
+      query: (email) => `api/get-categories-summary?email=${email}`,
     }),
 
     addCategory: builder.mutation<ServerResponseType, any>({

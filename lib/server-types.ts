@@ -1,4 +1,4 @@
-import { TransactionType } from './data-types';
+import { ExpenseType, RevenueType, TransactionType } from './data-types';
 
 export type WalletForTransactionType = {
   [key: string]: {
