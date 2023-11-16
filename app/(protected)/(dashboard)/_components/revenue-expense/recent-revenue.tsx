@@ -7,13 +7,11 @@ import { Loader } from '@/components/shared/loader';
 
 export function RecentRevenue() {
   const { user } = useGetUser();
-  const {
-    data: transactions,
-    isLoading,
-    isFetching,
-  } = useGetTransactionsQuery(user?.email!);
+  const { data: transactions, isLoading } = useGetTransactionsQuery(
+    user?.email!,
+  );
 
-  if (isLoading || isFetching)
+  if (isLoading)
     return (
       <div className='col-span-2 mt-6 flex h-[600px] items-center justify-center rounded-lg border border-gray-400 dark:border-white md:mt-0'>
         <Loader />

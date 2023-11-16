@@ -29,11 +29,7 @@ export function TransferBalance({
   const [selectedWallet, setSelectedWallet] = useState<string>();
   const { user } = useGetUser();
   const { allIconsData } = useGetIcons();
-  const {
-    data: allWallets,
-    isLoading,
-    isFetching,
-  } = useGetWalletsQuery(user?.email!);
+  const { data: allWallets, isLoading } = useGetWalletsQuery(user?.email!);
   const [transferBalance, { isLoading: reqIsLoading }] =
     useTransferBalanceMutation();
 
@@ -66,7 +62,7 @@ export function TransferBalance({
       .catch(() => errorToast());
   }
 
-  if (isLoading && isFetching)
+  if (isLoading)
     return (
       <div className='flex h-[300px] w-full items-center justify-center'>
         <Loader />

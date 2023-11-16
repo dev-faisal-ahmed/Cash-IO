@@ -5,13 +5,23 @@ import { DashboardPieChart } from './dashboard-pie-chart';
 import { useGetUser } from '@/hooks/use-get-user';
 import { useGetCategoriesSummaryQuery } from '@/redux/services/api';
 import { pieChartFillColors } from '@/data/pie-chart-fill-colors';
+import { Loader } from '@/components/shared/loader';
 
 type SelectedType = 'expense' | 'revenue';
 
 export function DashboardPieChartContainer() {
   const [type, setType] = useState<SelectedType>('expense');
   const { user } = useGetUser();
-  const { data: categorySummary } = useGetCategoriesSummaryQuery(user?.email!);
+  const { data: categorySummary, isLoading } = useGetCategoriesSummaryQuery(
+    user?.email!,
+  );
+
+  if (isLoading)
+    return (
+      <div className='flex h-[350px] items-center justify-center rounded-md border border-gray-400 dark:border-white md:col-span-2'>
+        <Loader />
+      </div>
+    );
 
   return (
     <div className='rounded-md border border-gray-400 p-5 dark:border-white md:col-span-2'>

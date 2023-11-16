@@ -11,8 +11,10 @@ export function TransferContainer({
 }: TransferType) {
   return (
     <div className='space-y-8'>
-      <div className='flex gap-3'>
-        <p className='text-xl'>{allIconsData[icon]}</p>
+      <div className='flex items-start gap-3'>
+        <p className='rounded-md bg-indigo-700 p-3 text-xl text-white'>
+          {allIconsData[icon]}
+        </p>
         <div className='ml-4 space-y-1'>
           <p className='text-sm font-semibold leading-none'>From: {from}</p>
           <p className='text-sm text-muted-foreground'>

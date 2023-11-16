@@ -6,15 +6,13 @@ import { TransactionContainer } from './transaction-container';
 
 export function MonthlyTransactions() {
   const { user } = useGetUser();
-  const {
-    data: transactions,
-    isLoading,
-    isFetching,
-  } = useGetMonthlyTransactionsQuery(user?.email!);
+  const { data: transactions, isLoading } = useGetMonthlyTransactionsQuery(
+    user?.email!,
+  );
 
-  if (isLoading || isFetching)
+  if (isLoading)
     return (
-      <div className='col-span-3 flex h-[550px] items-center justify-center rounded-md border'>
+      <div className='col-span-3 flex min-h-[400px] items-center justify-center rounded-md border'>
         <Loader />
       </div>
     );

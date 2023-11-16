@@ -7,13 +7,9 @@ import { WalletContainer } from './wallet-container';
 
 export function AllWallets() {
   const { user } = useGetUser();
-  const {
-    data: wallets,
-    isLoading,
-    isFetching,
-  } = useGetWalletsQuery(user?.email!);
+  const { data: wallets, isLoading } = useGetWalletsQuery(user?.email!);
 
-  if (isLoading || isFetching)
+  if (isLoading)
     return (
       <div className='flex h-full min-h-[200px] w-full items-center justify-center rounded-lg border'>
         <Loader />

@@ -12,14 +12,12 @@ import { getSummaryData } from '@/helpers/helper-functions';
 
 export function WalletSummary() {
   const { user } = useGetUser();
-  const {
-    data: wallets,
-    isLoading,
-    isFetching,
-  } = useGetWalletForTransactionQuery(user?.email!);
+  const { data: wallets, isLoading } = useGetWalletForTransactionQuery(
+    user?.email!,
+  );
   const [selected, setSelected] = useState('all');
 
-  if (isLoading || isFetching)
+  if (isLoading)
     return (
       <div className='flex h-[200px] items-center justify-center rounded-md border border-gray-400 dark:border-white'>
         <Loader />
