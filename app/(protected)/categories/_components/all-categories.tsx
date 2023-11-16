@@ -23,8 +23,8 @@ export function AllCategories() {
 
   return (
     <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
-      <CategoryBox type={'Expense'} categories={data?.expense.categories} />
-      <CategoryBox type={'Revenue'} categories={data?.revenue.categories} />
+      <CategoryBox type={'Expense'} categories={data?.expense?.categories} />
+      <CategoryBox type={'Revenue'} categories={data?.revenue?.categories} />
     </div>
   );
 }

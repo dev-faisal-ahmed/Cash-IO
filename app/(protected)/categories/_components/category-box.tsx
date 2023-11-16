@@ -25,7 +25,7 @@ export function CategoryBox({ type, categories, className }: CategoryBoxProps) {
           {categories.map((category, index) => (
             <div key={index} className='space-y-8'>
               <div className='flex items-center gap-2'>
-                <p className='rounded-md bg-indigo-800 p-3 text-3xl text-white shadow'>
+                <p className='rounded-md bg-indigo-700 p-3 text-3xl text-white shadow'>
                   {allIconsData[category.icon]}
                 </p>
                 <div className='ml-4 space-y-1 pr-8'>

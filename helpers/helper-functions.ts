@@ -1,5 +1,7 @@
 import {
+  ExpenseCategoryType,
   MonthlyTransactionTypeForGraph,
+  RevenueCategoryType,
   TransactionType,
 } from '@/lib/data-types';
 import { WalletForTransactionType } from '@/lib/server-types';
@@ -110,4 +112,17 @@ export function getMonthlyTransactions(transactions: TransactionType[]) {
     });
   }
   return monthlyTransactions;
+}
+
+export function getDataForPieChart(
+  categories: RevenueCategoryType[] | ExpenseCategoryType[] | undefined,
+) {
+  if (!categories) return [];
+  const data: { name: string; amount: number }[] = [];
+  const length = categories.length;
+  for (let i = 0; i < length; i++) {
+    if (categories[i].amount !== 0)
+      data.push({ name: categories[i].name, amount: categories[i].amount });
+  }
+  return data;
 }

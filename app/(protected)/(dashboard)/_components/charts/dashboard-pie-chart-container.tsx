@@ -6,6 +6,7 @@ import { useGetUser } from '@/hooks/use-get-user';
 import { useGetCategoriesSummaryQuery } from '@/redux/services/api';
 import { pieChartFillColors } from '@/data/pie-chart-fill-colors';
 import { Loader } from '@/components/shared/loader';
+import { getDataForPieChart } from '@/helpers/helper-functions';
 
 type SelectedType = 'expense' | 'revenue';
 
@@ -23,6 +24,10 @@ export function DashboardPieChartContainer() {
       </div>
     );
 
+  const categoriesDataForPieChart = getDataForPieChart(
+    categorySummary?.[type]?.categories,
+  );
+
   return (
     <div className='rounded-md border border-gray-400 p-5 dark:border-white md:col-span-2'>
       <Select.Select onValueChange={(value) => setType(value as SelectedType)}>
@@ -38,16 +43,16 @@ export function DashboardPieChartContainer() {
         </Select.SelectContent>
       </Select.Select>
 
-      {categorySummary && categorySummary?.[type].categories.length > 0 ? (
-        <DashboardPieChart categories={categorySummary?.[type].categories} />
+      {categorySummary ? (
+        <DashboardPieChart categories={categoriesDataForPieChart} />
       ) : (
         <div className='flex min-h-[400px] items-center justify-center font-bold'>
           No Data Found
         </div>
       )}
-      {categorySummary && categorySummary?.[type].categories.length > 0 && (
+      {categoriesDataForPieChart.length > 0 && (
         <div className='flex flex-wrap items-center justify-center gap-5'>
-          {categorySummary[type].categories.map(({ name }, index) => (
+          {categoriesDataForPieChart.map(({ name }, index) => (
             <div className='flex items-center gap-3' key={index}>
               <div
                 className='h-5 w-5 rounded'
