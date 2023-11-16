@@ -58,7 +58,7 @@ export function Graphs({ className }: { className?: string }) {
       )}
       {!transactions ||
         (transactions?.length === 0 && (
-          <div className='absolute left-0 top-0 flex h-full w-full items-center justify-center bg-gray-200/40 text-xl font-semibold tracking-tight dark:bg-black/40'>
+          <div className='left-0 top-0 flex h-full w-full items-center justify-center rounded-md bg-gray-200/40 p-2 text-xl font-semibold tracking-tight dark:bg-black/40'>
             No Data Found
           </div>
         ))}
