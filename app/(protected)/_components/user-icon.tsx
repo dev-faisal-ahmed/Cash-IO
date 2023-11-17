@@ -1,14 +1,10 @@
 'use client';
 import * as Dropdown from '@/components/ui/dropdown-menu';
 import * as Avatar from '@/components/ui/avatar';
-import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { useGetUser } from '@/hooks/use-get-user';
 import { signOut } from 'next-auth/react';
 import { redirect } from 'next/navigation';
-import { AddEditBudget } from '../(dashboard)/_components/budget-goal/add-edit-budget';
-import { MdAccountBalanceWallet } from 'react-icons/md';
-import { SiTarget } from 'react-icons/si';
 
 export function UserIcon() {
   const { user } = useGetUser();

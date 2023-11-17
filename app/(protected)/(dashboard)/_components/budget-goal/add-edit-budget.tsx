@@ -37,6 +37,7 @@ export function AddEditBudget({ onBudgetDialogClose }: AddEditBudgetProps) {
         placeholder='Input Budget Amount'
         title='Amount'
         type='number'
+        min={1}
       />
       {isLoading ? (
         <div className='ml-auto mt-8 w-fit rounded-md border px-3 py-2'>

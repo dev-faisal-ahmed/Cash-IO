@@ -100,7 +100,7 @@ export function AddTransaction({
           placeholder='Enter amount'
           name='amount'
           type='number'
-          min={0}
+          min={1}
           required
         />
         <CalendarPopover date={date} setDate={setDate} />

@@ -4,14 +4,13 @@ import { Loader } from '@/components/shared/loader';
 import { useGetUser } from '@/hooks/use-get-user';
 import { GiSevenPointedStar } from 'react-icons/gi';
 import { twMerge } from 'tailwind-merge';
+import { useState } from 'react';
+import { AiFillEdit } from 'react-icons/ai';
+import { AddEditBudget } from './add-edit-budget';
 import {
   useGetBudgetQuery,
   useGetThisMonthTransactionQuery,
 } from '@/redux/services/api';
-import { AiFillEdit } from 'react-icons/ai';
-// import { AddEditBudget } from '@/app/(protected)/_components/user-icon/add-edit-budget';
-import { useState } from 'react';
-import { AddEditBudget } from './add-edit-budget';
 
 export function BudgetBox() {
   const { user } = useGetUser();
@@ -69,7 +68,10 @@ export function BudgetBox() {
                 ratio > 80 ? 'bg-orange-900' : '',
                 ratio > 100 ? 'bg-red-900' : '',
               )}
-              style={{ width: `${ratio}%`, minWidth: 'fit-content' }}
+              style={{
+                width: `${ratio < 100 ? ratio : 100}%`,
+                minWidth: 'fit-content',
+              }}
             >
               <div className='ml-auto px-3 text-white'>{ratio.toFixed(1)}%</div>
             </div>

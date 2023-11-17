@@ -89,6 +89,7 @@ export function AddWallet() {
             name='initialBalance'
             type='number'
             placeholder='Input Initial Balance'
+            min={1}
             required
           />
           <div className='h-5' />
