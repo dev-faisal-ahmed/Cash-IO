@@ -24,15 +24,17 @@ export function RecentRevenue() {
       {transactions && transactions.revenue.length > 0 ? (
         <Card.CardContent className='mt-6 space-y-5 px-0'>
           {transactions?.revenue &&
-            transactions.revenue.map((revenue, index) => (
-              <Revenue
-                key={index}
-                title={revenue.category}
-                icon={revenue.icon}
-                amount={revenue.amount}
-                date={revenue.date}
-              />
-            ))}
+            transactions.revenue
+              .slice(0, 10)
+              .map((revenue, index) => (
+                <Revenue
+                  key={index}
+                  title={revenue.category}
+                  icon={revenue.icon}
+                  amount={revenue.amount}
+                  date={revenue.date}
+                />
+              ))}
         </Card.CardContent>
       ) : (
         <div className='mt-2 text-muted-foreground'>Nothing to show</div>

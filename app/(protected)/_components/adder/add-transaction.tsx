@@ -10,17 +10,27 @@ import { Button } from '@/components/ui/button';
 import { errorToast, generalToast } from '@/helpers/toast-helper';
 import { Loader } from '@/components/shared/loader';
 import { useGetUser } from '@/hooks/use-get-user';
+import { TabsOptionsType } from './adder';
+import { FiPlus } from 'react-icons/fi';
+
 import {
   useAddTransactionMutation,
   useGetCategoriesQuery,
   useGetWalletForTransactionQuery,
 } from '@/redux/services/api';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 type AddTransactionProps = {
   onDialogClose: () => void;
+  onTabChange: (tabName: TabsOptionsType) => void;
 };
 
-export function AddTransaction({ onDialogClose }: AddTransactionProps) {
+export function AddTransaction({
+  onDialogClose,
+  onTabChange,
+}: AddTransactionProps) {
+  const router = useRouter();
   const [date, setDate] = useState<Date | undefined>(new Date());
   const [type, setType] = useState<'expense' | 'revenue'>('expense');
   const [categoryAndIcon, setCategoryAndIcon] = useState<string>();
@@ -32,6 +42,11 @@ export function AddTransaction({ onDialogClose }: AddTransactionProps) {
   );
   const { data: categories } = useGetCategoriesQuery(user?.email as string);
   const [addTransaction, { isLoading }] = useAddTransactionMutation();
+
+  function onAddWalletButtonPress() {
+    router.push('/wallets');
+    onDialogClose();
+  }
 
   function onTypeChange(value: string) {
     setType(value as 'expense' | 'revenue');
@@ -128,10 +143,19 @@ export function AddTransaction({ onDialogClose }: AddTransactionProps) {
                   </Select.SelectItem>
                 ))
               ) : (
-                <span className='px-3 text-sm text-muted-foreground'>
+                <span className='px-5 text-sm text-muted-foreground'>
                   No Category Available
                 </span>
               )}
+
+              <div
+                onClick={() => onTabChange('category')}
+                className='my-2 rounded-md hover:bg-indigo-700 hover:text-white'
+              >
+                <div className='flex cursor-pointer items-center gap-2 px-3 py-2 text-sm'>
+                  <FiPlus className='text-lg' /> Add new category
+                </div>
+              </div>
             </Select.SelectContent>
           </Select.Select>
         </div>
@@ -153,10 +177,18 @@ export function AddTransaction({ onDialogClose }: AddTransactionProps) {
                 </Select.SelectItem>
               ))
             ) : (
-              <span className='px-3 text-sm text-muted-foreground'>
+              <span className='px-5 text-sm text-muted-foreground'>
                 No Wallet Available
               </span>
             )}
+            <div
+              onClick={onAddWalletButtonPress}
+              className='my-2 rounded-md hover:bg-indigo-700 hover:text-white'
+            >
+              <div className='flex cursor-pointer items-center gap-2 px-5 py-2 text-sm'>
+                <FiPlus className='text-lg' /> Add new wallet
+              </div>
+            </div>
           </Select.SelectContent>
         </Select.Select>
       </div>
