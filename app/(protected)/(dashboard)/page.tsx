@@ -1,3 +1,4 @@
+import { BudgetBox } from './_components/budget-goal/budget-box';
 import { DashboardPieChart } from './_components/charts/dashboard-pie-chart';
 import { DashboardPieChartContainer } from './_components/charts/dashboard-pie-chart-container';
 import { Graphs } from './_components/charts/graphs';
@@ -12,6 +13,9 @@ export default function Home() {
     <>
       <WalletSummary />
       <section className='mt-6 grid-cols-5 gap-6 space-y-6 overflow-y-auto md:grid md:space-y-0'>
+        <div className='col-span-5'>
+          <BudgetBox />
+        </div>
         <Graphs className='rounded-md border border-gray-400 py-5 dark:border-white md:col-span-3' />
         <DashboardPieChartContainer />
         <RecentExpenses />

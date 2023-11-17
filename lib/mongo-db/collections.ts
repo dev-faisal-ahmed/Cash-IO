@@ -8,6 +8,7 @@ export async function getCollections() {
   const categoriesCollections = db.collection('categories');
   const walletsCollection = db.collection('wallets');
   const transfersCollection = db.collection('transfers');
+  const budgetCollection = db.collection('budgets');
 
   return {
     usersCollections,
@@ -15,5 +16,6 @@ export async function getCollections() {
     categoriesCollections,
     walletsCollection,
     transfersCollection,
+    budgetCollection,
   };
 }
