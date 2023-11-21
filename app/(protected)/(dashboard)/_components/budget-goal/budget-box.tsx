@@ -37,11 +37,11 @@ export function BudgetBox() {
   return (
     <div className='space-y-5 rounded-md border border-gray-400 p-5 dark:border-white lg:space-y-3'>
       <div className='mb-6 flex items-center justify-between'>
-        <h3 className='text-2xl font-semibold tracking-wide'>Budget Tracker</h3>
+        <h3 className='text-xl font-semibold tracking-wide'>Budget Tracker</h3>
         <Dialog.Dialog open={budgetDialog} onOpenChange={setBudgetDialog}>
           <Dialog.DialogTrigger asChild>
-            <div className='flex h-8 w-8 cursor-pointer items-center justify-center rounded-md border bg-transparent p-2 sm:h-10 sm:w-10'>
-              <AiFillEdit />
+            <div className='cursor-pointer rounded-md border bg-transparent p-2'>
+              <AiFillEdit className='text-xl' />
             </div>
           </Dialog.DialogTrigger>
 
@@ -56,7 +56,7 @@ export function BudgetBox() {
 
       {budgetData?.budget ? (
         <>
-          <div className='flex items-center justify-between text-lg font-semibold'>
+          <div className='flex items-center justify-between font-semibold'>
             <p>Budget : {budget} </p>
             <p>Spent : {spend} </p>
           </div>

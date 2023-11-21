@@ -5,10 +5,15 @@ export type WalletType = {
   _id: string;
   email: string;
   name: string;
-  fixedDeposit?: boolean;
+  saving?: boolean;
   icon: string;
   revenue: number;
   expense: number;
+};
+
+export type WalletOptionType = {
+  name: string;
+  icon: string;
 };
 
 // ********* transfer ********* \\
@@ -46,6 +51,11 @@ export type CategoriesSummaryType = {
   expense: { totalAmount: number; categories: ExpenseCategoryType[] };
 };
 
+export type CategoriesTypeProps = {
+  revenue: Omit<RevenueCategoryType, 'amount'>[];
+  expense: Omit<ExpenseCategoryType, 'amount'>[];
+};
+
 // ********* Transactions ********* \\
 
 export type TransactionType = {
@@ -78,12 +88,7 @@ export type IconDataType = {
   [key: string]: ReactNode;
 };
 
-export type CategoriesTypeProps = {
-  revenue: Omit<RevenueCategoryType, 'amount'>[];
-  expense: Omit<ExpenseCategoryType, 'amount'>[];
-};
-
-export type WalletOptionType = {
-  name: string;
-  icon: string;
+export type SavingType = {
+  revenue: number;
+  expense: number;
 };

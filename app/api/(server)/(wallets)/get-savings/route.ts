@@ -6,22 +6,23 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(request: NextRequest) {
   try {
-    const { transactionsCollections } = await getCollections();
+    const { walletsCollection } = await getCollections();
     const email = request.nextUrl.searchParams.get('email');
 
-    const today = new Date();
-    const month = today.getMonth();
-
-    const transactionData = await transactionsCollections
+    const savingsData = await walletsCollection
       .aggregate([
-        { $match: { email, type: 'expense' } },
-        { $project: { month: { $month: '$date' }, amount: 1 } },
-        { $match: { month: month + 1 } },
-        { $group: { _id: '$month', amount: { $sum: '$amount' } } },
+        { $match: { email, saving: true } },
+        {
+          $group: {
+            _id: '$saving',
+            revenue: { $sum: '$revenue' },
+            expense: { $sum: 'expense' },
+          },
+        },
       ])
       .toArray();
 
-    return NextResponse.json(transactionData[0]);
+    return NextResponse.json(savingsData[0]);
   } catch (err) {
     console.log(err);
     return NextResponse.json(errorResponse());

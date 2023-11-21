@@ -27,3 +27,8 @@ export type ServerThisMonthTransactionResponseType = {
   _id: string;
   amount: number;
 };
+
+export type ServerGoalResponseType = {
+  ok: boolean;
+  goal: number;
+};

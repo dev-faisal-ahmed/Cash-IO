@@ -25,7 +25,7 @@ export function AddWallet() {
     const form = event.target as HTMLInputElement & {
       walletName: { value: string };
       initialBalance: { value: string };
-      fixedDeposit: { checked: boolean };
+      saving: { checked: boolean };
     };
 
     if (!selectedIcon) return errorToast('Please select an Icon');
@@ -33,7 +33,7 @@ export function AddWallet() {
     const formData = {
       name: form.walletName.value.trim(),
       initialBalance: parseInt(form.initialBalance.value),
-      fixedDeposit: form.fixedDeposit.checked,
+      saving: form.saving.checked,
       icon: selectedIcon,
       email: user?.email,
     };
@@ -97,14 +97,11 @@ export function AddWallet() {
             <Input
               className='h-4 w-4'
               type='checkbox'
-              id='fixedDeposit'
-              name='fixedDeposits'
+              id='saving'
+              name='saving'
             />
-            <Label
-              className='text-sm text-muted-foreground'
-              htmlFor='fixedDeposit'
-            >
-              Make this wallet fixed deposit
+            <Label className='text-sm text-muted-foreground' htmlFor='saving'>
+              Make this wallet saving wallet
             </Label>
           </div>
           {isLoading ? (

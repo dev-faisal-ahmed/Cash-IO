@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import {
   ServerBudgetResponseType,
+  ServerGoalResponseType,
   ServerResponseType,
   ServerThisMonthTransactionResponseType,
   WalletForTransactionType,
@@ -9,6 +10,7 @@ import {
   CategoriesSummaryType,
   CategoriesType,
   MonthlyTransactionType,
+  SavingType,
   TransactionType,
   TransactionsTypeSeverData,
   TransferType,
@@ -20,7 +22,14 @@ export const api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/api`,
   }),
-  tagTypes: ['wallets', 'categories', 'transactions', 'transfers', 'budget'],
+  tagTypes: [
+    'wallets',
+    'categories',
+    'transactions',
+    'transfers',
+    'budget',
+    'goal',
+  ],
 
   endpoints: (builder) => ({
     // wallets
@@ -138,6 +147,23 @@ export const api = createApi({
       query: (email) => `get-budget?email=${email}`,
       providesTags: ['budget'],
     }),
+
+    // goal
+    addEditGoal: builder.mutation<ServerResponseType, any>({
+      query: (data) => ({ url: 'add-edit-goal', method: 'POST', body: data }),
+      invalidatesTags: ['goal'],
+    }),
+
+    getGoal: builder.query<ServerGoalResponseType, any>({
+      query: (email) => `get-goal?email=${email}`,
+      providesTags: ['goal'],
+    }),
+
+    // savings
+    getSavings: builder.query<SavingType, any>({
+      query: (email) => `get-savings?email=${email}`,
+      providesTags: ['transactions', 'transfers', 'wallets'],
+    }),
   }),
 });
 
@@ -159,4 +185,7 @@ export const {
   useGetTransfersQuery,
   useAddEditBudgetMutation,
   useGetBudgetQuery,
+  useAddEditGoalMutation,
+  useGetGoalQuery,
+  useGetSavingsQuery,
 } = api;
