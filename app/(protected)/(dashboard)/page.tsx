@@ -14,7 +14,7 @@ export default function Home() {
     <>
       <WalletSummary />
       <section className='mt-6 grid-cols-5 gap-6 space-y-6 overflow-y-auto md:grid md:space-y-0'>
-        <div className='col-span-5 grid grid-cols-2 gap-6'>
+        <div className='col-span-5 grid gap-6 md:grid-cols-2'>
           <BudgetBox />
           <GoalBox />
         </div>

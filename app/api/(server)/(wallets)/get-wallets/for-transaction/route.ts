@@ -13,7 +13,16 @@ export async function GET(request: NextRequest) {
     const walletInfo = await walletsCollection
       .find(
         { email },
-        { projection: { name: 1, icon: 1, revenue: 1, expense: 1, _id: 0 } },
+        {
+          projection: {
+            name: 1,
+            icon: 1,
+            revenue: 1,
+            expense: 1,
+            _id: 0,
+            saving: 1,
+          },
+        },
       )
       .toArray();
 

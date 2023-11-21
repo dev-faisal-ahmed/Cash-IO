@@ -27,6 +27,7 @@ export function AllWallets() {
             icon={wallet.icon}
             name={wallet.name}
             revenue={wallet.revenue}
+            saving={wallet.saving}
           />
         ))}
     </>
