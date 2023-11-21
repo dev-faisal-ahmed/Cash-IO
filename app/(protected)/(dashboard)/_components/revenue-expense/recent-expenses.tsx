@@ -30,7 +30,9 @@ export function RecentExpenses() {
         )}
       </div>
       {transactionsData && transactionsData.expense.length > 0 && (
-        <TransactionTable transactions={transactionsData?.expense} />
+        <TransactionTable
+          transactions={transactionsData?.expense.slice(0, 10)}
+        />
       )}
     </section>
   );

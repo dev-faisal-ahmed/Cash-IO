@@ -29,7 +29,7 @@ export function TransactionTable({ transactions }: TransactionTableProps) {
               key={index}
             >
               <Table.TableCell>
-                <div className='rounded-md bg-indigo-700 p-2 text-2xl text-white'>
+                <div className='mr-auto w-fit rounded-md bg-indigo-700 p-2 text-2xl text-white'>
                   {allIconsData[transaction.icon]}
                 </div>
               </Table.TableCell>

@@ -13,10 +13,12 @@ export async function POST(request: NextRequest) {
     } = await getCollections();
 
     const transactionsInfo = await request.json();
-    const { amount, email, category, wallet, type } = transactionsInfo;
+    const { amount, email, category, wallet, type, date } = transactionsInfo;
 
-    const transactionInsertStatus =
-      await transactionsCollections.insertOne(transactionsInfo);
+    const transactionInsertStatus = await transactionsCollections.insertOne({
+      ...transactionsInfo,
+      date: new Date(date),
+    });
 
     if (!transactionInsertStatus)
       return NextResponse.json(errorResponse('Could not insert transaction'));

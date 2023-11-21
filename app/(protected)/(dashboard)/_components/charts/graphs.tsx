@@ -47,7 +47,7 @@ export function Graphs({ className }: { className?: string }) {
       {selected === 'daily' && transactions && (
         <DashboardBarChart
           transactions={Object.values(
-            getDailyTransactionOnRanged(transactions, 10),
+            getDailyTransactionOnRanged(transactions, 7),
           )}
         />
       )}

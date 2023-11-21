@@ -1,8 +1,4 @@
-import {
-  ExpenseCategoryType,
-  RevenueCategoryType,
-  TransactionType,
-} from './data-types';
+import { TransactionType } from './data-types';
 
 export type WalletForTransactionType = {
   [key: string]: {
@@ -20,4 +16,19 @@ export type MonthlyTransactionType = {
 export type ServerResponseType = {
   ok: boolean;
   msg: string;
+};
+
+export type ServerBudgetResponseType = {
+  ok: boolean;
+  budget: number;
+};
+
+export type ServerThisMonthTransactionResponseType = {
+  _id: string;
+  amount: number;
+};
+
+export type ServerGoalResponseType = {
+  ok: boolean;
+  goal: number;
 };

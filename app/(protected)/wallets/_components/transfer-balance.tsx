@@ -117,6 +117,7 @@ export function TransferBalance({
         name='amount'
         type='number'
         placeholder='Input Amount'
+        min={1}
         required
       />
       {reqIsLoading ? (

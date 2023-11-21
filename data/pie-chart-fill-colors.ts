@@ -4,6 +4,6 @@ export const pieChartFillColors = [
   '#4429B8',
   '#0085E5',
   '#BBA9FF',
-  'EAC1FF',
+  '#EAC1FF',
   '#7C95FF',
 ];

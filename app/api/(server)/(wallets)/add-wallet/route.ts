@@ -8,8 +8,7 @@ export async function POST(request: NextRequest) {
   try {
     const { walletsCollection } = await getCollections();
 
-    const { email, name, fixedDeposit, icon, initialBalance } =
-      await request.json();
+    const { email, name, saving, icon, initialBalance } = await request.json();
 
     const wallet = await walletsCollection.findOne({ email, name });
     if (wallet)
@@ -20,7 +19,7 @@ export async function POST(request: NextRequest) {
     const insertStatus = await walletsCollection.insertOne({
       email,
       name,
-      fixedDeposit,
+      saving,
       icon,
       revenue: initialBalance,
       expense: 0,

@@ -1,61 +1,52 @@
 'use client';
-
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import * as Dropdown from '@/components/ui/dropdown-menu';
+import * as Avatar from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { useGetUser } from '@/hooks/use-get-user';
-
 import { signOut } from 'next-auth/react';
 import { redirect } from 'next/navigation';
 
 export function UserIcon() {
   const { user } = useGetUser();
+
   if (!user?.email) return redirect('/register');
+
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+    <Dropdown.DropdownMenu>
+      <Dropdown.DropdownMenuTrigger asChild>
         <Button variant='ghost' className='relative h-10 w-10 rounded-full'>
-          <Avatar className='h-10 w-10'>
-            <AvatarImage
+          <Avatar.Avatar className='h-10 w-10'>
+            <Avatar.AvatarImage
               src={user?.image as string}
               alt={user?.name?.[0] as string}
             />
-            <AvatarFallback className='text-2xl font-semibold text-primary dark:text-white'>
+            <Avatar.AvatarFallback className='text-2xl font-semibold text-primary dark:text-white'>
               {user?.name?.[0]}
-            </AvatarFallback>
-          </Avatar>
+            </Avatar.AvatarFallback>
+          </Avatar.Avatar>
         </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent className='w-56' align='end' forceMount>
-        <DropdownMenuLabel className='font-normal'>
+      </Dropdown.DropdownMenuTrigger>
+      <Dropdown.DropdownMenuContent className='w-56' align='end' forceMount>
+        <Dropdown.DropdownMenuLabel className='font-normal'>
           <div className='flex flex-col space-y-2'>
             <p className='text-sm font-medium leading-none'>{user?.name}</p>
             <p className='truncate text-xs leading-none text-muted-foreground'>
               {user?.email}
             </p>
           </div>
-        </DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem className='focus:bg-transparent'>
+        </Dropdown.DropdownMenuLabel>
+        <Dropdown.DropdownMenuSeparator />
+        <Dropdown.DropdownMenuItem className='focus:bg-transparent'>
           <Button
             variant={'destructive'}
+            size={'sm'}
             onClick={() => signOut()}
             className='w-full'
           >
             Log Out
           </Button>
-          <DropdownMenuShortcut></DropdownMenuShortcut>
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+        </Dropdown.DropdownMenuItem>
+      </Dropdown.DropdownMenuContent>
+    </Dropdown.DropdownMenu>
   );
 }
