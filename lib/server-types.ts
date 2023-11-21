@@ -6,6 +6,7 @@ export type WalletForTransactionType = {
     icon: string;
     revenue: number;
     expense: number;
+    saving: boolean;
   };
 };
 

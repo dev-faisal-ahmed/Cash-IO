@@ -92,6 +92,8 @@ export function AddTransaction({
       .catch(() => errorToast());
   }
 
+  console.log(wallet);
+
   return (
     <form onSubmit={onAddTransaction}>
       <div className='flex flex-col items-center gap-5 sm:flex-row'>
@@ -168,12 +170,27 @@ export function AddTransaction({
           <Select.SelectContent>
             {wallets && Object.values(wallets).length > 0 ? (
               Object.values(wallets).map((wallet, index) => (
-                <Select.SelectItem key={index} value={wallet.name}>
-                  <span className='flex items-center gap-3'>
-                    <span>{allIconsData[wallet.icon]}</span>
-                    {wallet.name}
-                  </span>
-                </Select.SelectItem>
+                <>
+                  {type === 'revenue' ? (
+                    <Select.SelectItem key={index} value={wallet.name}>
+                      <span className='flex items-center gap-3'>
+                        <span>{allIconsData[wallet.icon]}</span>
+                        {wallet.name}
+                      </span>
+                    </Select.SelectItem>
+                  ) : (
+                    <>
+                      {!wallet.saving && (
+                        <Select.SelectItem key={index} value={wallet.name}>
+                          <span className='flex items-center gap-3'>
+                            <span>{allIconsData[wallet.icon]}</span>
+                            {wallet.name}
+                          </span>
+                        </Select.SelectItem>
+                      )}
+                    </>
+                  )}
+                </>
               ))
             ) : (
               <span className='px-5 text-sm text-muted-foreground'>
