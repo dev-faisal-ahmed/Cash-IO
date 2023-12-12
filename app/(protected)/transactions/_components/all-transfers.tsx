@@ -7,15 +7,11 @@ import { TransferContainer } from './transfer-container';
 
 export function AllTransfers() {
   const { user } = useGetUser();
-  const {
-    data: transfers,
-    isFetching,
-    isLoading,
-  } = useGetTransfersQuery(user?.email!);
+  const { data: transfers, isLoading } = useGetTransfersQuery(user?.email!);
 
-  if (isFetching || isLoading)
+  if (isLoading)
     return (
-      <div className='col-span-2 mt-6 flex h-[350px] items-center justify-center rounded-md border md:mt-0'>
+      <div className='col-span-2 mt-6 flex min-h-[400px] items-center justify-center rounded-md border md:mt-0'>
         <Loader />
       </div>
     );
@@ -27,7 +23,7 @@ export function AllTransfers() {
           <Card.CardTitle className=''>All Transfers</Card.CardTitle>
         </Card.CardHeader>
         {transfers && transfers.length > 0 ? (
-          <Card.CardContent className='space-y-4 px-6'>
+          <Card.CardContent className='mt-5 space-y-4 px-6'>
             {transfers.map((data) => (
               <TransferContainer
                 key={data._id}

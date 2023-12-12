@@ -6,6 +6,7 @@ export type WalletForTransactionType = {
     icon: string;
     revenue: number;
     expense: number;
+    saving: boolean;
   };
 };
 
@@ -16,4 +17,19 @@ export type MonthlyTransactionType = {
 export type ServerResponseType = {
   ok: boolean;
   msg: string;
+};
+
+export type ServerBudgetResponseType = {
+  ok: boolean;
+  budget: number;
+};
+
+export type ServerThisMonthTransactionResponseType = {
+  _id: string;
+  amount: number;
+};
+
+export type ServerGoalResponseType = {
+  ok: boolean;
+  goal: number;
 };

@@ -1,11 +1,16 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import {
+  ServerBudgetResponseType,
+  ServerGoalResponseType,
   ServerResponseType,
+  ServerThisMonthTransactionResponseType,
   WalletForTransactionType,
 } from '@/lib/server-types';
 import {
+  CategoriesSummaryType,
   CategoriesType,
   MonthlyTransactionType,
+  SavingType,
   TransactionType,
   TransactionsTypeSeverData,
   TransferType,
@@ -17,7 +22,14 @@ export const api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `${process.env.NEXT_PUBLIC_SERVER_ADDRESS}/api`,
   }),
-  tagTypes: ['wallets', 'categories', 'transactions', 'transfers'],
+  tagTypes: [
+    'wallets',
+    'categories',
+    'transactions',
+    'transfers',
+    'budget',
+    'goal',
+  ],
 
   endpoints: (builder) => ({
     // wallets
@@ -72,6 +84,11 @@ export const api = createApi({
       providesTags: ['categories'],
     }),
 
+    getCategoriesSummary: builder.query<CategoriesSummaryType, string>({
+      query: (email) => `get-categories-summary?email=${email}`,
+      providesTags: ['categories'],
+    }),
+
     addCategory: builder.mutation<ServerResponseType, any>({
       query: (data) => ({
         url: 'add-category',
@@ -106,10 +123,46 @@ export const api = createApi({
       providesTags: ['transactions'],
     }),
 
+    getThisMonthTransaction: builder.query<
+      ServerThisMonthTransactionResponseType,
+      string
+    >({
+      query: (email) => `get-this-month-transactions?email=${email}`,
+      providesTags: ['transactions'],
+    }),
+
     // transfers
     getTransfers: builder.query<TransferType[], string>({
       query: (email) => `get-transfers?email=${email}`,
       providesTags: ['transfers'],
+    }),
+
+    // budget
+    addEditBudget: builder.mutation<ServerResponseType, any>({
+      query: (data) => ({ url: 'add-edit-budget', method: 'POST', body: data }),
+      invalidatesTags: ['budget'],
+    }),
+
+    getBudget: builder.query<ServerBudgetResponseType, string>({
+      query: (email) => `get-budget?email=${email}`,
+      providesTags: ['budget'],
+    }),
+
+    // goal
+    addEditGoal: builder.mutation<ServerResponseType, any>({
+      query: (data) => ({ url: 'add-edit-goal', method: 'POST', body: data }),
+      invalidatesTags: ['goal'],
+    }),
+
+    getGoal: builder.query<ServerGoalResponseType, any>({
+      query: (email) => `get-goal?email=${email}`,
+      providesTags: ['goal'],
+    }),
+
+    // savings
+    getSavings: builder.query<SavingType, any>({
+      query: (email) => `get-savings?email=${email}`,
+      providesTags: ['transactions', 'transfers', 'wallets'],
     }),
   }),
 });
@@ -121,11 +174,18 @@ export const {
   useEditWalletMutation,
   useTransferBalanceMutation,
   useDeleteWalletMutation,
-  useGetCategoriesQuery,
-  useAddTransactionMutation,
   useAddCategoryMutation,
+  useGetCategoriesQuery,
+  useGetCategoriesSummaryQuery,
+  useAddTransactionMutation,
   useGetTransactionsQuery,
   useGetAllTransactionsQuery,
   useGetMonthlyTransactionsQuery,
+  useGetThisMonthTransactionQuery,
   useGetTransfersQuery,
+  useAddEditBudgetMutation,
+  useGetBudgetQuery,
+  useAddEditGoalMutation,
+  useGetGoalQuery,
+  useGetSavingsQuery,
 } = api;

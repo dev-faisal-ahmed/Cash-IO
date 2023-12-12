@@ -28,8 +28,10 @@ export function TransactionTable({ transactions }: TransactionTableProps) {
               className='border-b border-gray-400 dark:border-white'
               key={index}
             >
-              <Table.TableCell className='text-2xl'>
-                {allIconsData[transaction.icon]}
+              <Table.TableCell>
+                <div className='mr-auto w-fit rounded-md bg-indigo-700 p-2 text-2xl text-white'>
+                  {allIconsData[transaction.icon]}
+                </div>
               </Table.TableCell>
               <Table.TableCell className='whitespace-nowrap font-medium'>
                 {transaction.category}

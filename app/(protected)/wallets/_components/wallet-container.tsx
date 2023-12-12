@@ -3,6 +3,7 @@ import * as Card from '@/components/ui/card';
 import { WalletType } from '@/lib/data-types';
 import { WalletContainerMenu } from './wallet-container-menu';
 import { allIconsData } from '@/data/all-icons-data';
+import { IoLockOpen } from 'react-icons/io5';
 
 export function WalletContainer({
   _id,
@@ -10,15 +11,20 @@ export function WalletContainer({
   expense,
   revenue,
   icon,
+  saving,
 }: Omit<WalletType, 'email'>) {
   return (
     <Card.Card className='border border-gray-400 bg-transparent dark:border-white'>
       <Card.CardHeader>
         <Card.CardTitle className='grid grid-cols-[auto_1fr_auto] items-center justify-between gap-3 text-xl'>
-          <span className='w-fit rounded-md border p-2 text-lg xl:p-3 xl:text-xl'>
+          <span className='w-fit rounded-md bg-indigo-700 p-2 text-lg text-white xl:p-3 xl:text-2xl'>
             {allIconsData[icon]}
           </span>
-          <div className='truncate'>{name}</div>
+          <div className='flex items-center gap-2'>
+            <p className='truncate'>{name}</p>
+            {saving && <IoLockOpen className='text-xl' />}
+          </div>
+
           <WalletContainerMenu
             name={name}
             icon={icon}

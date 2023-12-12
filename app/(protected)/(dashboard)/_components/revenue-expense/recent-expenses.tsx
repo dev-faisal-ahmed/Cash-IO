@@ -6,21 +6,19 @@ import { useGetTransactionsQuery } from '@/redux/services/api';
 
 export function RecentExpenses() {
   const { user } = useGetUser();
-  const {
-    data: transactionsData,
-    isLoading,
-    isFetching,
-  } = useGetTransactionsQuery(user?.email!);
+  const { data: transactionsData, isLoading } = useGetTransactionsQuery(
+    user?.email!,
+  );
 
-  if (isLoading || isFetching)
+  if (isLoading)
     return (
-      <div className='mt-6 flex h-[300px] w-full items-center justify-center rounded-lg border border-gray-400 dark:border-white'>
+      <div className='mt-6 flex min-h-[300px] w-full items-center justify-center rounded-lg border border-gray-400 dark:border-white md:col-span-3'>
         <Loader />
       </div>
     );
 
   return (
-    <section className='mt-6 space-y-5 rounded-md border border-gray-400 px-5 pb-2 pt-5 dark:border-white '>
+    <section className='col-span-3 space-y-5 rounded-md border border-gray-400 px-5 pb-2 pt-5 dark:border-white '>
       <div>
         <h2 className='text-2xl font-bold tracking-tight'>Recent Expense</h2>
         {transactionsData && transactionsData.expense.length > 0 ? (
@@ -32,7 +30,9 @@ export function RecentExpenses() {
         )}
       </div>
       {transactionsData && transactionsData.expense.length > 0 && (
-        <TransactionTable transactions={transactionsData?.expense} />
+        <TransactionTable
+          transactions={transactionsData?.expense.slice(0, 10)}
+        />
       )}
     </section>
   );
