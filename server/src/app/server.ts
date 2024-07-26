@@ -1,14 +1,14 @@
 import mongoose from 'mongoose';
 import { Server } from 'http';
-import { MONGO_URI, PORT } from './config';
-import { app } from './app';
+import { MONGO_URI, PORT } from '../config';
+import { App } from './app';
 
 let server: Server;
 
 const Main = async () => {
   try {
     await mongoose.connect(MONGO_URI!);
-    server = app.listen(PORT, () => {
+    server = App.listen(PORT, () => {
       console.log(`App is listening to the port ${PORT}`);
     });
   } catch (err) {
@@ -27,7 +27,7 @@ process.on('uncaughtException', () => {
 // handling the unhandled rejections
 process.on('unhandledRejection', () => {
   console.log(
-    `Sorry we are facing unhandled rejection, shutting down the server`,
+    `Sorry we are facing unhandled rejection, shutting down the server`
   );
   if (server) {
     server.close(() => {

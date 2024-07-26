@@ -3,14 +3,14 @@ import { Response } from 'express';
 type TSuccessResponse = { data: any; message: string; status: number };
 type TErrorResponse = { error: any; message: string; status: number };
 
-export function sendSuccessResponse(
+export function SendSuccessResponse(
   res: Response,
   { status, data, message }: TSuccessResponse
 ) {
   return res.status(status).json({ ok: true, message, data });
 }
 
-export function sendErrorResponse(
+export function SendErrorResponse(
   res: Response,
   { status, message, error }: TErrorResponse
 ) {

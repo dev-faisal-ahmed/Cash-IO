@@ -1,11 +1,11 @@
 import { StatusCodes } from 'http-status-codes';
 import { AppError } from '../utils/app.error';
-import { tryCatch } from '../utils/try-catch';
 import { JWT_SECRET } from '../config';
-import { User } from '../modules/user/user.model';
 import jwt, { JwtPayload, Secret } from 'jsonwebtoken';
+import { TryCatch } from '../utils';
+import { User } from '../modules/user/model';
 
-export const authGuard = tryCatch(async (req, _, next) => {
+export const authGuard = TryCatch(async (req, _, next) => {
   const token = req.headers.authorization;
   if (!token) throw new AppError('No Token Found', StatusCodes.NOT_FOUND);
 

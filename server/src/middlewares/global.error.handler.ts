@@ -1,7 +1,8 @@
 import { ErrorRequestHandler } from 'express';
-import { sendErrorResponse } from '../utils/response.helper';
+import { SendErrorResponse } from '../utils/response.helper';
+import { NODE_ENV } from '../config';
 
-export const globalErrorHandler: ErrorRequestHandler = (err, _, res, __) => {
+export const GlobalErrorHandler: ErrorRequestHandler = (err, _, res, __) => {
   let status: number = err.status || 500;
   let message: string = err.message || 'something went wrong';
 
@@ -22,5 +23,10 @@ export const globalErrorHandler: ErrorRequestHandler = (err, _, res, __) => {
       ''
     );
   }
-  return sendErrorResponse(res, { message, status, error: err });
+
+  return SendErrorResponse(res, {
+    message,
+    status,
+    error: NODE_ENV === 'development' ? err : {},
+  });
 };

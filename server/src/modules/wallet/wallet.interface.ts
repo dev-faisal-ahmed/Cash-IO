@@ -1,5 +1,5 @@
 import { Schema } from 'mongoose';
-import { TIcon } from '../../utils/global-types';
+import { TIcon } from '../../utils/global.types';
 
 export type TWallet = {
   _id: Schema.Types.ObjectId;

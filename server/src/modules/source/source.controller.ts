@@ -1,6 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
 import { sendSuccessResponse } from '../../utils/response.helper';
-import { tryCatch } from '../../utils/try-catch';
+import { tryCatch } from '../../utils/try.catch';
 import { sourceServices } from './services/source.services';
 
 const createSource = tryCatch(async (req, res) => {

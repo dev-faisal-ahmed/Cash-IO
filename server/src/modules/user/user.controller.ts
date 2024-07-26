@@ -1,7 +1,7 @@
 import { StatusCodes } from 'http-status-codes';
 import { sendSuccessResponse } from '../../utils/response.helper';
 import { userServices } from './services/user.services';
-import { tryCatch } from '../../utils/try-catch';
+import { tryCatch } from '../../utils/try.catch';
 
 const registerUser = tryCatch(async (req, res) => {
   const newUser = await userServices.registerUser(req.body);
