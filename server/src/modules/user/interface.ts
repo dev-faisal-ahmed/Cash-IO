@@ -5,6 +5,7 @@ export type TUser = {
   _id: Schema.Types.ObjectId;
   email: string;
   password?: string;
+  imageUrl?: string;
   name: string;
   budget?: number;
   provider: TProvider;
