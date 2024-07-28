@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { TUser } from '../../user/user.interface';
-import { Contact } from '../../contact/contact.model';
+import { Contact } from '../../contact/model';
 import { AppError } from '../../../utils/app.error';
 import { StatusCodes } from 'http-status-codes';
 import { Wallet } from '../../wallet/wallet.model';

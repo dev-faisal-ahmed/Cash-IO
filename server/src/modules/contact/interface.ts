@@ -5,6 +5,5 @@ export type TContact = {
   name: string;
   phone: string;
   userId: Schema.Types.ObjectId;
-  borrow: number;
-  lend: number;
+  isDeleted: boolean;
 };

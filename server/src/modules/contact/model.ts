@@ -1,12 +1,11 @@
 import { Schema, model } from 'mongoose';
-import { TContact } from './contact.interface';
+import { TContact } from './interface';
 
 const ContactSchema = new Schema<TContact>({
   name: { type: String, required: true },
   phone: { type: String, required: true },
   userId: { type: Schema.Types.ObjectId, ref: 'user', required: true },
-  lend: { type: Number, default: 0 },
-  borrow: { type: Number, default: 0 },
+  isDeleted: { type: Boolean, default: false },
 });
 
-export const Contact = model('contact', ContactSchema);
+export const Contact = model<TContact>('contact', ContactSchema);

@@ -6,8 +6,6 @@ export const GlobalErrorHandler: ErrorRequestHandler = (err, _, res, __) => {
   let status: number = err.status || 500;
   let message: string = err.message || 'something went wrong';
 
-  console.log(err);
-
   if (err.name === 'ZodError') {
     message = err.issues.reduce(
       (

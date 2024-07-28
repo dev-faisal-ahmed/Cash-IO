@@ -8,20 +8,12 @@ export const UpdateCategory = TryCatch(async (req, res) => {
   const { categoryId } = req.params;
   const user: TUser = req.user;
 
-  const isCategoryExist = await Category.findOne({
-    _id: categoryId,
-    userId: user._id,
-  });
-
-  if (!isCategoryExist) throw new AppError('Category not found', 404);
-
-  const response = await Category.updateOne(
-    { _id: categoryId },
+  const isCategoryExist = await Category.findOneAndUpdate(
+    { _id: categoryId, userId: user._id },
     { $set: payload }
   );
 
-  if (!response.acknowledged)
-    throw new AppError('Failed to update category', 400);
+  if (!isCategoryExist) throw new AppError('Category not found', 404);
 
   SendSuccessResponse(res, {
     status: 200,
