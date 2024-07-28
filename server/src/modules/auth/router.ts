@@ -16,3 +16,9 @@ AuthRouter.post(
   ValidationHandler(AuthValidation.SLogin),
   AuthController.Login
 );
+
+AuthRouter.post(
+  '/login/google',
+  ValidationHandler(AuthValidation.SGoogleLogin),
+  AuthController.GoogleLogin
+);

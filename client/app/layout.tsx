@@ -1,25 +1,23 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Montserrat } from 'next/font/google';
 import { Toaster } from 'sonner';
 import './globals.css';
+import { cn } from '@/lib/utils';
+import { PropsWithChildren } from 'react';
 
-const inter = Inter({ subsets: ['latin'] });
+const font = Montserrat({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Cash-IO',
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang='en'>
-      <body className={inter.className}>
+      <body className={cn(font.className)}>
         {children}
 
-        <Toaster richColors duration={1500} />
+        <Toaster richColors duration={1500} theme='dark' />
       </body>
     </html>
   );
