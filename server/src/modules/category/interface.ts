@@ -9,4 +9,5 @@ export type TCategory = {
   icon: string;
   budget?: number;
   type: TCategoryType;
+  isDeleted: boolean;
 };

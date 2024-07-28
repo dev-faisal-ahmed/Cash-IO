@@ -18,3 +18,9 @@ CategoryRouter.patch(
   ValidationHandler(CategoryValidation.SUpdateCategory),
   CategoryController.UpdateCategory
 );
+
+CategoryRouter.delete(
+  '/:categoryId',
+  AuthGuard,
+  CategoryController.DeleteCategory
+);

@@ -8,6 +8,7 @@ const SourceSchema = new Schema<TCategory>({
   icon: { type: String, required: true },
   type: { type: String, enum: CategoryTypes, required: true },
   budget: { type: String },
+  isDeleted: { type: Boolean, default: false },
 });
 
 export const Category = model<TCategory>('category', SourceSchema);
