@@ -11,3 +11,10 @@ CategoryRouter.post(
   ValidationHandler(CategoryValidation.SCreateCategory),
   CategoryController.CreateCategory
 );
+
+CategoryRouter.patch(
+  '/:categoryId',
+  AuthGuard,
+  ValidationHandler(CategoryValidation.SUpdateCategory),
+  CategoryController.UpdateCategory
+);

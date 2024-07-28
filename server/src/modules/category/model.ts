@@ -7,6 +7,7 @@ const SourceSchema = new Schema<TCategory>({
   userId: { type: Schema.Types.ObjectId, ref: 'user', required: true },
   icon: { type: String, required: true },
   type: { type: String, enum: CategoryTypes, required: true },
+  budget: { type: String },
 });
 
-export const Category = model<TCategory>('source', SourceSchema);
+export const Category = model<TCategory>('category', SourceSchema);

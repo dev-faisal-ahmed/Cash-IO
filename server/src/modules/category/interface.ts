@@ -7,5 +7,6 @@ export type TCategory = {
   userId: Schema.Types.ObjectId;
   name: string;
   icon: string;
+  budget?: number;
   type: TCategoryType;
 };
