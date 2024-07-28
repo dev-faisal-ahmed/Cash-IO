@@ -4,9 +4,15 @@ import { TryCatch } from '../utils';
 import { User } from '../modules/user/model';
 import jwt, { JwtPayload, Secret } from 'jsonwebtoken';
 
+const BEARER = 'Bearer';
+
 export const AuthGuard = TryCatch(async (req, _, next) => {
-  const token = req.headers.authorization;
-  if (!token) throw new AppError('No Token Found', 404);
+  const authToke = req.headers.authorization;
+  if (!authToke) throw new AppError('No Token Found', 400);
+
+  const [bearer, token] = authToke.split(' ');
+  if (bearer.toLocaleLowerCase() !== BEARER.toLocaleLowerCase())
+    throw new AppError('invalid token formate', 401);
 
   const decodedUser = jwt.verify(token, JWT_SECRET as Secret) as JwtPayload;
   if (!decodedUser) throw new AppError('Invalid Token', 401);

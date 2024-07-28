@@ -3,7 +3,7 @@ import { TUser } from '../../user/user.interface';
 import { Wallet } from '../../wallet/wallet.model';
 import { AppError } from '../../../utils/app.error';
 import { StatusCodes } from 'http-status-codes';
-import { Source } from '../../source/source.model';
+import { Source } from '../../category/model';
 import { Transaction } from '../transaction.model';
 import { User } from '../../user/user.model';
 import { TCreateTransactionPayload } from '../transaction.validation';
