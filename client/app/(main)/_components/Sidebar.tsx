@@ -1,12 +1,12 @@
 'use client';
 
 import Link from 'next/link';
-import { links } from '@/app/_data/links';
-import { Logo } from '@/components/shared/Logo';
 import { cn } from '@/lib/utils';
+import { links } from '@/app/_data/links';
 import { usePathname } from 'next/navigation';
-import { ProfileIcon } from '@/components/shared/ProfileIcon';
+import { Logo } from '@/components/shared/Logo';
 import { TLoggedUser } from '@/app/_utils/types';
+import { ProfileIcon } from '@/components/shared/ProfileIcon';
 
 type TProps = {
   className?: string;
@@ -23,14 +23,14 @@ export const Sidebar = ({ className, user }: TProps) => {
         className,
       )}
     >
-      <Logo className='justify-center' />
+      <Logo className='mx-4 pt-2' />
       <div className='mt-8 flex flex-col gap-3'>
         {links.map(({ url, title, icon }) => (
           <Link
             key={url}
             href={url}
             className={cn(
-              'flex items-center gap-3 border-r-[3px] px-4 py-1 text-base hover:bg-primary hover:text-white',
+              'flex items-center gap-3 border-r-[3px] px-4 py-1 text-base duration-300 hover:bg-primary hover:text-white',
               pathName === url && 'border-primary font-semibold text-primary',
             )}
           >
@@ -40,7 +40,7 @@ export const Sidebar = ({ className, user }: TProps) => {
         ))}
       </div>
 
-      <div className='mt-auto flex items-end gap-4 border-t-2 px-6 pt-3'>
+      <div className='mt-auto flex items-end gap-4 border-t-2 px-6 pt-6'>
         <ProfileIcon name={user.name} />
         <div>
           <h3 className='line-clamp-1 font-bold'>{user.name}</h3>
