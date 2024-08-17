@@ -1,26 +1,29 @@
+import {
+  generateAuthToken,
+  generateRefreshToken,
+  sendSuccessResponse,
+} from '../../../helpers';
 import { AppError } from '../../../utils';
-import { generateAuthToken, sendSuccessResponse } from '../../../helpers';
-import { googleLoginSchema } from '../auth.validation';
-import { asyncHandler } from '../../../middlewares';
 import { User } from '../../user/user.model';
+import { asyncHandler } from '../../../middlewares';
+import { googleLoginSchema } from '../auth.validation';
 
 export const googleLogin = asyncHandler(async (req, res) => {
-  const { email, name, imageUrl } = await googleLoginSchema.parseAsync(
-    req.body
-  );
+  // validation
+  const payload = await googleLoginSchema.parseAsync(req.body);
+  const { email, name, imageUrl } = payload;
 
   const isUserExist = await User.findOne({ email });
-  let token: string;
+  let accessToken: string;
+  let refreshToken: string;
 
   if (isUserExist) {
-    // user already exist
-    token = generateAuthToken({
-      _id: isUserExist._id,
-      email,
-      name: isUserExist.email,
-      imageUrl: isUserExist.imageUrl,
-    });
+    // user already exists
+    const { _id, name, imageUrl } = isUserExist;
+    accessToken = generateAuthToken({ _id, email, name, imageUrl });
+    refreshToken = generateRefreshToken({ _id, email });
   } else {
+    // if user does not exist
     // creating new user
     const user = await User.create({
       email,
@@ -28,14 +31,17 @@ export const googleLogin = asyncHandler(async (req, res) => {
       imageUrl,
       provider: 'GOOGLE',
     });
-    if (!user) throw new AppError('Failed to create the account', 400);
 
-    token = generateAuthToken({ _id: user._id, email, name, imageUrl });
+    if (!user) throw new AppError('Failed to create the account', 400);
+    const { _id } = user;
+
+    accessToken = generateAuthToken({ _id, email, name, imageUrl });
+    refreshToken = generateRefreshToken({ _id, email });
   }
 
   return sendSuccessResponse(res, {
     status: 200,
     message: 'Successfully Logged In',
-    data: { token },
+    data: { accessToken, refreshToken },
   });
 });
