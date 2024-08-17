@@ -8,7 +8,7 @@ type TProps = {
 export const TopBar = ({ user }: TProps) => {
   return (
     <nav className='sticky top-0 flex items-center justify-between p-6'>
-      <h4 className='w-fit rounded-full bg-neutral-800 px-6 py-2 text-lg'>
+      <h4 className='w-fit rounded-full bg-neutral-800 px-6 py-2 text-base sm:text-lg'>
         Greetings,{' '}
         <span className='font-semibold'>{user.name.split(' ')[0]}</span>
       </h4>

@@ -2,6 +2,7 @@ import { PropsWithChildren } from 'react';
 import { Sidebar } from './_components/Sidebar';
 import { TopBar } from './_components/TopBar';
 import { getUserAction } from '../_actions/getUser.action';
+import { MobileBar } from './_components/MobileBar';
 
 export default async function MainLayout({ children }: PropsWithChildren) {
   const user = await getUserAction();
@@ -15,6 +16,7 @@ export default async function MainLayout({ children }: PropsWithChildren) {
         <main className='customized_scrollbar h-full overflow-y-auto px-5 pb-6'>
           {children}
         </main>
+        <MobileBar />
       </section>
     </section>
   );

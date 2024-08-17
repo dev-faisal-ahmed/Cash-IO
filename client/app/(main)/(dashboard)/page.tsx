@@ -6,7 +6,7 @@ export const metadata: Metadata = {
 
 export default async function HomePage() {
   return (
-    <main className='flex h-full flex-col items-center justify-center gap-5'>
+    <main className=''>
       Cash-IO
       <h2>User : User</h2>
     </main>
