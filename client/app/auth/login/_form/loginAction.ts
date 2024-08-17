@@ -23,7 +23,7 @@ export const loginAction = async (payload: TPayload) => {
     const refreshToken = responseData?.data?.refreshToken;
 
     if (accessToken) cookies().set(tokens.accessToken, accessToken);
-    if (refreshToken) cookies().set(tokens.accessToken, refreshToken);
+    if (refreshToken) cookies().set(tokens.refreshToken, refreshToken);
   }
 
   return responseData;

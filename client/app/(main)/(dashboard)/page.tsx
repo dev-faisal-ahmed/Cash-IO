@@ -10,7 +10,7 @@ export default async function HomePage() {
   return (
     <main className='flex h-full flex-col items-center justify-center gap-5'>
       Cash-IO
-      <h2>User : {JSON.stringify(user)}</h2>
+      <h2>User : User</h2>
     </main>
   );
 }
