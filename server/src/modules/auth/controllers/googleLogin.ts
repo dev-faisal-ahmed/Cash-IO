@@ -13,7 +13,7 @@ export const googleLogin = asyncHandler(async (req, res) => {
   const payload = await googleLoginSchema.parseAsync(req.body);
   const { email, name, imageUrl } = payload;
 
-  const isUserExist = await User.findOne({ email });
+  const isUserExist = await User.findOne({ email, provider: 'GOOGLE' });
   let accessToken: string;
   let refreshToken: string;
 
@@ -39,6 +39,7 @@ export const googleLogin = asyncHandler(async (req, res) => {
     refreshToken = generateRefreshToken({ _id, email });
   }
 
+  // response
   return sendSuccessResponse(res, {
     status: 200,
     message: 'Successfully Logged In',
