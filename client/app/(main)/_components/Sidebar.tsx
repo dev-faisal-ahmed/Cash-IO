@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation';
 import { Logo } from '@/components/shared/Logo';
 import { TLoggedUser } from '@/app/_utils/types';
 import { ProfileIcon } from '@/components/shared/ProfileIcon';
+import { isActive } from '@/app/_utils/helpers/activeLink.helper';
 
 type TProps = {
   className?: string;
@@ -31,7 +32,8 @@ export const Sidebar = ({ className, user }: TProps) => {
             href={url}
             className={cn(
               'flex items-center gap-3 border-r-[3px] px-4 py-1 text-base duration-300 hover:bg-primary hover:text-white',
-              pathName === url && 'border-primary font-semibold text-primary',
+              isActive(url, pathName) &&
+                'border-primary font-semibold text-primary',
             )}
           >
             {icon}
