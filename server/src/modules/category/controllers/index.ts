@@ -1,9 +1,9 @@
-import { CreateCategory } from './create.category';
-import { DeleteCategory } from './delete.category';
-import { UpdateCategory } from './update.category';
+import { createCategory } from './createCategory';
+import { deleteCategory } from './deleteCategory';
+import { updateCategory } from './update.category';
 
-export const CategoryController = {
-  CreateCategory,
-  UpdateCategory,
-  DeleteCategory,
+export const categoryController = {
+  createCategory,
+  deleteCategory,
+  updateCategory,
 };

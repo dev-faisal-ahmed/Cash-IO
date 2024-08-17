@@ -1,6 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
-import { sendSuccessResponse } from '../../utils/response.helper';
-import { tryCatch } from '../../utils/try.catch';
+import { sendSuccessResponse } from '../../helpers/response.helper';
+import { tryCatch } from '../../middlewares/asyncHandler';
 import { walletServices } from './services/wallet.services';
 
 const createWallet = tryCatch(async (req, res) => {

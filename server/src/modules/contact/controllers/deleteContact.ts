@@ -1,8 +1,10 @@
-import { AppError, SendSuccessResponse, TryCatch } from '../../../utils';
-import { TUser } from '../../user/interface';
-import { Contact } from '../model';
+import { sendSuccessResponse } from '../../../helpers';
+import { asyncHandler } from '../../../middlewares';
+import { AppError } from '../../../utils';
+import { TUser } from '../../user/user.interface';
+import { Contact } from '../contact.model';
 
-export const DeleteContact = TryCatch(async (req, res) => {
+export const deleteContact = asyncHandler(async (req, res) => {
   const { contactId } = req.params;
   const user: TUser = req.user;
 
@@ -13,7 +15,7 @@ export const DeleteContact = TryCatch(async (req, res) => {
 
   if (!isContactExist) throw new AppError('Contact Not Found', 404);
 
-  SendSuccessResponse(res, {
+  return sendSuccessResponse(res, {
     status: 200,
     message: 'Contact Deleted Successfully',
     data: null,

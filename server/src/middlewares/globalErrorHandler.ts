@@ -1,8 +1,8 @@
 import { ErrorRequestHandler } from 'express';
-import { SendErrorResponse } from '../utils/response.helper';
 import { NODE_ENV } from '../config';
+import { sendErrorResponse } from '../helpers';
 
-export const GlobalErrorHandler: ErrorRequestHandler = (err, _, res, __) => {
+export const globalErrorHandler: ErrorRequestHandler = (err, _, res, __) => {
   let status: number = err.status || 500;
   let message: string = err.message || 'something went wrong';
 
@@ -24,9 +24,18 @@ export const GlobalErrorHandler: ErrorRequestHandler = (err, _, res, __) => {
     );
   }
 
-  return SendErrorResponse(res, {
-    message,
+  // handling error for mongoose
+  // duplicate key
+  if (err.errorResponse?.code === 11000) {
+    const { errorResponse } = err;
+    const [key] = Object.keys(errorResponse.keyPattern);
+    message = `${key} : ${errorResponse.keyValue[key]} already exist`;
+    status = 400;
+  }
+
+  return sendErrorResponse(res, {
     status,
+    message,
     error: NODE_ENV === 'development' ? err : {},
   });
 };

@@ -1,14 +1,14 @@
 import mongoose from 'mongoose';
 import { Server } from 'http';
 import { MONGO_URI, PORT } from '../config';
-import { App } from './app';
+import { app } from './app';
 
 let server: Server;
 
-const Main = async () => {
+const main = async () => {
   try {
     await mongoose.connect(MONGO_URI!);
-    server = App.listen(PORT, () => {
+    server = app.listen(PORT, () => {
       console.log(`App is listening to the port ${PORT}`);
     });
   } catch (err) {
@@ -16,7 +16,7 @@ const Main = async () => {
   }
 };
 
-Main();
+main();
 
 // handling the uncaught exception
 process.on('uncaughtException', () => {

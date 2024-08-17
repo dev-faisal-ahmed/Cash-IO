@@ -1,5 +1,5 @@
 import { StatusCodes } from 'http-status-codes';
-import { AppError } from '../../../utils/app.error';
+import { AppError } from '../../../utils/appError';
 import { TUser } from '../../user/user.interface';
 import { Wallet } from '../wallet.model';
 import { TCreateWalletPayload } from '../wallet.validation';

@@ -1,10 +1,12 @@
-import { AppError, SendSuccessResponse, TryCatch } from '../../../utils';
-import { TUser } from '../../user/interface';
-import { Category } from '../model';
-import { TUpdateCategoryPayload } from '../validation';
+import { sendSuccessResponse } from '../../../helpers';
+import { asyncHandler } from '../../../middlewares';
+import { AppError } from '../../../utils';
+import { TUser } from '../../user/user.interface';
+import { Category } from '../category.model';
+import { updateCategorySchema } from '../category.validation';
 
-export const UpdateCategory = TryCatch(async (req, res) => {
-  const payload: TUpdateCategoryPayload = req.body;
+export const updateCategory = asyncHandler(async (req, res) => {
+  const payload = await updateCategorySchema.parseAsync(req.body);
   const { categoryId } = req.params;
   const user: TUser = req.user;
 
@@ -15,7 +17,7 @@ export const UpdateCategory = TryCatch(async (req, res) => {
 
   if (!isCategoryExist) throw new AppError('Category not found', 404);
 
-  SendSuccessResponse(res, {
+  return sendSuccessResponse(res, {
     status: 200,
     message: 'Category Updated Successfully',
     data: null,

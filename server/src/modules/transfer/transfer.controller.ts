@@ -1,6 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
-import { sendSuccessResponse } from '../../utils/response.helper';
-import { tryCatch } from '../../utils/try.catch';
+import { sendSuccessResponse } from '../../helpers/response.helper';
+import { tryCatch } from '../../middlewares/asyncHandler';
 import { transferServices } from './services/transfer.services';
 
 const createTransfer = tryCatch(async (req, res) => {

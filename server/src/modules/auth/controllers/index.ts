@@ -1,5 +1,5 @@
-import { GoogleLogin } from './google.login';
-import { Login } from './login';
-import { Register } from './register';
+import { googleLogin } from './googleLogin';
+import { login } from './login';
+import { register } from './register';
 
-export const AuthController = { Register, Login, GoogleLogin };
+export const authController = { googleLogin, login, register };

@@ -1,24 +1,24 @@
 import express from 'express';
 import cors from 'cors';
-import { AppRouter } from './router';
-import { GlobalErrorHandler } from '../middlewares';
+import { appRouter } from './router';
+import { globalErrorHandler } from '../middlewares';
 
-export const App = express();
+export const app = express();
 
 // parser
-App.use(express.json());
-App.use(cors());
+app.use(express.json());
+app.use(cors());
 
 // all routes
-App.use('/api/v1', AppRouter);
+app.use('/api/v1', appRouter);
 
-App.get('/', async (_, res) => {
+app.get('/', async (_, res) => {
   res.status(200).json({ ok: true, message: 'Server is running' });
 });
 
-App.get('*', async (_, res) => {
+app.get('*', async (_, res) => {
   res.status(400).json({ ok: false, message: 'Can not find this page' });
 });
 
 // global error handler
-App.use(GlobalErrorHandler);
+app.use(globalErrorHandler);

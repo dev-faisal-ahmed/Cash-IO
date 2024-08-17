@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { authGuard } from '../../middlewares/auth.guard';
+import { authGuard } from '../../middlewares/authGuard';
 import { validationHandler } from '../../middlewares/validation.handler';
 import { walletValidation } from './wallet.validation';
 import { walletController } from './wallet.controller';

@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import { AuthRouter } from '../modules/auth/router';
-import { CategoryRouter } from '../modules/category/router';
-import { ContactRouter } from '../modules/contact/router';
+import { authRouter } from '../modules/auth/auth.router';
+import { categoryRouter } from '../modules/category/category.router';
+import { contactRouter } from '../modules/contact/contact.router';
 
-export const AppRouter = Router();
+export const appRouter = Router();
 
-AppRouter.use('/auth', AuthRouter);
-AppRouter.use('/category', CategoryRouter);
-AppRouter.use('/contact', ContactRouter);
+appRouter.use('/auth', authRouter);
+appRouter.use('/category', categoryRouter);
+appRouter.use('/contact', contactRouter);

@@ -1,10 +1,13 @@
-import { AppError, SendSuccessResponse, TryCatch } from '../../../utils';
-import { TGoogleLoginPayload } from '../validation';
-import { generateAuthToken } from '../../../helpers';
-import { User } from '../../user/model';
+import { AppError } from '../../../utils';
+import { generateAuthToken, sendSuccessResponse } from '../../../helpers';
+import { googleLoginSchema } from '../auth.validation';
+import { asyncHandler } from '../../../middlewares';
+import { User } from '../../user/user.model';
 
-export const GoogleLogin = TryCatch(async (req, res) => {
-  const { email, name, imageUrl }: TGoogleLoginPayload = req.body;
+export const googleLogin = asyncHandler(async (req, res) => {
+  const { email, name, imageUrl } = await googleLoginSchema.parseAsync(
+    req.body
+  );
 
   const isUserExist = await User.findOne({ email });
   let token: string;
@@ -30,7 +33,7 @@ export const GoogleLogin = TryCatch(async (req, res) => {
     token = generateAuthToken({ _id: user._id, email, name, imageUrl });
   }
 
-  SendSuccessResponse(res, {
+  return sendSuccessResponse(res, {
     status: 200,
     message: 'Successfully Logged In',
     data: { token },

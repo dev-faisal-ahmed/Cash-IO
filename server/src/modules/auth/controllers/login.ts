@@ -1,11 +1,12 @@
-import { generateAuthToken } from '../../../helpers';
-import { AppError, SendSuccessResponse, TryCatch } from '../../../utils';
-import { User } from '../../user/model';
-import { TLoginPayload } from '../validation';
 import bcrypt from 'bcrypt';
+import { generateAuthToken, sendSuccessResponse } from '../../../helpers';
+import { AppError } from '../../../utils';
+import { User } from '../../user/user.model';
+import { loginSchema } from '../auth.validation';
+import { asyncHandler } from '../../../middlewares';
 
-export const Login = TryCatch(async (req, res) => {
-  const payload: TLoginPayload = req.body;
+export const login = asyncHandler(async (req, res) => {
+  const payload = await loginSchema.parseAsync(req.body);
 
   const user = await User.findOne({
     email: payload.email,
@@ -28,7 +29,7 @@ export const Login = TryCatch(async (req, res) => {
     imageUrl: user?.imageUrl,
   });
 
-  SendSuccessResponse(res, {
+  return sendSuccessResponse(res, {
     status: 200,
     message: 'Successfully LoggedIn',
     data: { token },

@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import { TUser } from '../../user/user.interface';
 import { Wallet } from '../../wallet/wallet.model';
 import { TCreateTransferPayload } from '../transfer.validation';
-import { AppError } from '../../../utils/app.error';
+import { AppError } from '../../../utils/appError';
 import { StatusCodes } from 'http-status-codes';
 import { Transfer } from '../transfer.model';
 import { User } from '../../user/user.model';

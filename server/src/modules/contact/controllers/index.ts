@@ -1,9 +1,9 @@
-import { CreateContact } from './create.contact';
-import { DeleteContact } from './delete.contact';
-import { UpdateContact } from './update.contact';
+import { createContact } from './createContact';
+import { deleteContact } from './deleteContact';
+import { updateContact } from './updateContact';
 
-export const ContactController = {
-  CreateContact,
-  UpdateContact,
-  DeleteContact,
+export const contactController = {
+  createContact,
+  deleteContact,
+  updateContact,
 };

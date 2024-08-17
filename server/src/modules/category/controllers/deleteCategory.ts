@@ -1,8 +1,10 @@
-import { AppError, SendSuccessResponse, TryCatch } from '../../../utils';
-import { TUser } from '../../user/interface';
-import { Category } from '../model';
+import { sendSuccessResponse } from '../../../helpers';
+import { asyncHandler } from '../../../middlewares';
+import { AppError } from '../../../utils';
+import { TUser } from '../../user/user.interface';
+import { Category } from '../category.model';
 
-export const DeleteCategory = TryCatch(async (req, res) => {
+export const deleteCategory = asyncHandler(async (req, res) => {
   const user: TUser = req.user;
   const { categoryId } = req.params;
 
@@ -13,7 +15,7 @@ export const DeleteCategory = TryCatch(async (req, res) => {
 
   if (!isCategoryExist) throw new AppError('Category Not Found', 404);
 
-  SendSuccessResponse(res, {
+  return sendSuccessResponse(res, {
     status: 200,
     message: 'category deleted successfully',
     data: null,
