@@ -1,37 +1,23 @@
 'use client';
 
 import * as customForm from '@/components/ui/form';
-import { useRegister } from './useRegister';
+import Link from 'next/link';
+import { useLogin } from './useLogin';
 import { Input } from '@/components/ui/input';
 import { PasswordField } from '@/components/shared/PasswordField';
 import { Button } from '@/components/ui/button';
-import Link from 'next/link';
 
-export const RegisterForm = () => {
-  const { states, handlers, form } = useRegister();
-  const { onRegister } = handlers;
+export const LoginForm = () => {
+  const { states, handlers, form } = useLogin();
   const { isLoading } = states;
+  const { onLogin } = handlers;
 
   return (
     <customForm.Form {...form}>
       <form
         className='mt-10 flex w-full max-w-[350px] flex-col gap-4 text-left'
-        onSubmit={onRegister}
+        onSubmit={onLogin}
       >
-        {/* name */}
-        <customForm.FormField
-          control={form.control}
-          name='name'
-          render={({ field }) => (
-            <customForm.FormItem>
-              <customForm.FormLabel>Name</customForm.FormLabel>
-              <customForm.FormControl>
-                <Input placeholder='John Doe' {...field} />
-              </customForm.FormControl>
-              <customForm.FormMessage />
-            </customForm.FormItem>
-          )}
-        />
         {/* email */}
         <customForm.FormField
           control={form.control}
@@ -58,21 +44,15 @@ export const RegisterForm = () => {
           description='Minimum length is 4 characters'
         />
 
-        <PasswordField
-          form={form}
-          name='confirmPassword'
-          label='Confirm Password'
-        />
-
         <p className='text-center text-muted-foreground'>
           Already have an account?{' '}
-          <Link className='text-primary underline' href={'/auth/login'}>
-            Login
-          </Link>{' '}
+          <Link className='text-primary underline' href={'/auth/register'}>
+            Register
+          </Link>
         </p>
 
         <Button disabled={isLoading} className='mt-2'>
-          Register
+          Login
         </Button>
       </form>
     </customForm.Form>

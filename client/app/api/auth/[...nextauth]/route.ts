@@ -2,8 +2,8 @@ import NextAuth from 'next-auth';
 import Google from 'next-auth/providers/google';
 import { apiUrl } from '@/app/_data';
 import { fetchOption } from '@/app/_utils/helpers';
-import { TServerResponse } from '@/app/_utils/types';
 import { cookies } from 'next/headers';
+import { tokens } from '@/app/_data/tokens';
 
 const handler = NextAuth({
   providers: [
@@ -31,13 +31,17 @@ const handler = NextAuth({
         fetchOption({ method: 'POST', body: userInfo }),
       );
 
-      const responseData: TServerResponse<{ token: string }> =
-        await response.json();
+      const responseData = await response.json();
 
       if (!responseData.ok || !responseData.data)
         throw new Error(responseData.message);
 
-      cookies().set('token', responseData.data.token);
+      const accessToken = responseData?.data?.accessToken;
+      const refreshToken = responseData?.data?.refreshToken;
+
+      if (accessToken) cookies().set(tokens.accessToken, accessToken);
+      if (refreshToken) cookies().set(tokens.refreshToken, refreshToken);
+
       return true;
     },
   },

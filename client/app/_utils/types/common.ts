@@ -18,3 +18,11 @@ export type TUser = {
   budget?: number;
   provider: TProvider;
 };
+
+// ****************** LoggedIn Types ****************** \\
+export type TLoggedUser = {
+  _id: string;
+  name: string;
+  email: string;
+  imageUrl?: string;
+};
