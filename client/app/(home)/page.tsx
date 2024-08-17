@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { getUserAction } from '../_actions/getUser.action';
+import { getUserAction } from '@/app/_actions/getUser.action';
 
 export const metadata: Metadata = {
   title: 'Cash-IO | Home',
