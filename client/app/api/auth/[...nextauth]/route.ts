@@ -1,8 +1,8 @@
 import NextAuth from 'next-auth';
 import Google from 'next-auth/providers/google';
 import { apiUrl } from '@/app/_data';
-import { fetchOption } from '@/app/_helpers';
-import { TServerResponse } from '@/app/_types';
+import { fetchOption } from '@/app/_utils/helpers';
+import { TServerResponse } from '@/app/_utils/types';
 import { cookies } from 'next/headers';
 
 const handler = NextAuth({

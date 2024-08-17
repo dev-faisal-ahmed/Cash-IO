@@ -1,6 +1,8 @@
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import Image from 'next/image';
+import * as card from '@/components/ui/card';
 import { Metadata } from 'next';
+import { RegisterForm } from './_form/RegisterForm';
+import { Container } from '@/components/shared/Container';
 
 export const metadata: Metadata = {
   title: 'Cash-IO | Register',
@@ -8,20 +10,27 @@ export const metadata: Metadata = {
 
 export default function RegisterPage() {
   return (
-    <main className='flex h-full items-center justify-center'>
-      <div className='rounded-md border border-neutral-300 p-6 shadow-md'>
-        <h1 className='mb-6 text-2xl font-semibold'>Cash-IO Register</h1>
-        <form className='mb-4 flex flex-col gap-3'>
-          <Input name='name' placeholder='Input Name' />
-          <Input name='email' type='email' placeholder='Input Email' />
-          <Input name='password' type='password' placeholder='Input Password' />
-          <Button className='mt-2'>Register</Button>
-        </form>
-        <hr />
-        <Button variant={'outline'} className='mt-4 w-full'>
-          Login With Google
-        </Button>
-      </div>
+    <main className='h-full'>
+      <Container className='flex h-full justify-center'>
+        <div className='hidden w-full items-center justify-center lg:flex'>
+          <Image
+            className='w-full max-w-[550px]'
+            src={'/images/manage-money.svg'}
+            width={1000}
+            height={1000}
+            alt='Cover'
+          />
+        </div>
+        <div className='flex w-full flex-col items-center justify-center text-center lg:border-l'>
+          <card.CardTitle className='text-2xl'>
+            Welcome to Cash-IO
+          </card.CardTitle>
+          <card.CardDescription className='mt-2'>
+            Provide your information and register
+          </card.CardDescription>
+          <RegisterForm />
+        </div>
+      </Container>
     </main>
   );
 }
