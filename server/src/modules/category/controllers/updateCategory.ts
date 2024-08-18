@@ -3,21 +3,23 @@ import { asyncHandler } from '../../../middlewares';
 import { AppError } from '../../../utils';
 import { TUser } from '../../user/interface';
 import { Category } from '../model';
+import { updateCategorySchema } from '../validation';
 
-export const deleteCategory = asyncHandler(async (req, res) => {
-  const user: TUser = req.user;
+export const updateCategory = asyncHandler(async (req, res) => {
+  const payload = await updateCategorySchema.parseAsync(req.body);
   const { categoryId } = req.params;
+  const user: TUser = req.user;
 
   const isCategoryExist = await Category.findOneAndUpdate(
     { _id: categoryId, userId: user._id },
-    { $set: { isDeleted: true } }
+    { $set: payload }
   );
 
-  if (!isCategoryExist) throw new AppError('Category Not Found', 404);
+  if (!isCategoryExist) throw new AppError('Category not found', 404);
 
   return sendSuccessResponse(res, {
     status: 200,
-    message: 'category deleted successfully',
+    message: 'Category Updated Successfully',
     data: null,
   });
 });

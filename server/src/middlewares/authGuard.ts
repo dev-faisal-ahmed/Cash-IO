@@ -1,8 +1,8 @@
-import { AppError } from '../utils/appError';
-import { ACCESS_TOKEN_SECRET } from '../config';
-import { User } from '../modules/user/user.model';
-import { asyncHandler } from './asyncHandler';
 import jwt, { JwtPayload } from 'jsonwebtoken';
+import { AppError } from '../utils/appError';
+import { User } from '../modules/user/model';
+import { asyncHandler } from './asyncHandler';
+import { ACCESS_TOKEN_SECRET } from '../app/config';
 
 const BEARER = 'Bearer';
 

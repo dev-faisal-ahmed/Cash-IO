@@ -1,8 +1,8 @@
 import { sendSuccessResponse } from '../../../helpers';
 import { asyncHandler } from '../../../middlewares';
 import { AppError } from '../../../utils';
-import { TUser } from '../../user/user.interface';
-import { Contact } from '../contact.model';
+import { TUser } from '../../user/interface';
+import { Contact } from '../model';
 
 export const deleteContact = asyncHandler(async (req, res) => {
   const { contactId } = req.params;

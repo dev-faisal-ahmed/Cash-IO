@@ -1,5 +1,5 @@
 import { JwtPayload } from 'jsonwebtoken';
-import { TUser } from './modules/user/user.interface';
+import { TUser } from './modules/user/interface';
 
 declare global {
   namespace Express {

@@ -1,5 +1,9 @@
 {
-  "include": ["src", "src/modules/category/.router.ts"],
+  "include": [
+    "src",
+    "src/modules/category/.router.ts",
+    "src/modules/transactions/constants.ts"
+  ],
   "exclude": ["node_modules"],
   "compilerOptions": {
     "module": "commonjs",

@@ -1,9 +1,9 @@
 import { sendSuccessResponse } from '../../../helpers';
 import { asyncHandler } from '../../../middlewares';
 import { AppError } from '../../../utils';
-import { TUser } from '../../user/user.interface';
-import { Contact } from '../contact.model';
-import { createContactSchema } from '../contact.validation';
+import { TUser } from '../../user/interface';
+import { Contact } from '../model';
+import { createContactSchema } from '../validation';
 
 export const createContact = asyncHandler(async (req, res) => {
   const payload = await createContactSchema.parseAsync(req.body);

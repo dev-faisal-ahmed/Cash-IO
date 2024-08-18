@@ -1,2 +1,2 @@
 export * from './appError';
-export * from './global.types';
+export * from './globalTypes';

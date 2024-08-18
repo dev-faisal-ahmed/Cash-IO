@@ -4,9 +4,9 @@ import {
   sendSuccessResponse,
 } from '../../../helpers';
 import { AppError } from '../../../utils';
-import { User } from '../../user/user.model';
+import { User } from '../../user/model';
 import { asyncHandler } from '../../../middlewares';
-import { googleLoginSchema } from '../auth.validation';
+import { googleLoginSchema } from '../validation';
 
 export const googleLogin = asyncHandler(async (req, res) => {
   // validation

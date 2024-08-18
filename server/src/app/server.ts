@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import { Server } from 'http';
-import { MONGO_URI, PORT } from '../config';
 import { app } from './app';
+import { MONGO_URI, PORT } from './config';
 
 let server: Server;
 

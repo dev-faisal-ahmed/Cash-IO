@@ -1,9 +1,9 @@
 import { sendSuccessResponse } from '../../../helpers';
 import { asyncHandler } from '../../../middlewares';
 import { AppError } from '../../../utils';
-import { TUser } from '../../user/user.interface';
-import { Category } from '../category.model';
-import { createCategorySchema } from '../category.validation';
+import { TUser } from '../../user/interface';
+import { Category } from '../model';
+import { createCategorySchema } from '../validation';
 
 export const createCategory = asyncHandler(async (req, res) => {
   const payload = await createCategorySchema.parseAsync(req.body);

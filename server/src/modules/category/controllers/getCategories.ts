@@ -1,6 +1,6 @@
 import { sendSuccessResponse } from '../../../helpers';
 import { asyncHandler } from '../../../middlewares';
-import { Category } from '../category.model';
+import { Category } from '../model';
 
 export const getCategories = asyncHandler(async (req, res) => {
   // query

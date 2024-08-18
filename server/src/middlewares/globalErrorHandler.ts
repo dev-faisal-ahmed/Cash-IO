@@ -1,5 +1,5 @@
 import { ErrorRequestHandler } from 'express';
-import { NODE_ENV } from '../config';
+import { NODE_ENV } from '../app/config';
 import { sendErrorResponse } from '../helpers';
 
 export const globalErrorHandler: ErrorRequestHandler = (err, _, res, __) => {

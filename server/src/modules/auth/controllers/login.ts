@@ -5,8 +5,8 @@ import {
 } from '../../../helpers';
 import bcrypt from 'bcrypt';
 import { AppError } from '../../../utils';
-import { User } from '../../user/user.model';
-import { loginSchema } from '../auth.validation';
+import { User } from '../../user/model';
+import { loginSchema } from '../validation';
 import { asyncHandler } from '../../../middlewares';
 
 export const login = asyncHandler(async (req, res) => {

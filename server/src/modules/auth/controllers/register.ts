@@ -1,8 +1,8 @@
 import bcrypt from 'bcrypt';
-import { BCRYPT_SALT } from '../../../config';
+import { BCRYPT_SALT } from '../../../app/config';
 import { asyncHandler } from '../../../middlewares';
-import { User } from '../../user/user.model';
-import { registerSchema } from '../auth.validation';
+import { User } from '../../user/model';
+import { registerSchema } from '../validation';
 import { sendSuccessResponse } from '../../../helpers';
 
 export const register = asyncHandler(async (req, res) => {
