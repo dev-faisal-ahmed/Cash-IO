@@ -3,12 +3,16 @@ import * as card from '@/components/ui/card';
 import { Metadata } from 'next';
 import { RegisterForm } from './_form/RegisterForm';
 import { Container } from '@/components/shared/Container';
+import { guardLoggedUser } from '@/app/_actions/authGuard';
 
 export const metadata: Metadata = {
   title: 'Cash-IO | Register',
 };
 
-export default function RegisterPage() {
+export default async function RegisterPage() {
+  // guard
+  await guardLoggedUser();
+
   return (
     <main className='h-full'>
       <Container className='flex h-full justify-center'>

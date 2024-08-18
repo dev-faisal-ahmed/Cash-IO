@@ -12,3 +12,7 @@ export const getNewAccessTokenAction = async () => {
   const accessToken = cookies().get(tokens.accessToken)?.value;
   return accessToken;
 };
+
+export const logoutAction = async () => {
+  cookies().delete(tokens.accessToken);
+};
