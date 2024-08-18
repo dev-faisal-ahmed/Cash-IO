@@ -1,7 +1,14 @@
+import {
+  TCategory,
+  TServerResponse,
+  TAddCategoryPayload,
+} from '@/app/_utils/types';
+import { makeSearchQuery } from '@/app/_utils/helpers/query.helper';
 import { baseApi } from './baseApi';
-import { TAddCategoryPayload, TServerResponse } from '@/app/_utils/types';
 
 const category = '/category';
+const categories = '/categories';
+
 const categoryApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     // add category
@@ -13,7 +20,15 @@ const categoryApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ['categories'],
     }),
+
+    // get categories
+    getCategories: builder.query<
+      TServerResponse<TCategory[]>,
+      Record<string, any>
+    >({
+      query: (args) => `${categories}${makeSearchQuery(args)}`,
+    }),
   }),
 });
 
-export const { useAddCategoryMutation } = categoryApi;
+export const { useAddCategoryMutation, useGetCategoriesQuery } = categoryApi;

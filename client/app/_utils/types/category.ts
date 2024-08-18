@@ -6,7 +6,7 @@ export type TCategory = {
   icon: string;
   budget?: number;
   type: TCategoryType;
-  isDeleted: boolean;
+  isDeleted?: boolean;
 };
 
 export type TAddCategoryPayload = Pick<
