@@ -1,7 +1,7 @@
 'use server';
 
 import { apiUrl } from '@/app/_data';
-import { tokens } from '@/app/_data/tokens';
+import { tokens } from '@/app/_data';
 import { fetchOption } from '@/app/_utils/helpers';
 import { cookies } from 'next/headers';
 

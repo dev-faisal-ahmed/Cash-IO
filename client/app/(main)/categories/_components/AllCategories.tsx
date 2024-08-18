@@ -1,7 +1,7 @@
 'use client';
 
 import { Loader } from '@/components/shared/Loading';
-import { useGetCategoriesQuery } from '@/app/_redux/services/categoryApi';
+import { useGetCategoriesQuery } from '@/app/_redux/services';
 
 export const AllCategories = () => {
   const { data: categoriesData, isLoading } = useGetCategoriesQuery({});

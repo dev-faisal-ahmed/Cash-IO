@@ -1,7 +1,7 @@
 'use server';
 
 import { cookies } from 'next/headers';
-import { tokens } from '../_data/tokens';
+import { tokens } from '../_data';
 
 export const getAccessTokenAction = async () => {
   const accessToken = cookies().get(tokens.accessToken)?.value;

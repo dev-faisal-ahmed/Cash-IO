@@ -1,10 +1,12 @@
-import { useForm } from 'react-hook-form';
-import { addCategorySchema, TAddCategorySchema } from './addCategorySchema';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useAddCategoryMutation } from '@/app/_redux/services/categoryApi';
+'use client';
+
 import { toast } from 'sonner';
-import { TAddCategoryPayload } from '@/app/_utils/types';
+import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useAddCategoryMutation } from '@/app/_redux/services';
+import { TAddCategoryPayload } from '@/app/_utils/types';
+import { addCategorySchema, TAddCategorySchema } from './addCategorySchema';
 
 export const useAddCategory = () => {
   const [addCategory, { isLoading }] = useAddCategoryMutation();

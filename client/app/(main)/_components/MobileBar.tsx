@@ -1,9 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { cn } from '@/lib/utils';
-import { links } from '@/app/_data/links';
 import { usePathname } from 'next/navigation';
+import { cn } from '@/lib/utils';
+import { links } from '@/app/_data';
+import { isActive } from '@/app/_utils/helpers';
 
 export const MobileBar = () => {
   const pathName = usePathname();
@@ -16,7 +17,7 @@ export const MobileBar = () => {
           key={url}
           className={cn(
             'flex flex-col items-center gap-1',
-            pathName === url && 'text-primary',
+            isActive(url, pathName) && 'text-primary',
           )}
         >
           <span className='text-2xl'>{icon}</span>

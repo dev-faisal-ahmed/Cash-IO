@@ -1,13 +1,13 @@
 'use client';
 
 import Link from 'next/link';
-import { cn } from '@/lib/utils';
-import { links } from '@/app/_data/links';
 import { usePathname } from 'next/navigation';
+import { cn } from '@/lib/utils';
+import { links } from '@/app/_data';
 import { Logo } from '@/components/shared/Logo';
 import { TLoggedUser } from '@/app/_utils/types';
 import { ProfileIcon } from '@/components/shared/ProfileIcon';
-import { isActive } from '@/app/_utils/helpers/activeLink.helper';
+import { isActive } from '@/app/_utils/helpers';
 
 type TProps = {
   className?: string;

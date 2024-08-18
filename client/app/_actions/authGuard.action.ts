@@ -2,11 +2,11 @@
 
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
-import { tokens } from '../_data/tokens';
+import { tokens } from '../_data';
 import { jwtDecode } from 'jwt-decode';
 import { TLoggedUser } from '../_utils/types';
 
-export const authGuard = async () => {
+export const authGuardAction = async () => {
   const accessToken = cookies().get(tokens.accessToken)?.value;
   if (!accessToken) redirect('/auth/login');
 
@@ -16,7 +16,7 @@ export const authGuard = async () => {
   return decodedUser;
 };
 
-export const guardLoggedUser = async () => {
+export const guardLoggedUserAction = async () => {
   const accessToken = cookies().get(tokens.accessToken)?.value;
   if (!accessToken) return;
 

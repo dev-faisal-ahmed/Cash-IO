@@ -1,11 +1,11 @@
 import { PropsWithChildren } from 'react';
+import { authGuardAction } from '../_actions';
 import { Sidebar } from './_components/Sidebar';
 import { TopBar } from './_components/TopBar';
 import { MobileBar } from './_components/MobileBar';
-import { authGuard } from '../_actions/authGuard';
 
 export default async function MainLayout({ children }: PropsWithChildren) {
-  const user = await authGuard();
+  const user = await authGuardAction();
   if (!user) return null;
 
   return (

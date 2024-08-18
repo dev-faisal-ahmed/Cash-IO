@@ -1,12 +1,12 @@
 'use client';
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import { registerSchema, TRegisterSchema } from './registerSchema';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { toast } from 'sonner';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { registerSchema, TRegisterSchema } from './registerSchema';
 import { registerAction } from './registerAction';
-import { useRouter } from 'next/navigation';
 
 export const useRegister = () => {
   // states

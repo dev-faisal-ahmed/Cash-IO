@@ -5,7 +5,7 @@ export const axiosBaseQuery = ({ baseUrl } = { baseUrl: '' }): BaseQueryFn => {
   return async ({ url, method, params, headers, body }) => {
     try {
       const result: any = await axiosInstance({
-        url: baseUrl + url,
+        url: baseUrl + '/' + url,
         method,
         data: body,
         params,

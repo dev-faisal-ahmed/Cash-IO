@@ -1,9 +1,9 @@
 'use client';
 
 import * as drop from '@/components/ui/dropdown-menu';
-import { Button } from '../ui/button';
-import { logoutAction } from '@/app/_actions/auth.action';
 import { toast } from 'sonner';
+import { Button } from '../ui/button';
+import { logoutAction } from '@/app/_actions';
 import { useRouter } from 'next/navigation';
 
 type TProps = {
