@@ -11,4 +11,6 @@ const sourceSchema = new Schema<TCategory>({
   isDeleted: { type: Boolean, default: false },
 });
 
+sourceSchema.index({ userId: 1, name: 1 }, { unique: true });
+
 export const Category = model<TCategory>('category', sourceSchema);

@@ -1,8 +1,8 @@
 import { AppError } from '../utils/appError';
-import { JWT_SECRET } from '../config';
+import { ACCESS_TOKEN_SECRET } from '../config';
 import { User } from '../modules/user/user.model';
 import { asyncHandler } from './asyncHandler';
-import jwt, { JwtPayload, Secret } from 'jsonwebtoken';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 
 const BEARER = 'Bearer';
 
@@ -14,7 +14,7 @@ export const authGuard = asyncHandler(async (req, _, next) => {
   if (bearer.toLocaleLowerCase() !== BEARER.toLocaleLowerCase())
     throw new AppError('invalid token formate', 401);
 
-  const decodedUser = jwt.verify(token, JWT_SECRET as Secret) as JwtPayload;
+  const decodedUser = jwt.verify(token, ACCESS_TOKEN_SECRET!) as JwtPayload;
   if (!decodedUser) throw new AppError('Invalid Token', 401);
 
   const user = await User.findOne({ _id: decodedUser._id });

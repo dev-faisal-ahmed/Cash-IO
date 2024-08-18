@@ -1,7 +1,7 @@
 import { baseApi } from './baseApi';
 import { TAddCategoryPayload, TServerResponse } from '@/app/_utils/types';
 
-const category = 'category';
+const category = '/category';
 const categoryApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     // add category

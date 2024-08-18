@@ -2,17 +2,17 @@ import type { BaseQueryFn } from '@reduxjs/toolkit/query';
 import { axiosInstance } from './axiosInstance';
 
 export const axiosBaseQuery = ({ baseUrl } = { baseUrl: '' }): BaseQueryFn => {
-  return async ({ url, method, data, params, headers }) => {
+  return async ({ url, method, params, headers, body }) => {
     try {
-      const result = await axiosInstance({
+      const result: any = await axiosInstance({
         url: baseUrl + url,
         method,
-        data,
+        data: body,
         params,
         headers,
       });
 
-      return { data: result?.data };
+      return { data: result };
     } catch (err: any) {
       return {
         error: {

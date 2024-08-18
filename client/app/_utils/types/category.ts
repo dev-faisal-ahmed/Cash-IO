@@ -9,4 +9,9 @@ export type TCategory = {
   isDeleted: boolean;
 };
 
-export type TAddCategoryPayload = Pick<TCategory, 'name' | 'icon' | 'type'>;
+export type TAddCategoryPayload = Pick<
+  TCategory,
+  'name' | 'icon' | 'budget'
+> & {
+  type: string;
+};

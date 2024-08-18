@@ -3,12 +3,11 @@ import {
   getNewAccessTokenAction,
 } from '@/app/_actions/auth.action';
 import axios from 'axios';
-import { serverAddress } from '@/app/_data';
 
-export const axiosInstance = axios.create({
-  baseURL: serverAddress,
-  headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-});
+export const axiosInstance = axios.create();
+axiosInstance.defaults.headers.post['Content-Type'] = 'application/json';
+axiosInstance.defaults.headers['Accept'] = 'application/json';
+axiosInstance.defaults.timeout = 60000;
 
 // Add a request interceptor
 axiosInstance.interceptors.request.use(
@@ -30,7 +29,7 @@ axiosInstance.interceptors.response.use(
   //@ts-ignore
   function (response) {
     return {
-      ok: response?.data?.ok,
+      ok: response?.data.ok,
       data: response?.data?.data,
       meta: response?.data?.meta,
       message: response?.data.message,
