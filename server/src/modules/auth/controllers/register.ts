@@ -1,11 +1,11 @@
 import bcrypt from 'bcrypt';
 import { BCRYPT_SALT } from '../../../app/config';
-import { asyncHandler } from '../../../middlewares';
+import { catchAsync } from '../../../middlewares';
 import { User } from '../../user/model';
 import { registerSchema } from '../validation';
 import { sendSuccessResponse } from '../../../helpers';
 
-export const register = asyncHandler(async (req, res) => {
+export const register = catchAsync(async (req, res) => {
   // validation
   const payload = await registerSchema.parseAsync(req.body);
 

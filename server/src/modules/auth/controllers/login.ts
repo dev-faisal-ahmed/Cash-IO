@@ -7,9 +7,9 @@ import bcrypt from 'bcrypt';
 import { AppError } from '../../../utils';
 import { User } from '../../user/model';
 import { loginSchema } from '../validation';
-import { asyncHandler } from '../../../middlewares';
+import { catchAsync } from '../../../middlewares';
 
-export const login = asyncHandler(async (req, res) => {
+export const login = catchAsync(async (req, res) => {
   // validation
   const payload = await loginSchema.parseAsync(req.body);
 

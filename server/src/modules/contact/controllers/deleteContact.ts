@@ -1,10 +1,10 @@
 import { sendSuccessResponse } from '../../../helpers';
-import { asyncHandler } from '../../../middlewares';
+import { catchAsync } from '../../../middlewares';
 import { AppError } from '../../../utils';
 import { TUser } from '../../user/interface';
 import { Contact } from '../model';
 
-export const deleteContact = asyncHandler(async (req, res) => {
+export const deleteContact = catchAsync(async (req, res) => {
   const { contactId } = req.params;
   const user: TUser = req.user;
 

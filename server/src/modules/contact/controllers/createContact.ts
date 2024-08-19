@@ -1,11 +1,11 @@
 import { sendSuccessResponse } from '../../../helpers';
-import { asyncHandler } from '../../../middlewares';
+import { catchAsync } from '../../../middlewares';
 import { AppError } from '../../../utils';
 import { TUser } from '../../user/interface';
 import { Contact } from '../model';
 import { createContactSchema } from '../validation';
 
-export const createContact = asyncHandler(async (req, res) => {
+export const createContact = catchAsync(async (req, res) => {
   const payload = await createContactSchema.parseAsync(req.body);
   const user: TUser = req.user;
 

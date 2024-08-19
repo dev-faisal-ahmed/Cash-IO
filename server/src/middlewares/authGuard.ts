@@ -1,12 +1,12 @@
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import { AppError } from '../utils/appError';
 import { User } from '../modules/user/model';
-import { asyncHandler } from './asyncHandler';
+import { catchAsync } from './catchAsync';
 import { ACCESS_TOKEN_SECRET } from '../app/config';
 
 const BEARER = 'Bearer';
 
-export const authGuard = asyncHandler(async (req, _, next) => {
+export const authGuard = catchAsync(async (req, _, next) => {
   const authToke = req.headers.authorization;
   if (!authToke) throw new AppError('No Token Found', 400);
 

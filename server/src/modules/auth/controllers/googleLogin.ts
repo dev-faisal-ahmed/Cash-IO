@@ -5,10 +5,10 @@ import {
 } from '../../../helpers';
 import { AppError } from '../../../utils';
 import { User } from '../../user/model';
-import { asyncHandler } from '../../../middlewares';
+import { catchAsync } from '../../../middlewares';
 import { googleLoginSchema } from '../validation';
 
-export const googleLogin = asyncHandler(async (req, res) => {
+export const googleLogin = catchAsync(async (req, res) => {
   // validation
   const payload = await googleLoginSchema.parseAsync(req.body);
   const { email, name, imageUrl } = payload;

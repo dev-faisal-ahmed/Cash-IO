@@ -1,10 +1,10 @@
 import { sendSuccessResponse } from '../../../helpers';
-import { asyncHandler } from '../../../middlewares';
+import { catchAsync } from '../../../middlewares';
 import { AppError } from '../../../utils';
 import { TUser } from '../../user/interface';
 import { Category } from '../model';
 
-export const deleteCategory = asyncHandler(async (req, res) => {
+export const deleteCategory = catchAsync(async (req, res) => {
   const user: TUser = req.user;
   const { categoryId } = req.params;
 

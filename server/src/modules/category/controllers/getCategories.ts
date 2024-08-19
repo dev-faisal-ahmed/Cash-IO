@@ -1,8 +1,8 @@
 import { sendSuccessResponse } from '../../../helpers';
-import { asyncHandler } from '../../../middlewares';
+import { catchAsync } from '../../../middlewares';
 import { Category } from '../model';
 
-export const getCategories = asyncHandler(async (req, res) => {
+export const getCategories = catchAsync(async (req, res) => {
   // query
   const user = req.user;
   const { query } = req;

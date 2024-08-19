@@ -1,9 +1,9 @@
 import { sendSuccessResponse } from '../../../helpers';
-import { asyncHandler } from '../../../middlewares';
+import { catchAsync } from '../../../middlewares';
 import { Wallet } from '../model';
 import { addWalletSchema } from '../validation';
 
-export const addWallet = asyncHandler(async (req, res) => {
+export const addWallet = catchAsync(async (req, res) => {
   // validation
   const payload = await addWalletSchema.parseAsync(req.body);
   const user = req.user;
